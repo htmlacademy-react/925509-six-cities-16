@@ -12,6 +12,11 @@ export type PlaceType = {
   imgSrc: string;
 };
 
+export type LocationType = {
+  title: string;
+  link: string;
+};
+
 export const placesList: PlaceType[] = [
   {
     title: '',
@@ -69,11 +74,6 @@ export const placesList: PlaceType[] = [
     imgSrc: 'img/room.jpg',
   },
 ];
-
-export type LocationType = {
-  title: string;
-  link: string;
-};
 
 export const locationsList: LocationType[] = [
   {
