@@ -3,7 +3,9 @@ import { PlaceType } from '../../types/types';
 // TO DO
 //  Кнопку добавления в избранное потом в отдельный компонент вынести
 
-function PlaceCard(props: PlaceType): JSX.Element {
+type PlaceCardProps = PlaceType;
+
+function PlaceCard(props: PlaceCardProps): JSX.Element {
   const {
     price,
     type,

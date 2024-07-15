@@ -1,5 +1,5 @@
 import PlaceCard from './place-card';
-import { PlaceType } from '../../const';
+import { PlaceType } from '../../types/types';
 
 type PlaceListProps = {
   places: PlaceType[];

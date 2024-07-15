@@ -1,5 +1,5 @@
 import LocationItem from './location-item';
-import { LocationType } from '../../const';
+import { LocationType } from '../../types/types';
 
 type LocationListProps = {
   locations: LocationType[];

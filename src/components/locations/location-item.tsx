@@ -1,4 +1,4 @@
-import { LocationType } from '../../const';
+import { LocationType } from '../../types/types';
 
 // TO DO
 // добавить проверку активной вкладки и добавлять класс tabs__item--active - это видимо на этапе роутинга
