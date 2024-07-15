@@ -1,10 +1,19 @@
-import { PlaceType } from '../const';
+import { PlaceType } from '../../types/types';
 
 // TO DO
 //  Кнопку добавления в избранное потом в отдельный компонент вынести
 
 function PlaceCard(props: PlaceType): JSX.Element {
-  const { price, type, description, link, rating, imgSrc, isPremium, isInFavorite } = props;
+  const {
+    price,
+    type,
+    description,
+    link,
+    rating,
+    imgSrc,
+    isPremium,
+    isInFavorite,
+  } = props;
 
   return (
     <article className="cities__card place-card">
@@ -30,7 +39,12 @@ function PlaceCard(props: PlaceType): JSX.Element {
             <b className="place-card__price-value">{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isInFavorite ? 'place-card__bookmark-button--active' : ''}`} type="button">
+          <button
+            className={`place-card__bookmark-button button ${
+              isInFavorite ? 'place-card__bookmark-button--active' : ''
+            }`}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>

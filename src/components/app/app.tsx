@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AppRoute, AutorisationStatus } from '../const';
+import { AppRoute, AutorisationStatus } from '../../const';
 
 import LoginPage from '../../pages/login/login-page';
 import FavoritesPage from '../../pages/favorites/favorites-page';

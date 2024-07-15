@@ -1,8 +1,8 @@
-import { LocationType } from '../const';
+import { LocationType } from '../../const';
 
 // TO DO
 // добавить проверку активной вкладки и добавлять класс tabs__item--active - это видимо на этапе роутинга
-function LocationItem(props:LocationType) {
+function LocationItem(props: LocationType) {
   const { title, link } = props;
 
   return (

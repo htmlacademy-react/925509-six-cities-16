@@ -1,21 +1,4 @@
-export const PLACES_COUNT: number = 312;
-
-export type PlaceType = {
-  title: string;
-  price: string;
-  type: string;
-  description: string;
-  link: string;
-  isPremium: boolean;
-  isInFavorite: boolean;
-  rating: number;
-  imgSrc: string;
-};
-
-export type LocationType = {
-  title: string;
-  link: string;
-};
+import { PlaceType, LocationType } from './types/types';
 
 export const placesList: PlaceType[] = [
   {
@@ -101,17 +84,3 @@ export const locationsList: LocationType[] = [
     link: '#',
   },
 ];
-
-export enum AppRoute {
-  Root = '/',
-  Favorites = '/favorites',
-  Login = '/login',
-  Offer = '/offer',
-  AnyOther = '*'
-}
-
-export enum AutorisationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN'
-}

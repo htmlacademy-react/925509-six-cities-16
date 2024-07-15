@@ -3,11 +3,7 @@ import PlaceList from '../../components/places/place-list';
 import LocationList from '../../components/locations/location-list';
 import Map from '../../components/map/map';
 
-import {
-  PLACES_COUNT,
-  locationsList,
-  placesList,
-} from '../../components/const';
+import { locationsList, placesList } from '../../mocks';
 
 function MainPage(): JSX.Element {
   return (
@@ -23,7 +19,7 @@ function MainPage(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {PLACES_COUNT} places to stay in Amsterdam
+                {placesList.length} places to stay in Amsterdam
               </b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
