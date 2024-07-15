@@ -9,12 +9,11 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   const {
     price,
     type,
-    description,
-    link,
+    title,
     rating,
-    imgSrc,
+    previewImage,
     isPremium,
-    isInFavorite,
+    isFavorite,
   } = props;
 
   return (
@@ -25,10 +24,10 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href={link}>
+        <a href="#">
           <img
             className="place-card__image"
-            src={imgSrc}
+            src={previewImage}
             width={260}
             height={200}
             alt="Place image"
@@ -38,12 +37,12 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">{price}</b>
+            <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
             className={`place-card__bookmark-button button ${
-              isInFavorite ? 'place-card__bookmark-button--active' : ''
+              isFavorite ? 'place-card__bookmark-button--active' : ''
             }`}
             type="button"
           >
@@ -60,7 +59,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{description}</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

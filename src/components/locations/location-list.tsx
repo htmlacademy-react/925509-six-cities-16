@@ -1,8 +1,8 @@
 import LocationItem from './location-item';
-import { LocationType } from '../../types/types';
+import { LocationLinkType } from '../../types/types';
 
 type LocationListProps = {
-  locations: LocationType[];
+  locations: LocationLinkType[];
 };
 
 function LocationList(props: LocationListProps): JSX.Element {
@@ -11,7 +11,7 @@ function LocationList(props: LocationListProps): JSX.Element {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        {locations.map((locationItem: LocationType) => (
+        {locations.map((locationItem: LocationLinkType) => (
           <LocationItem
             key={locationItem.title}
             title={locationItem.title}

@@ -14,14 +14,15 @@ function PlaceList(props: PlaceListProps): JSX.Element {
         <PlaceCard
           price={placeItem.price}
           type={placeItem.type}
-          description={placeItem.description}
-          link={placeItem.link}
-          rating={placeItem.rating}
-          imgSrc={placeItem.imgSrc}
-          isPremium={placeItem.isPremium}
-          isInFavorite={placeItem.isInFavorite}
           title={placeItem.title}
-          key={crypto.randomUUID()}
+          rating={placeItem.rating}
+          previewImage={placeItem.previewImage}
+          isPremium={placeItem.isPremium}
+          isFavorite={placeItem.isFavorite}
+          id={placeItem.id}
+          city={placeItem.city}
+          location={placeItem.location}
+          key={placeItem.id}
         />
       ))}
     </div>
