@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import '../../styles/additional-styles.css';
+
 function NotFoundPage(): JSX.Element {
   return (
     <div className="page">
@@ -42,10 +44,10 @@ function NotFoundPage(): JSX.Element {
         </div>
       </header>
 
-      <main className="page__main">
+      <main className="page__main page__main--not-found">
         <div className="container">
-          <h2 className="favorites__title">Such page doesn&apos;t exist.</h2>
-          <Link to="/" className="place-card__name">Go to main page</Link>
+          <h2 className="title">Such page doesn&apos;t exist.</h2>
+          <Link to="/" className="link">Go to main page</Link>
         </div>
       </main>
     </div>
