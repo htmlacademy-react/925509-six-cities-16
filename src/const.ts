@@ -1,5 +1,3 @@
-export const PLACES_COUNT: number = 312;
-
 export enum AppRoute {
   Root = '/',
   Favorites = '/favorites',
@@ -8,7 +6,7 @@ export enum AppRoute {
   AnyOther = '*'
 }
 
-export enum AutorisationStatus {
+export enum AuthorisationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN'
