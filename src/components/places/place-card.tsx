@@ -5,8 +5,10 @@ import { AppRoute } from '../../const';
 
 // TO DO
 //  Кнопку добавления в избранное потом в отдельный компонент вынести
-
-type PlaceCardProps = PlaceType;
+type PlaceCardProps = PlaceType & {
+  isFavoriteCard: boolean;
+  isMainCard: boolean;
+};
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const {
@@ -18,27 +20,43 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     isPremium,
     isFavorite,
     id,
+    isFavoriteCard = false,
+    isMainCard = true,
   } = props;
 
   return (
-    <article className="cities__card place-card">
+    <article
+      className={`
+      ${isMainCard ? 'cities__card' : ''} ${
+      isFavorite ? 'favorites__card' : ''
+    } place-card`}
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div
+        className={`
+          ${isMainCard ? 'cities__image-wrapper' : ''}
+          ${isFavoriteCard ? 'favorites__image-wrapper' : ''}
+          place-card__image-wrapper`}
+      >
         <Link to={`${AppRoute.Offer}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
-            width={260}
-            height={200}
+            width={`${isFavoriteCard ? 150 : 260}`}
+            height={`${isFavoriteCard ? 110 : 200}`}
             alt="Place image"
           />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div
+        className={`${
+          isFavoriteCard ? 'favorites__card-info' : ''
+        } place-card__info`}
+      >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">€{price}</b>

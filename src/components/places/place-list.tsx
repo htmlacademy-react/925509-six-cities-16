@@ -7,6 +7,7 @@ type PlaceListProps = {
 
 function PlaceList(props: PlaceListProps): JSX.Element {
   const { places } = props;
+  const IS_MAIN_CARD = true;
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -23,6 +24,8 @@ function PlaceList(props: PlaceListProps): JSX.Element {
           city={placeItem.city}
           location={placeItem.location}
           key={placeItem.id}
+          isFavoriteCard={false}
+          isMainCard={IS_MAIN_CARD}
         />
       ))}
     </div>
