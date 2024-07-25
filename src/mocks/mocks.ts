@@ -1,4 +1,4 @@
-import { PlaceType, LocationLinkType } from './types/types';
+import { PlaceType, LocationLinkType } from '../types/types';
 
 export const placesList: PlaceType[] = [
   {

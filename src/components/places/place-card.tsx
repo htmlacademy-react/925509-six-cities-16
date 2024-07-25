@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
+import { AppRoute } from '../../const';
 
 // TO DO
 //  Кнопку добавления в избранное потом в отдельный компонент вынести
@@ -15,6 +17,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     previewImage,
     isPremium,
     isFavorite,
+    id,
   } = props;
 
   return (
@@ -25,7 +28,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoute.Offer}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -33,7 +36,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             height={200}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -50,7 +53,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Offer}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

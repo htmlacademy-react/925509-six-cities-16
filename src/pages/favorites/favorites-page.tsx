@@ -11,7 +11,9 @@ function FavoritesPage(): JSX.Element {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
+            {/* список 7 */}
             <ul className="favorites__list">
+              {/* Элемент списка  */}
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
@@ -21,6 +23,7 @@ function FavoritesPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
+                  {/* Обычная карточка, только тут добавляются классы некоторые  favorites__card и тд*/}
                   <article className="favorites__card place-card">
                     <div className="place-card__mark">
                       <span>Premium</span>
