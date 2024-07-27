@@ -28,7 +28,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     <article
       className={`
       ${isMainCard ? 'cities__card' : ''} ${
-      isFavorite ? 'favorites__card' : ''
+      isFavoriteCard ? 'favorites__card' : ''
     } place-card`}
     >
       {isPremium && (
