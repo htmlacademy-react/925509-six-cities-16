@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
@@ -24,12 +25,32 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     isMainCard = true,
   } = props;
 
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
+  const handleMouseEnterOnCard = (): void => {
+  // Эта логика только на главной должна работать
+    if (isMainCard) {
+      setActiveCardId(id);
+    }
+  };
+
+  const handleMouseLeaveOnCard = (): void => {
+    if (isMainCard) {
+      setActiveCardId(null);
+    }
+  };
+
+  //eslint-disable-next-line
+  console.log('activeCardId: ', activeCardId);
+
   return (
     <article
       className={`
       ${isMainCard ? 'cities__card' : ''} ${
       isFavoriteCard ? 'favorites__card' : ''
     } place-card`}
+      onMouseEnter={handleMouseEnterOnCard}
+      onMouseLeave={handleMouseLeaveOnCard}
     >
       {isPremium && (
         <div className="place-card__mark">
