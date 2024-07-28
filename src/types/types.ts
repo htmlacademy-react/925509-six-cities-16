@@ -33,3 +33,7 @@ export type LocationLinkType = {
 export type RatingType = {
   [key: string]: number;
 }
+
+export type AppRouteType = {
+  [key: string]: string;
+}

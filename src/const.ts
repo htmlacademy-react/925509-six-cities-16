@@ -1,4 +1,4 @@
-import { RatingType } from './types/types';
+import { RatingType, AppRouteType } from './types/types';
 
 const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 
@@ -11,13 +11,13 @@ const Rating: RatingType = {
   'terribly' : 1
 };
 
-enum AppRoute {
-  Root = '/',
-  Favorites = '/favorites',
-  Login = '/login',
-  Offer = '/offer',
-  AnyOther = '*'
-}
+const AppRoute: AppRouteType = {
+  Root : '/',
+  Favorites : '/favorites',
+  Login : '/login',
+  Offer : '/offer',
+  AnyOther : '*'
+} as const;
 
 enum AuthorisationStatus {
   Auth = 'AUTH',

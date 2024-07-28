@@ -4,8 +4,6 @@ import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
 import { AppRoute } from '../../const';
 
-// TO DO
-//  Кнопку добавления в избранное потом в отдельный компонент вынести
 type PlaceCardProps = PlaceType & {
   isFavoriteCard: boolean;
   isMainCard: boolean;
