@@ -1,7 +1,5 @@
 import { RatingType, AppRouteType } from './types/types';
 
-const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
-
 // без объявления типа падает ошибка в reviews-form
 const Rating: RatingType = {
   'perfect' : 5,
@@ -26,7 +24,6 @@ enum AuthorisationStatus {
 }
 
 export {
-  CITIES,
   Rating,
   AppRoute,
   AuthorisationStatus
