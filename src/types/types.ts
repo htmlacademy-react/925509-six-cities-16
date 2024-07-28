@@ -29,3 +29,7 @@ export type LocationLinkType = {
   title: 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
   link: string;
 };
+
+export type RatingType = {
+  [key: string]: number;
+}
