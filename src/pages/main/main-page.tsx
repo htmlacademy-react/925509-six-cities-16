@@ -26,7 +26,7 @@ function MainPage(): JSX.Element {
                 {placesList.length} places to stay in Amsterdam
               </b>
               <SortingForm />
-              <PlaceList places={placesList} />
+              <PlaceList places={placesList} isNearPlacesList={false} />
             </section>
             <div className="cities__right-section">
               <Map />

@@ -28,9 +28,12 @@ const CommentLengthLimit = {
   Max: 300
 } as const;
 
+const NEARBY_PLACES_MAX_COUNT = 3;
+
 export {
   Rating,
   AppRoute,
   AuthorisationStatus,
-  CommentLengthLimit
+  CommentLengthLimit,
+  NEARBY_PLACES_MAX_COUNT
 };

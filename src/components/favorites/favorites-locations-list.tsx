@@ -11,29 +11,27 @@ function getFavoritePlaces(places: PlaceType[]) {
 
 // спасибо чату GPT за TS, разобраться в будушем
 function groupPlacesByFavorite(places: PlaceType[]) {
-  return Object.values(
-    places.reduce((acc: Record<string, PlaceType[]>, place: PlaceType) => {
-      if (!acc[place.city.name]) {
-        acc[place.city.name] = [];
-      }
-      acc[place.city.name].push(place);
-      return acc;
-    }, {})
-  );
+  return places.reduce((accumulator: Record<string, PlaceType[]>, place: PlaceType) => {
+    if (!accumulator[place.city.name]) {
+      accumulator[place.city.name] = [];
+    }
+    accumulator[place.city.name].push(place);
+    return accumulator;
+  }, {});
 }
 
 function FavoritesList(props: FavoritesListProps): JSX.Element {
   const { places } = props;
   const favoritePlaces = getFavoritePlaces(places);
   const placesGroups = groupPlacesByFavorite(favoritePlaces);
-  // console.log(placesGroups);
 
   return (
     <ul className="favorites__list">
-      {placesGroups.map((placeGroupItem: PlaceType[]) => (
+      {Object.keys(placesGroups).map((placeGroupItem: string) => (
         <FavoritesLocationsItem
           key={crypto.randomUUID()}
-          places={placeGroupItem}
+          places={placesGroups[placeGroupItem]}
+          currentCity={placeGroupItem}
         />
       ))}
     </ul>

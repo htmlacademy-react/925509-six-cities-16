@@ -3,14 +3,20 @@ import { PlaceType } from '../../types/types';
 
 type PlaceListProps = {
   places: PlaceType[];
+  isNearPlacesList: boolean;
 };
 
 function PlaceList(props: PlaceListProps): JSX.Element {
-  const { places } = props;
-  const IS_MAIN_CARD = true;
+  const { places, isNearPlacesList } = props;
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div
+      className={`${
+        isNearPlacesList
+          ? 'near-places__list'
+          : 'cities__places-list tabs__content'
+      } places__list`}
+    >
       {places.map((placeItem: PlaceType) => (
         <PlaceCard
           price={placeItem.price}
@@ -25,7 +31,8 @@ function PlaceList(props: PlaceListProps): JSX.Element {
           location={placeItem.location}
           key={placeItem.id}
           isFavoriteCard={false}
-          isMainCard={IS_MAIN_CARD}
+          isNearPlacesCard={false}
+          isMainCard
         />
       ))}
     </div>

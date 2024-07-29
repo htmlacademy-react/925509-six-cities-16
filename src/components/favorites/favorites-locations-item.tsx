@@ -1,24 +1,28 @@
+import { Link } from 'react-router-dom';
+
+import { AppRoute } from '../../const';
 import { PlaceType } from '../../types/types';
 
 import PlaceCard from '../places/place-card';
 
 type favoriteLocationsItemProps = {
   places: PlaceType[];
+  currentCity: string;
 };
 
 function FavoritesLocationsItem(
   props: favoriteLocationsItemProps
 ): JSX.Element {
-  const { places } = props;
-  const IS_FAVORITE_CARD = true;
+  const { places, currentCity } = props;
+
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          {/* TO DO - пока не понимаю, куда эта ссылка будет вести  */}
-          <a className="locations__item-link" href="#">
-            <span>{places[0].city.name}</span>
-          </a>
+          {/* TO DO - в дальнейшем тут добавить часть пути для фильтрации по городу */}
+          <Link className="locations__item-link" to={AppRoute.Root}>
+            <span>{currentCity}</span>
+          </Link>
         </div>
       </div>
       <div className="favorites__places">
@@ -35,8 +39,9 @@ function FavoritesLocationsItem(
             city={placeItem.city}
             location={placeItem.location}
             key={placeItem.id}
-            isFavoriteCard={IS_FAVORITE_CARD}
+            isFavoriteCard
             isMainCard={false}
+            isNearPlacesCard={false}
           />
         ))}
       </div>

@@ -7,6 +7,7 @@ import { AppRoute } from '../../const';
 type PlaceCardProps = PlaceType & {
   isFavoriteCard: boolean;
   isMainCard: boolean;
+  isNearPlacesCard: boolean;
 };
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
@@ -21,6 +22,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     id,
     isFavoriteCard = false,
     isMainCard = true,
+    isNearPlacesCard = false
   } = props;
 
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
@@ -44,9 +46,10 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   return (
     <article
       className={`
-      ${isMainCard ? 'cities__card' : ''} ${
-      isFavoriteCard ? 'favorites__card' : ''
-    } place-card`}
+        ${isMainCard ? 'cities__card' : ''}
+        ${isFavoriteCard ? 'favorites__card' : ''}
+        ${isNearPlacesCard ? 'near-places__card' : ''}
+        place-card`}
       onMouseEnter={handleCardMouseEnter}
       onMouseLeave={handleCardMouseLeave}
     >
@@ -59,6 +62,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         className={`
           ${isMainCard ? 'cities__image-wrapper' : ''}
           ${isFavoriteCard ? 'favorites__image-wrapper' : ''}
+          ${isNearPlacesCard ? 'near-places__image-wrapper' : ''}
           place-card__image-wrapper`}
       >
         <Link to={`${AppRoute.Offer}/${id}`}>

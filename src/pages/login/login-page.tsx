@@ -1,4 +1,8 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+
 import Header from '../../components/header/header';
+
 
 function LoginPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
@@ -42,9 +46,9 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link className="locations__item-link" to={AppRoute.Root}>
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
