@@ -4,12 +4,15 @@ import LocationList from '../../components/locations/location-list';
 import SortingForm from '../../components/sorting/sorting-form';
 import Map from '../../components/map/map';
 
-import { locationsList, placesList } from '../../mocks';
+import { locationsList, placesList } from '../../mocks/mocks';
 
 function MainPage(): JSX.Element {
+  // в данном случае харкодим, потом из state будем информацию забирать
+  const isAuthorized = true;
+
   return (
     <div className="page page--gray page--main">
-      <Header />
+      <Header isAuthorized={isAuthorized} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -23,7 +26,7 @@ function MainPage(): JSX.Element {
                 {placesList.length} places to stay in Amsterdam
               </b>
               <SortingForm />
-              <PlaceList places={placesList} />
+              <PlaceList places={placesList} isNearPlacesList={false} />
             </section>
             <div className="cities__right-section">
               <Map />

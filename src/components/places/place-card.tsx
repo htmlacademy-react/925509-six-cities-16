@@ -1,10 +1,14 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
+import { AppRoute } from '../../const';
 
-// TO DO
-//  Кнопку добавления в избранное потом в отдельный компонент вынести
-
-type PlaceCardProps = PlaceType;
+type PlaceCardProps = PlaceType & {
+  isFavoriteCard: boolean;
+  isMainCard: boolean;
+  isNearPlacesCard: boolean;
+};
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const {
@@ -15,27 +19,67 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     previewImage,
     isPremium,
     isFavorite,
+    id,
+    isFavoriteCard = false,
+    isMainCard = true,
+    isNearPlacesCard = false
   } = props;
 
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
+  const handleCardMouseEnter = (): void => {
+  // Эта логика только на главной должна работать
+    if (isMainCard) {
+      setActiveCardId(id);
+    }
+  };
+
+  const handleCardMouseLeave = (): void => {
+    if (isMainCard) {
+      setActiveCardId(null);
+    }
+  };
+
+  //eslint-disable-next-line
+  console.log('activeCardId: ', activeCardId);
+
   return (
-    <article className="cities__card place-card">
+    <article
+      className={`
+        ${isMainCard ? 'cities__card' : ''}
+        ${isFavoriteCard ? 'favorites__card' : ''}
+        ${isNearPlacesCard ? 'near-places__card' : ''}
+        place-card`}
+      onMouseEnter={handleCardMouseEnter}
+      onMouseLeave={handleCardMouseLeave}
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+      <div
+        className={`
+          ${isMainCard ? 'cities__image-wrapper' : ''}
+          ${isFavoriteCard ? 'favorites__image-wrapper' : ''}
+          ${isNearPlacesCard ? 'near-places__image-wrapper' : ''}
+          place-card__image-wrapper`}
+      >
+        <Link to={`${AppRoute.Offer}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
-            width={260}
-            height={200}
+            width={`${isFavoriteCard ? 150 : 260}`}
+            height={`${isFavoriteCard ? 110 : 200}`}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
-      <div className="place-card__info">
+      <div
+        className={`${
+          isFavoriteCard ? 'favorites__card-info' : ''
+        } place-card__info`}
+      >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">€{price}</b>
@@ -50,7 +94,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Offer}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

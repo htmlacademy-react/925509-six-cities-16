@@ -1,4 +1,4 @@
-import { PlaceType, LocationLinkType } from './types/types';
+import { PlaceType, LocationLinkType } from '../types/types';
 
 export const placesList: PlaceType[] = [
   {
@@ -66,7 +66,7 @@ export const placesList: PlaceType[] = [
       longitude: 4.376697,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.4,
   },
@@ -89,7 +89,7 @@ export const placesList: PlaceType[] = [
       longitude: 4.363696999999999,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.7,
   },
