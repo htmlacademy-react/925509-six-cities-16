@@ -25,14 +25,14 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
 
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
-  const handleMouseEnterOnCard = (): void => {
+  const handleCardMouseEnter = (): void => {
   // Эта логика только на главной должна работать
     if (isMainCard) {
       setActiveCardId(id);
     }
   };
 
-  const handleMouseLeaveOnCard = (): void => {
+  const handleCardMouseLeave = (): void => {
     if (isMainCard) {
       setActiveCardId(null);
     }
@@ -47,8 +47,8 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
       ${isMainCard ? 'cities__card' : ''} ${
       isFavoriteCard ? 'favorites__card' : ''
     } place-card`}
-      onMouseEnter={handleMouseEnterOnCard}
-      onMouseLeave={handleMouseLeaveOnCard}
+      onMouseEnter={handleCardMouseEnter}
+      onMouseLeave={handleCardMouseLeave}
     >
       {isPremium && (
         <div className="place-card__mark">

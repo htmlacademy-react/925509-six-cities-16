@@ -2,16 +2,12 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
 
-type headerProps = {
+type HeaderProps = {
   isAuthorized: boolean;
 };
 
-function Header(props: headerProps): JSX.Element {
+function Header(props: HeaderProps): JSX.Element {
   const { isAuthorized } = props;
-  const location = useLocation();
-
-  // как будто это не имеет смысла, потому что по итогу href все равно сохраняется и ссылка кликабельна
-  const isMainPage = location.pathname === AppRoute.Root;
 
   return (
     <header className="header">
@@ -20,7 +16,7 @@ function Header(props: headerProps): JSX.Element {
           <div className="header__left">
             <Link
               className="header__logo-link header__logo-link--active"
-              to={isMainPage ? '' : AppRoute.Root}
+              to={AppRoute.Root}
             >
               <img
                 className="header__logo"

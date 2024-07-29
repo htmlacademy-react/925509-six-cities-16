@@ -23,8 +23,14 @@ enum AuthorisationStatus {
   Unknown = 'UNKNOWN'
 }
 
+const CommentLengthLimit = {
+  Min: 50,
+  Max: 300
+} as const;
+
 export {
   Rating,
   AppRoute,
-  AuthorisationStatus
+  AuthorisationStatus,
+  CommentLengthLimit
 };

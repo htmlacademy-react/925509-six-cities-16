@@ -1,21 +1,21 @@
 import { ChangeEvent, useState, Fragment } from 'react';
 
-import { Rating } from '../../const';
+import { Rating, CommentLengthLimit } from '../../const';
 
 function ReviewsForm(): JSX.Element {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
 
-  const handleChangeComment = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleCommentChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     setComment(evt.target.value);
   };
 
-  const handleChangeRating = (evt: ChangeEvent<HTMLInputElement>) => {
+  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setRating(Number(evt.target.value));
   };
 
 
-  const isFormValid = comment.length && rating;
+  const isFormValid = comment.length >= CommentLengthLimit.Min && comment.length <= CommentLengthLimit.Max && rating;
 
   return (
     <form className="reviews__form form" action="#" method="post">
@@ -31,7 +31,7 @@ function ReviewsForm(): JSX.Element {
               value={Rating[ratingKey]}
               id={`${Rating[ratingKey]}-stars`}
               type="radio"
-              onChange={handleChangeRating}
+              onChange={handleRatingChange}
               checked={Rating[ratingKey] === rating}
             />
             <label
@@ -52,14 +52,14 @@ function ReviewsForm(): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={handleChangeComment}
+        onChange={handleCommentChange}
         value={comment}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe your stay
-          with at least <b className="reviews__text-amount">50 characters</b>.
+          with at least <b className="reviews__text-amount">{CommentLengthLimit.Min} characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
