@@ -4,11 +4,15 @@ import LocationList from '../../components/locations/location-list';
 import SortingForm from '../../components/sorting/sorting-form';
 import Map from '../../components/map/map';
 
+import { LocationType } from '../../types/types';
 import { locationsList, placesList } from '../../mocks/mocks';
 
 function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
   const isAuthorized = true;
+
+  // временно
+  const AMSTERDAM_CITY: LocationType = placesList[0].city.location;
 
   return (
     <div className="page page--gray page--main">
@@ -29,7 +33,7 @@ function MainPage(): JSX.Element {
               <PlaceList places={placesList} isNearPlacesList={false} />
             </section>
             <div className="cities__right-section">
-              <Map />
+              <Map places={placesList} activePlaceId={'000'} city={AMSTERDAM_CITY}/>
             </div>
           </div>
         </div>
