@@ -40,8 +40,8 @@ export type AppRouteType = {
 
 export type MapIconType = {
   iconUrl: string;
-  iconSize: [number, number];
-  iconAnchor: [number, number];
+  iconSize: readonly [number, number];
+  iconAnchor: readonly [number, number];
 }
 
 export type MapIconsType = {
