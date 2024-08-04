@@ -30,6 +30,7 @@ const CommentLengthLimit = {
 
 const NEARBY_PLACES_MAX_COUNT = 3;
 
+// константный объект тут не подойдет из-за библиотеки карт
 const MapIcon: MapIconsType = {
   Default: {
     iconUrl: 'img/pin.svg',
@@ -41,7 +42,7 @@ const MapIcon: MapIconsType = {
     iconSize: [27, 39],
     iconAnchor: [13.5, 39]
   },
-} as const;
+};
 
 const TitleLayerUrl = {
   Pattern: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',

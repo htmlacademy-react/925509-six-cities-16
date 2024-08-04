@@ -7,7 +7,7 @@ type PlaceCardProps = PlaceType & {
   isFavoriteCard: boolean;
   isMainCard: boolean;
   isNearPlacesCard: boolean;
-  onListMouseEnter:(activePlaceId: string) => void;
+  onListMouseEnter?:(activePlaceId: string) => void;
 };
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
@@ -28,13 +28,17 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
 
   const handleCardMouseEnter = (): void => {
     if (isMainCard) {
-      onListMouseEnter(id);
+      if (onListMouseEnter) {
+        onListMouseEnter(id);
+      }
     }
   };
 
   const handleCardMouseLeave = (): void => {
     if (isMainCard) {
-      onListMouseEnter('');
+      if (onListMouseEnter) {
+        onListMouseEnter('');
+      }
     }
   };
 

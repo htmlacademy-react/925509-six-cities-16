@@ -4,7 +4,7 @@ import { PlaceType } from '../../types/types';
 type PlaceListProps = {
   places: PlaceType[];
   isNearPlacesList: boolean;
-  onListMouseEnter:(activePlaceId: string) => void;
+  onListMouseEnter?:(activePlaceId: string) => void;
 };
 
 function PlaceList(props: PlaceListProps): JSX.Element {
