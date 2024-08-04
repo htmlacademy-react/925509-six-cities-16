@@ -14,13 +14,13 @@ type MapProps = {
   places: PlaceType[];
 }
 
+const defaultIcon = new Icon(MapIcon.Default);
+const customIcon = new Icon(MapIcon.Active);
+
 function Map(props: MapProps): JSX.Element {
   const {activePlaceId, city, places } = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-
-  const defaultIcon = new Icon(MapIcon.Default);
-  const customIcon = new Icon(MapIcon.Active);
 
   useEffect(() => {
     if (map) {

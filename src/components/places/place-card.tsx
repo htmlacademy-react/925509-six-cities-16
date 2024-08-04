@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
@@ -8,6 +7,7 @@ type PlaceCardProps = PlaceType & {
   isFavoriteCard: boolean;
   isMainCard: boolean;
   isNearPlacesCard: boolean;
+  onListMouseEnter:(activePlaceId: string) => void;
 };
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
@@ -22,26 +22,21 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     id,
     isFavoriteCard = false,
     isMainCard = true,
-    isNearPlacesCard = false
+    isNearPlacesCard = false,
+    onListMouseEnter
   } = props;
 
-  const [activeCardId, setActiveCardId] = useState<string | null>(null);
-
   const handleCardMouseEnter = (): void => {
-  // Эта логика только на главной должна работать
     if (isMainCard) {
-      setActiveCardId(id);
+      onListMouseEnter(id);
     }
   };
 
   const handleCardMouseLeave = (): void => {
     if (isMainCard) {
-      setActiveCardId(null);
+      onListMouseEnter('');
     }
   };
-
-  //eslint-disable-next-line
-  console.log('activeCardId: ', activeCardId);
 
   return (
     <article

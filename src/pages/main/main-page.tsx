@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Header from '../../components/header/header';
 import PlaceList from '../../components/places/place-list';
 import LocationList from '../../components/locations/location-list';
@@ -10,9 +12,15 @@ import { locationsList, placesList } from '../../mocks/mocks';
 function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
   const isAuthorized = true;
-
-  // временно
+  // временно, чтобы показывался Амстердам
   const AMSTERDAM_CITY: LocationType = placesList[0].city.location;
+
+  const [activePlaceId, setActiveCardId] = useState<string>('');
+
+  const handlePlaceItemHover = (placeItemId: string) => {
+    const currentId = placeItemId;
+    setActiveCardId(currentId);
+  };
 
   return (
     <div className="page page--gray page--main">
@@ -30,10 +38,18 @@ function MainPage(): JSX.Element {
                 {placesList.length} places to stay in Amsterdam
               </b>
               <SortingForm />
-              <PlaceList places={placesList} isNearPlacesList={false} />
+              <PlaceList
+                places={placesList}
+                isNearPlacesList={false}
+                onListMouseEnter={handlePlaceItemHover}
+              />
             </section>
             <div className="cities__right-section">
-              <Map places={placesList} activePlaceId={'000'} city={AMSTERDAM_CITY}/>
+              <Map
+                places={placesList}
+                activePlaceId={activePlaceId}
+                city={AMSTERDAM_CITY}
+              />
             </div>
           </div>
         </div>
