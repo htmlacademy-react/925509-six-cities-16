@@ -18,8 +18,7 @@ function MainPage(): JSX.Element {
   const [activePlaceId, setActiveCardId] = useState<string>('');
 
   const handlePlaceItemHover = (placeItemId: string) => {
-    const currentId = placeItemId;
-    setActiveCardId(currentId);
+    setActiveCardId(placeItemId);
   };
 
   return (
