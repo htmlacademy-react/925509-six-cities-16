@@ -4,10 +4,11 @@ import { PlaceType } from '../../types/types';
 type PlaceListProps = {
   places: PlaceType[];
   isNearPlacesList: boolean;
+  onListMouseEnter?:(activePlaceId: string) => void;
 };
 
 function PlaceList(props: PlaceListProps): JSX.Element {
-  const { places, isNearPlacesList } = props;
+  const { places, isNearPlacesList, onListMouseEnter } = props;
 
   return (
     <div
@@ -33,6 +34,7 @@ function PlaceList(props: PlaceListProps): JSX.Element {
           isFavoriteCard={false}
           isNearPlacesCard={false}
           isMainCard
+          onListMouseEnter={onListMouseEnter}
         />
       ))}
     </div>

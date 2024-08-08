@@ -2,6 +2,98 @@ import { PlaceType, LocationLinkType } from '../types/types';
 
 export const placesList: PlaceType[] = [
   {
+    id: '991324b0-f17f-4382-a08c-cd6976918b58',
+    title: 'Loft Studio in the Central Area',
+    type: 'hotel',
+    price: 204,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 12,
+      },
+    },
+    location: {
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.3,
+  },
+  {
+    id: '991324b0-f17f-4382-a08c-cd6976918b55',
+    title: 'Loft Studio in the Central Area',
+    type: 'hotel',
+    price: 204,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/18.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.3,
+  },
+  {
+    id: '991324b0-f17f-4382-a08c-cd6976918b50',
+    title: 'Loft Studio in the Central Area',
+    type: 'hotel',
+    price: 204,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.3,
+  },
+  {
+    id: '991324b0-f17f-4382-a08c-cd6976918b505',
+    title: 'Loft Studio in the Central Area',
+    type: 'hotel',
+    price: 204,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/18.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.3,
+  },
+  {
     id: 'a337d56d-4e89-4df2-ba9b-aafb6fada7eb',
     title: 'The Joshua Tree House',
     type: 'hotel',
@@ -93,29 +185,7 @@ export const placesList: PlaceType[] = [
     isPremium: true,
     rating: 4.7,
   },
-  {
-    id: '991324b0-f17f-4382-a08c-cd6976918b58',
-    title: 'Loft Studio in the Central Area',
-    type: 'hotel',
-    price: 204,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
-    city: {
-      name: 'Amsterdam',
-      location: {
-        latitude: 52.37454,
-        longitude: 4.897976,
-        zoom: 13,
-      },
-    },
-    location: {
-      latitude: 52.35054,
-      longitude: 4.908976,
-      zoom: 16,
-    },
-    isFavorite: false,
-    isPremium: false,
-    rating: 3.3,
-  },
+
 ];
 
 export const locationsList: LocationLinkType[] = [
