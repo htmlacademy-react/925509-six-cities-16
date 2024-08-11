@@ -8,8 +8,7 @@ import LocationList from '../../components/locations/location-list';
 import SortingForm from '../../components/sorting/sorting-form';
 import Map from '../../components/map/map';
 
-// import { LocationType } from '../../types/types';
-import { locationsList, placesList } from '../../mocks/mocks';
+import { locationsList } from '../../mocks/mocks';
 
 function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
@@ -20,11 +19,9 @@ function MainPage(): JSX.Element {
 
   const [activePlaceId, setActiveCardId] = useState<string>('');
 
-  const placesList1 = useAppSelector((state) => state.offers.offers);
+  const placesList = useAppSelector((state) => state.offers.offers);
   const currentCity = useAppSelector((state) => state.offers.currentCity);
-  const filteredPlacesList = placesList1.filter((placeItem) => placeItem.city.name === currentCity.name);
-  // console.log(filteredPlacesList);
-
+  const filteredPlacesList = placesList.filter((placeItem) => placeItem.city.name === currentCity.name);
 
   const handlePlaceItemHover = (placeItemId: string) => {
     setActiveCardId(placeItemId);
@@ -43,7 +40,7 @@ function MainPage(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {placesList.length} places to stay in {currentCity.name}
+                {filteredPlacesList.length} places to stay in {currentCity.name}
               </b>
               <SortingForm />
               <PlaceList

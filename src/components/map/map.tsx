@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import leaflet, { Icon } from 'leaflet';
+import leaflet, { Icon, LayerGroup } from 'leaflet';
 
 import { PlaceType, LocationType } from '../../types/types';
 import { MapIcon } from '../../const';
@@ -21,6 +21,15 @@ function Map(props: MapProps): JSX.Element {
   const {activePlaceId, city, places } = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const markerLayer = useRef<LayerGroup>(leaflet.layerGroup());
+
+  useEffect(() => {
+    if (map) {
+      map.setView([city.latitude, city.longitude], city.zoom);
+      markerLayer.current.addTo(map);
+      markerLayer.current.clearLayers();
+    }
+  }, [city, map]);
 
   useEffect(() => {
     if (map) {
