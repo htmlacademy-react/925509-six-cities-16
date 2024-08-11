@@ -1,6 +1,5 @@
-// import { useState } from 'react';
-
 import { useAppSelector } from '../../hooks/storeHooks';
+import { SortingTypeKey } from '../../types/types';
 
 import Header from '../../components/header/header';
 import PlaceList from '../../components/places/place-list';
@@ -16,10 +15,43 @@ function MainPage(): JSX.Element {
 
   const placesList = useAppSelector((state) => state.places.places);
   const currentCity = useAppSelector((state) => state.places.currentCity);
-  const filteredPlacesList = placesList.filter((placeItem) => placeItem.city.name === currentCity.name);
+  const currentSortingValue = useAppSelector(
+    (state) => state.places.currentSortingOption
+  );
+  const filteredPlacesList = placesList.filter(
+    (placeItem) => placeItem.city.name === currentCity.name
+  );
+
+  const sortingPlaceList = (sortingValue: SortingTypeKey) => {
+    if (sortingValue === 'LowToHighPrice') {
+      return filteredPlacesList
+        .slice()
+        .sort(
+          (placeListItemA, placeListItemB) =>
+            placeListItemA.price - placeListItemB.price
+        );
+    } else if (sortingValue === 'HighToLowPrice') {
+      return filteredPlacesList
+        .slice()
+        .sort(
+          (placeListItemA, placeListItemB) =>
+            placeListItemB.price - placeListItemA.price
+        );
+    } else if (sortingValue === 'TopRated') {
+      return filteredPlacesList
+        .slice()
+        .sort(
+          (placeListItemA, placeListItemB) =>
+            placeListItemB.rating - placeListItemA.rating
+        );
+    } else {
+      return filteredPlacesList;
+    }
+  };
+
+  const sortedPlaceList = sortingPlaceList(currentSortingValue);
 
   const activeId = useAppSelector((state) => state.activePlace.id);
-
 
   return (
     <div className="page page--gray page--main">
@@ -37,10 +69,7 @@ function MainPage(): JSX.Element {
                 {filteredPlacesList.length} places to stay in {currentCity.name}
               </b>
               <SortingForm />
-              <PlaceList
-                places={filteredPlacesList}
-                isNearPlacesList={false}
-              />
+              <PlaceList places={sortedPlaceList} isNearPlacesList={false} />
             </section>
             <div className="cities__right-section">
               <Map

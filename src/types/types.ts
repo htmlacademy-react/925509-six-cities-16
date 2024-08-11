@@ -26,18 +26,14 @@ export type PlaceType = {
 
 };
 
-// После того, как разьерусь с ссылками на города, этот тип можно будет объединить с CityType
-export type LocationLinkType = {
-  title: 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
-  link: string;
-};
-
 export type RatingType = {
   [key: string]: number;
 }
 
+export type SortingTypeKey = 'Popular' | 'LowToHighPrice' | 'HighToLowPrice' | 'TopRated';
+
 export type SortingType = {
-  [key: string]: string;
+  [key in SortingTypeKey]: string;
 }
 
 export type AppRouteType = {

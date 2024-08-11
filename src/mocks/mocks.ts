@@ -5,7 +5,7 @@ export const placesList: PlaceType[] = [
     id: '991324b0-f17f-4382-a08c-cd6976918b58',
     title: 'Loft Studio in the Central Area',
     type: 'hotel',
-    price: 204,
+    price: 207,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
     city: {
       name: 'Amsterdam',
@@ -22,7 +22,7 @@ export const placesList: PlaceType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 3.3,
+    rating: 3.5,
   },
   {
     id: '991324b0-f17f-4382-a08c-cd6976918b55',
@@ -51,7 +51,7 @@ export const placesList: PlaceType[] = [
     id: '991324b0-f17f-4382-a08c-cd6976918b50',
     title: 'Loft Studio in the Central Area',
     type: 'hotel',
-    price: 204,
+    price: 206,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
     city: {
       name: 'Amsterdam',
@@ -68,13 +68,13 @@ export const placesList: PlaceType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 3.3,
+    rating: 4,
   },
   {
     id: '991324b0-f17f-4382-a08c-cd6976918b505',
-    title: 'Loft Studio in the Central Area',
+    title: 'Loft Studio in the Central Area High Rating',
     type: 'hotel',
-    price: 204,
+    price: 203,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/18.jpg',
     city: {
       name: 'Amsterdam',
@@ -91,7 +91,7 @@ export const placesList: PlaceType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 3.3,
+    rating: 5,
   },
   {
     id: 'a337d56d-4e89-4df2-ba9b-aafb6fada7eb',

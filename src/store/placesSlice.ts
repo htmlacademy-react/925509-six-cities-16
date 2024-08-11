@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PlaceType, CityType } from '../types/types';
+import { PlaceType, CityType, SortingTypeKey } from '../types/types';
 
 import { INITIAL_LOCATION } from '../const';
 
@@ -7,7 +7,7 @@ import { INITIAL_LOCATION } from '../const';
 type PlacesState = {
   currentCity: CityType;
   places: PlaceType[] | [];
-  currentSortingOption: string;
+  currentSortingOption: SortingTypeKey;
 };
 
 const initialState: PlacesState = {
@@ -26,7 +26,7 @@ const placesSlice = createSlice({
     setCurrentCity(state, action: PayloadAction<CityType>) {
       state.currentCity = action.payload;
     },
-    setCurrentSortingOption(state, action: PayloadAction<string>) {
+    setCurrentSortingOption(state, action: PayloadAction<SortingTypeKey>) {
       state.currentSortingOption = action.payload;
     },
   },
