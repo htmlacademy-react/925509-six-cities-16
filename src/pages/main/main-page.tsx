@@ -1,5 +1,6 @@
 import { useAppSelector } from '../../hooks/storeHooks';
-import { SortingTypeKey } from '../../types/types';
+// import { SortingTypeKey } from '../../types/types';
+import { sortingPlaceList } from '../../utils';
 
 import Header from '../../components/header/header';
 import PlaceList from '../../components/places/place-list';
@@ -22,34 +23,7 @@ function MainPage(): JSX.Element {
     (placeItem) => placeItem.city.name === currentCity.name
   );
 
-  const sortingPlaceList = (sortingValue: SortingTypeKey) => {
-    if (sortingValue === 'LowToHighPrice') {
-      return filteredPlacesList
-        .slice()
-        .sort(
-          (placeListItemA, placeListItemB) =>
-            placeListItemA.price - placeListItemB.price
-        );
-    } else if (sortingValue === 'HighToLowPrice') {
-      return filteredPlacesList
-        .slice()
-        .sort(
-          (placeListItemA, placeListItemB) =>
-            placeListItemB.price - placeListItemA.price
-        );
-    } else if (sortingValue === 'TopRated') {
-      return filteredPlacesList
-        .slice()
-        .sort(
-          (placeListItemA, placeListItemB) =>
-            placeListItemB.rating - placeListItemA.rating
-        );
-    } else {
-      return filteredPlacesList;
-    }
-  };
-
-  const sortedPlaceList = sortingPlaceList(currentSortingValue);
+  const sortedPlaceList = sortingPlaceList(filteredPlacesList, currentSortingValue);
 
   const activeId = useAppSelector((state) => state.activePlace.id);
 
