@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
 import { AppRoute } from '../../const';
+import { useAppDispatch } from '../../hooks/storeHooks';
+import { setActivePlaceId } from '../../store/activePlaceSlice';
 
 type PlaceCardProps = PlaceType & {
   isFavoriteCard: boolean;
   isMainCard: boolean;
   isNearPlacesCard: boolean;
-  onListMouseEnter?:(activePlaceId: string) => void;
 };
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
@@ -23,22 +24,19 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     isFavoriteCard = false,
     isMainCard = true,
     isNearPlacesCard = false,
-    onListMouseEnter
   } = props;
+
+  const dispatch = useAppDispatch();
 
   const handleCardMouseEnter = (): void => {
     if (isMainCard) {
-      if (onListMouseEnter) {
-        onListMouseEnter(id);
-      }
+      dispatch(setActivePlaceId(id));
     }
   };
 
   const handleCardMouseLeave = (): void => {
     if (isMainCard) {
-      if (onListMouseEnter) {
-        onListMouseEnter('');
-      }
+      dispatch(setActivePlaceId(''));
     }
   };
 

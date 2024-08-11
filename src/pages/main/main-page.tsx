@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import { useAppSelector } from '../../hooks/storeHooks';
 
@@ -14,18 +14,12 @@ function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
   const isAuthorized = true;
 
-  // временно, чтобы показывался Амстердам
-  // const AMSTERDAM_CITY: LocationType = placesList[0].city.location;
-
-  const [activePlaceId, setActiveCardId] = useState<string>('');
-
   const placesList = useAppSelector((state) => state.places.places);
   const currentCity = useAppSelector((state) => state.places.currentCity);
   const filteredPlacesList = placesList.filter((placeItem) => placeItem.city.name === currentCity.name);
 
-  const handlePlaceItemHover = (placeItemId: string) => {
-    setActiveCardId(placeItemId);
-  };
+  const activeId = useAppSelector((state) => state.activePlace.id);
+
 
   return (
     <div className="page page--gray page--main">
@@ -46,13 +40,12 @@ function MainPage(): JSX.Element {
               <PlaceList
                 places={filteredPlacesList}
                 isNearPlacesList={false}
-                onListMouseEnter={handlePlaceItemHover}
               />
             </section>
             <div className="cities__right-section">
               <Map
                 places={filteredPlacesList}
-                activePlaceId={activePlaceId}
+                activePlaceId={activeId}
                 city={currentCity.location}
               />
             </div>
