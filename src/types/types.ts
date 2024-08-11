@@ -1,3 +1,5 @@
+import { store } from '../store/store';
+
 export type LocationType = {
   latitude: number;
   longitude: number;
@@ -48,3 +50,6 @@ export type MapIconsType = {
   Default: MapIconType;
   Active: MapIconType;
 };
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { useAppSelector } from '../../hooks/storeHooks';
+
 import Header from '../../components/header/header';
 import PlaceList from '../../components/places/place-list';
 import LocationList from '../../components/locations/location-list';
@@ -14,8 +16,12 @@ function MainPage(): JSX.Element {
   const isAuthorized = true;
   // временно, чтобы показывался Амстердам
   const AMSTERDAM_CITY: LocationType = placesList[0].city.location;
+  // console.log(placesList[0].city);
 
   const [activePlaceId, setActiveCardId] = useState<string>('');
+
+  // const placesList1 = useAppSelector((state) => state.offers.offers);
+  const currentCity = useAppSelector((state) => state.offers.currentCity);
 
   const handlePlaceItemHover = (placeItemId: string) => {
     setActiveCardId(placeItemId);
@@ -34,7 +40,7 @@ function MainPage(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {placesList.length} places to stay in Amsterdam
+                {placesList.length} places to stay in {currentCity}
               </b>
               <SortingForm />
               <PlaceList

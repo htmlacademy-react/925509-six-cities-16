@@ -1,13 +1,28 @@
 import { LocationLinkType } from '../../types/types';
 
-// TO DO
-// добавить проверку активной вкладки и добавлять класс tabs__item--active - это видимо на этапе роутинга
+import { useAppSelector, useAppDispatch } from '../../hooks/storeHooks';
+import { setCurrentCity } from '../../store/offersSlice';
+
 function LocationItem(props: LocationLinkType) {
-  const { title, link } = props;
+  const { title } = props;
+  const currentCity = useAppSelector((state) => state.offers.currentCity);
+  const dispatch = useAppDispatch();
+
+  // потом объект передавать надо видимо
+  const handleCityChange = (city: string) => {
+    dispatch(setCurrentCity(city));
+  };
 
   return (
     <li className="locations__item">
-      <a className="locations__item-link tabs__item" href={link}>
+      <a
+        className={`locations__item-link tabs__item ${
+          currentCity === title ? 'tabs__item--active' : ''
+        }`}
+        onClick={() => {
+          handleCityChange(title);
+        }}
+      >
         <span>{title}</span>
       </a>
     </li>
