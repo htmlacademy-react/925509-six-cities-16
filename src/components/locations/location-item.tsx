@@ -1,15 +1,17 @@
-import { LocationLinkType } from '../../types/types';
+import { CityType } from '../../types/types';
+import { locationsList } from '../../mocks/mocks';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/storeHooks';
 import { setCurrentCity } from '../../store/offersSlice';
+import { INITIAL_LOCATION } from '../../const';
 
-function LocationItem(props: LocationLinkType) {
-  const { title } = props;
+function LocationItem(props: CityType) {
+  const { name } = props;
   const currentCity = useAppSelector((state) => state.offers.currentCity);
   const dispatch = useAppDispatch();
 
-  // потом объект передавать надо видимо
-  const handleCityChange = (city: string) => {
+  const handleCityChange = (cityName: string) => {
+    const city = locationsList.find((locationItem) => locationItem.name === cityName) || INITIAL_LOCATION;
     dispatch(setCurrentCity(city));
   };
 
@@ -17,13 +19,13 @@ function LocationItem(props: LocationLinkType) {
     <li className="locations__item">
       <a
         className={`locations__item-link tabs__item ${
-          currentCity === title ? 'tabs__item--active' : ''
+          currentCity && currentCity.name === name ? 'tabs__item--active' : ''
         }`}
         onClick={() => {
-          handleCityChange(title);
+          handleCityChange(name);
         }}
       >
-        <span>{title}</span>
+        <span>{name}</span>
       </a>
     </li>
   );

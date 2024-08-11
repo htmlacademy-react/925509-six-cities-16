@@ -1,4 +1,4 @@
-import { PlaceType, LocationLinkType } from '../types/types';
+import { PlaceType, CityType } from '../types/types';
 
 export const placesList: PlaceType[] = [
   {
@@ -188,29 +188,80 @@ export const placesList: PlaceType[] = [
 
 ];
 
-export const locationsList: LocationLinkType[] = [
+// export const locationsList: LocationLinkType[] = [
+//   {
+//     title: 'Paris',
+//     link: '#',
+//   },
+//   {
+//     title: 'Cologne',
+//     link: '#',
+//   },
+//   {
+//     title: 'Brussels',
+//     link: '#',
+//   },
+//   {
+//     title: 'Amsterdam',
+//     link: '#',
+//   },
+//   {
+//     title: 'Hamburg',
+//     link: '#',
+//   },
+//   {
+//     title: 'Dusseldorf',
+//     link: '#',
+//   },
+// ];
+
+export const locationsList: CityType[] = [
   {
-    title: 'Paris',
-    link: '#',
+    name: 'Paris',
+    location: {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13
+    }
   },
   {
-    title: 'Cologne',
-    link: '#',
+    name: 'Cologne',
+    location: {
+      latitude: 50.938361,
+      longitude: 6.959974,
+      zoom: 13
+    }
   },
   {
-    title: 'Brussels',
-    link: '#',
+    name: 'Brussels',
+    location: {
+      latitude: 50.846557,
+      longitude: 4.351697,
+      zoom: 13
+    }
   },
   {
-    title: 'Amsterdam',
-    link: '#',
+    name: 'Amsterdam',
+    location: {
+      latitude: 52.37454,
+      longitude: 4.89797,
+      zoom: 13
+    }
   },
   {
-    title: 'Hamburg',
-    link: '#',
+    name: 'Hamburg',
+    location: {
+      latitude: 53.55034,
+      longitude: 10.000654,
+      zoom: 13
+    }
   },
   {
-    title: 'Dusseldorf',
-    link: '#',
-  },
+    name: 'Dusseldorf',
+    location: {
+      latitude: 51.225402,
+      longitude: 6.776314,
+      zoom: 13
+    }
+  }
 ];

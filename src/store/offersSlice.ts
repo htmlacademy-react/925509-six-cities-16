@@ -1,17 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PlaceType } from '../types/types';
+import { PlaceType, CityType } from '../types/types';
+
+import { INITIAL_LOCATION } from '../const';
 
 
 // на Places переименовать потом возможно
-// тут нужно типы офферов корректные добавить
 type OffersState = {
-  currentCity: string; // здесь объект может быть на самом деле
+  currentCity: CityType;
   offers: PlaceType[] | [];
   currentSortingOption: string;
 };
 
 const initialState: OffersState = {
-  currentCity: 'Paris',
+  currentCity: INITIAL_LOCATION,
   offers: [],
   currentSortingOption: '',
 };
@@ -23,7 +24,7 @@ const offersSlice = createSlice({
     setOffers(state, action: PayloadAction<PlaceType[]>) {
       state.offers = action.payload;
     },
-    setCurrentCity(state, action: PayloadAction<string>) {
+    setCurrentCity(state, action: PayloadAction<CityType>) {
       state.currentCity = action.payload;
     },
     setCurrentSortingOption(state, action: PayloadAction<string>) {
