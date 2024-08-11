@@ -1,6 +1,6 @@
-import { RatingType, AppRouteType, MapIconsType } from './types/types';
+import { RatingType, AppRouteType, MapIconsType, CityType, SortingType } from './types/types';
 
-const INITIAL_LOCATION = {
+const INITIAL_LOCATION: CityType = {
   name: 'Paris',
   location: {
     latitude: 48.85661,
@@ -8,6 +8,13 @@ const INITIAL_LOCATION = {
     zoom: 13,
   },
 };
+
+const SortingValues: SortingType = {
+  Popular: 'Popular',
+  LowToHighPrice: 'Price: low to high',
+  HighToLowPrice: 'Price: high to low',
+  TopRated: 'Top rated first'
+} as const;
 
 // без объявления типа падает ошибка в reviews-form
 const Rating: RatingType = {
@@ -69,4 +76,5 @@ export {
   MapIcon,
   TitleLayerUrl,
   INITIAL_LOCATION,
+  SortingValues
 };

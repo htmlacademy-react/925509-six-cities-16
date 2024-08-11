@@ -36,6 +36,10 @@ export type RatingType = {
   [key: string]: number;
 }
 
+export type SortingType = {
+  [key: string]: string;
+}
+
 export type AppRouteType = {
   [key: string]: string;
 }

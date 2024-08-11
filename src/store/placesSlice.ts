@@ -4,7 +4,6 @@ import { PlaceType, CityType } from '../types/types';
 import { INITIAL_LOCATION } from '../const';
 
 
-// на Places переименовать потом возможно
 type PlacesState = {
   currentCity: CityType;
   places: PlaceType[] | [];
@@ -14,7 +13,7 @@ type PlacesState = {
 const initialState: PlacesState = {
   currentCity: INITIAL_LOCATION,
   places: [],
-  currentSortingOption: '',
+  currentSortingOption: 'Popular',
 };
 
 const placesSlice = createSlice({

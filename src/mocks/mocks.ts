@@ -188,33 +188,6 @@ export const placesList: PlaceType[] = [
 
 ];
 
-// export const locationsList: LocationLinkType[] = [
-//   {
-//     title: 'Paris',
-//     link: '#',
-//   },
-//   {
-//     title: 'Cologne',
-//     link: '#',
-//   },
-//   {
-//     title: 'Brussels',
-//     link: '#',
-//   },
-//   {
-//     title: 'Amsterdam',
-//     link: '#',
-//   },
-//   {
-//     title: 'Hamburg',
-//     link: '#',
-//   },
-//   {
-//     title: 'Dusseldorf',
-//     link: '#',
-//   },
-// ];
-
 export const locationsList: CityType[] = [
   {
     name: 'Paris',
