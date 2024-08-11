@@ -13,15 +13,14 @@ import MainPage from '../../pages/main/main-page';
 
 import PrivateRoute from '../private-route/private-route';
 
-import { setOffers } from '../../store/offersSlice';
-
+import { setPlaces } from '../../store/placesSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   // при загрузке приложения загружаем список офферов - пока из моков
   useEffect(() => {
-    dispatch(setOffers(placesList));
+    dispatch(setPlaces(placesList));
   }, [dispatch]);
 
   return (

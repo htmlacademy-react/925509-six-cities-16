@@ -2,16 +2,18 @@ import { CityType } from '../../types/types';
 import { locationsList } from '../../mocks/mocks';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/storeHooks';
-import { setCurrentCity } from '../../store/offersSlice';
+import { setCurrentCity } from '../../store/placesSlice';
 import { INITIAL_LOCATION } from '../../const';
 
 function LocationItem(props: CityType) {
   const { name } = props;
-  const currentCity = useAppSelector((state) => state.offers.currentCity);
+  const currentCity = useAppSelector((state) => state.places.currentCity);
   const dispatch = useAppDispatch();
 
   const handleCityChange = (cityName: string) => {
-    const city = locationsList.find((locationItem) => locationItem.name === cityName) || INITIAL_LOCATION;
+    const city =
+      locationsList.find((locationItem) => locationItem.name === cityName) ||
+      INITIAL_LOCATION;
     dispatch(setCurrentCity(city));
   };
 

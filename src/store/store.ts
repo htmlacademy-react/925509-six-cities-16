@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import offersReducer from './offersSlice';
+import placesReducer from './placesSlice';
 
 export const store = configureStore({
   reducer: {
-    offers: offersReducer
-  }
+    places: placesReducer,
+  },
 });

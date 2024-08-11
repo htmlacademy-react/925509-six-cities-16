@@ -19,8 +19,8 @@ function MainPage(): JSX.Element {
 
   const [activePlaceId, setActiveCardId] = useState<string>('');
 
-  const placesList = useAppSelector((state) => state.offers.offers);
-  const currentCity = useAppSelector((state) => state.offers.currentCity);
+  const placesList = useAppSelector((state) => state.places.places);
+  const currentCity = useAppSelector((state) => state.places.currentCity);
   const filteredPlacesList = placesList.filter((placeItem) => placeItem.city.name === currentCity.name);
 
   const handlePlaceItemHover = (placeItemId: string) => {

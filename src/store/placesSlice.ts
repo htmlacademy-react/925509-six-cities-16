@@ -5,24 +5,24 @@ import { INITIAL_LOCATION } from '../const';
 
 
 // на Places переименовать потом возможно
-type OffersState = {
+type PlacesState = {
   currentCity: CityType;
-  offers: PlaceType[] | [];
+  places: PlaceType[] | [];
   currentSortingOption: string;
 };
 
-const initialState: OffersState = {
+const initialState: PlacesState = {
   currentCity: INITIAL_LOCATION,
-  offers: [],
+  places: [],
   currentSortingOption: '',
 };
 
-const offersSlice = createSlice({
-  name: 'offers',
+const placesSlice = createSlice({
+  name: 'places',
   initialState,
   reducers: {
-    setOffers(state, action: PayloadAction<PlaceType[]>) {
-      state.offers = action.payload;
+    setPlaces(state, action: PayloadAction<PlaceType[]>) {
+      state.places = action.payload;
     },
     setCurrentCity(state, action: PayloadAction<CityType>) {
       state.currentCity = action.payload;
@@ -33,5 +33,5 @@ const offersSlice = createSlice({
   },
 });
 
-export const { setOffers, setCurrentCity, setCurrentSortingOption } = offersSlice.actions;
-export default offersSlice.reducer;
+export const { setPlaces, setCurrentCity, setCurrentSortingOption } = placesSlice.actions;
+export default placesSlice.reducer;
