@@ -1,8 +1,8 @@
 import { CityType } from '../../types/types';
 import { locationsList } from '../../mocks/mocks';
 
-import { useAppSelector, useAppDispatch } from '../../hooks/storeHooks';
-import { setCurrentCity } from '../../store/placesSlice';
+import { useAppSelector, useAppDispatch } from '../../hooks/store-hooks';
+import { setCurrentCity } from '../../store/places-slice';
 import { INITIAL_LOCATION } from '../../const';
 
 function LocationItem(props: CityType) {

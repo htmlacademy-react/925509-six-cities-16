@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../hooks/storeHooks';
+import { useAppSelector, useAppDispatch } from '../../hooks/store-hooks';
 
 import { SortingValues } from '../../const';
-import { setCurrentSortingOption } from '../../store/placesSlice';
+import { setCurrentSortingOption } from '../../store/places-slice';
 import { SortingTypeKey } from '../../types/types';
 
 function SortingForm(): JSX.Element {

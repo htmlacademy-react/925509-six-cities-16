@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import placesReducer from './placesSlice';
-import activePlaceIdReducer from './activePlaceSlice';
+import placesReducer from './places-slice';
+import activePlaceIdReducer from './active-place-slice';
 
 export const store = configureStore({
   reducer: {

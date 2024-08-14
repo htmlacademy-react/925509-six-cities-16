@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/storeHooks';
+import { useAppDispatch } from '../../hooks/store-hooks';
 
 import { AppRoute, AuthorisationStatus } from '../../const';
 import { placesList } from '../../mocks/mocks';
@@ -13,7 +13,7 @@ import MainPage from '../../pages/main/main-page';
 
 import PrivateRoute from '../private-route/private-route';
 
-import { setPlaces } from '../../store/placesSlice';
+import { setPlaces } from '../../store/places-slice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();

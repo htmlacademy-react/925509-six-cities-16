@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
 import { AppRoute } from '../../const';
-import { useAppDispatch } from '../../hooks/storeHooks';
-import { setActivePlaceId } from '../../store/activePlaceSlice';
+import { useAppDispatch } from '../../hooks/store-hooks';
+import { setActivePlaceId } from '../../store/active-place-slice';
 
 type PlaceCardProps = PlaceType & {
   isFavoriteCard: boolean;

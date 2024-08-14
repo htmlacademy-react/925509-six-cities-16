@@ -4,7 +4,7 @@ import leaflet, { Icon, LayerGroup } from 'leaflet';
 import { PlaceType, LocationType } from '../../types/types';
 import { MapIcon } from '../../const';
 
-import useMap from '../../hooks/useMap';
+import useMap from '../../hooks/use-map';
 
 import 'leaflet/dist/leaflet.css';
 

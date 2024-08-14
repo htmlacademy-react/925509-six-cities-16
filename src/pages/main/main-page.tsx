@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../hooks/storeHooks';
+import { useAppSelector } from '../../hooks/store-hooks';
 // import { SortingTypeKey } from '../../types/types';
 import { sortingPlaceList } from '../../utils';
 
@@ -23,7 +23,10 @@ function MainPage(): JSX.Element {
     (placeItem) => placeItem.city.name === currentCity.name
   );
 
-  const sortedPlaceList = sortingPlaceList(filteredPlacesList, currentSortingValue);
+  const sortedPlaceList = sortingPlaceList(
+    filteredPlacesList,
+    currentSortingValue
+  );
 
   const activeId = useAppSelector((state) => state.activePlace.id);
 
