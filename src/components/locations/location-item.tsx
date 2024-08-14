@@ -1,5 +1,6 @@
 import { CityType } from '../../types/types';
 import { locationsList } from '../../mocks/mocks';
+import { Link } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/store-hooks';
 import { setCurrentCity } from '../../store/places-slice';
@@ -19,7 +20,8 @@ function LocationItem(props: CityType) {
 
   return (
     <li className="locations__item">
-      <a
+      <Link
+        to={''}
         className={`locations__item-link tabs__item ${
           currentCity && currentCity.name === name ? 'tabs__item--active' : ''
         }`}
@@ -28,7 +30,7 @@ function LocationItem(props: CityType) {
         }}
       >
         <span>{name}</span>
-      </a>
+      </Link>
     </li>
   );
 }

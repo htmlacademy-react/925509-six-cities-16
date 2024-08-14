@@ -29,8 +29,11 @@ const placesSlice = createSlice({
     setCurrentSortingOption(state, action: PayloadAction<SortingTypeKey>) {
       state.currentSortingOption = action.payload;
     },
-  },
+  }
 });
+
+// я не понял, как типизировать селекторы
+// export const selectCurrentCity = (state) => state.places.currentCity;
 
 export const { setPlaces, setCurrentCity, setCurrentSortingOption } = placesSlice.actions;
 export default placesSlice.reducer;
