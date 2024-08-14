@@ -6,13 +6,13 @@ import { INITIAL_LOCATION } from '../const';
 
 type PlacesState = {
   currentCity: CityType;
-  places: PlaceType[] | [];
+  items: PlaceType[];
   currentSortingOption: SortingTypeKey;
 };
 
 const initialState: PlacesState = {
   currentCity: INITIAL_LOCATION,
-  places: [],
+  items: [],
   currentSortingOption: 'Popular',
 };
 
@@ -21,7 +21,7 @@ const placesSlice = createSlice({
   initialState,
   reducers: {
     setPlaces(state, action: PayloadAction<PlaceType[]>) {
-      state.places = action.payload;
+      state.items = action.payload;
     },
     setCurrentCity(state, action: PayloadAction<CityType>) {
       state.currentCity = action.payload;

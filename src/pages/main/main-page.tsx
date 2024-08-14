@@ -14,7 +14,7 @@ function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
   const isAuthorized = true;
 
-  const placesList = useAppSelector((state) => state.places.places);
+  const placesList = useAppSelector((state) => state.places.items);
   const currentCity = useAppSelector((state) => state.places.currentCity);
   const currentSortingValue = useAppSelector(
     (state) => state.places.currentSortingOption

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
 import { AppRoute } from '../../const';
@@ -39,6 +40,8 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
       dispatch(setActivePlaceId(''));
     }
   };
+
+  useEffect((): (() => void) => () => dispatch(setActivePlaceId('')), [dispatch]);
 
   return (
     <article

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type activePlaceIdState = {
+type ActivePlaceIdState = {
   id: string;
 };
 
-const initialState: activePlaceIdState = {
+const initialState: ActivePlaceIdState = {
   id: '',
 };
 
