@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PlaceType, CityType, SortingTypeKey } from '../types/types';
+import { PlaceType, CityType, SortingTypeKey, RootState } from '../types/types';
 
 import { INITIAL_LOCATION } from '../const';
 
@@ -32,8 +32,11 @@ const placesSlice = createSlice({
   }
 });
 
-// я не понял, как типизировать селекторы
-// export const selectCurrentCity = (state) => state.places.currentCity;
+const selectCurrentCity = (state: RootState) => state.places.currentCity;
+const selectPlacesList = (state: RootState) => state.places.items;
+const selectCurrentSortingOption = (state: RootState) => state.places.currentSortingOption;
+// тут можно селектор с фильтрацией уже взять
 
 export const { setPlaces, setCurrentCity, setCurrentSortingOption } = placesSlice.actions;
+export { selectCurrentCity, selectPlacesList, selectCurrentSortingOption };
 export default placesSlice.reducer;

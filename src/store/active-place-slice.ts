@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../types/types';
 
 type ActivePlaceIdState = {
   id: string;
@@ -9,7 +10,7 @@ const initialState: ActivePlaceIdState = {
 };
 
 const activePlaceIdSlice = createSlice({
-  name: 'activePlaceId',
+  name: 'activePlace',
   initialState,
   reducers: {
     setActivePlaceId(state, action: PayloadAction<string>) {
@@ -18,5 +19,8 @@ const activePlaceIdSlice = createSlice({
   },
 });
 
+const selectActivePlaceId = (state: RootState) => state.activePlace.id;
+
 export const { setActivePlaceId } = activePlaceIdSlice.actions;
+export { selectActivePlaceId };
 export default activePlaceIdSlice.reducer;

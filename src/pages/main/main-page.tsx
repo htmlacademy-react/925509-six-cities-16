@@ -1,6 +1,8 @@
 import { useAppSelector } from '../../hooks/store-hooks';
-// import { SortingTypeKey } from '../../types/types';
 import { sortingPlaceList } from '../../utils';
+
+import { selectCurrentCity, selectPlacesList, selectCurrentSortingOption } from '../../store/places-slice';
+import { selectActivePlaceId } from '../../store/active-place-slice';
 
 import Header from '../../components/header/header';
 import PlaceList from '../../components/places/place-list';
@@ -14,11 +16,10 @@ function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
   const isAuthorized = true;
 
-  const placesList = useAppSelector((state) => state.places.items);
-  const currentCity = useAppSelector((state) => state.places.currentCity);
-  const currentSortingValue = useAppSelector(
-    (state) => state.places.currentSortingOption
-  );
+  const placesList = useAppSelector(selectPlacesList);
+  const currentCity = useAppSelector(selectCurrentCity);
+  const currentSortingValue = useAppSelector(selectCurrentSortingOption);
+
   const filteredPlacesList = placesList.filter(
     (placeItem) => placeItem.city.name === currentCity.name
   );
@@ -28,7 +29,7 @@ function MainPage(): JSX.Element {
     currentSortingValue
   );
 
-  const activeId = useAppSelector((state) => state.activePlace.id);
+  const activeId = useAppSelector(selectActivePlaceId);
 
   return (
     <div className="page page--gray page--main">
