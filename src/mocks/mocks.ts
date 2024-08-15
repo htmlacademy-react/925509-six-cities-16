@@ -1,11 +1,11 @@
-import { PlaceType, LocationLinkType } from '../types/types';
+import { PlaceType, CityType } from '../types/types';
 
 export const placesList: PlaceType[] = [
   {
     id: '991324b0-f17f-4382-a08c-cd6976918b58',
     title: 'Loft Studio in the Central Area',
     type: 'hotel',
-    price: 204,
+    price: 207,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
     city: {
       name: 'Amsterdam',
@@ -22,7 +22,7 @@ export const placesList: PlaceType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 3.3,
+    rating: 3.5,
   },
   {
     id: '991324b0-f17f-4382-a08c-cd6976918b55',
@@ -51,7 +51,7 @@ export const placesList: PlaceType[] = [
     id: '991324b0-f17f-4382-a08c-cd6976918b50',
     title: 'Loft Studio in the Central Area',
     type: 'hotel',
-    price: 204,
+    price: 206,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
     city: {
       name: 'Amsterdam',
@@ -68,13 +68,13 @@ export const placesList: PlaceType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 3.3,
+    rating: 4,
   },
   {
     id: '991324b0-f17f-4382-a08c-cd6976918b505',
-    title: 'Loft Studio in the Central Area',
+    title: 'Loft Studio in the Central Area High Rating',
     type: 'hotel',
-    price: 204,
+    price: 203,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/18.jpg',
     city: {
       name: 'Amsterdam',
@@ -91,7 +91,7 @@ export const placesList: PlaceType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 3.3,
+    rating: 5,
   },
   {
     id: 'a337d56d-4e89-4df2-ba9b-aafb6fada7eb',
@@ -188,29 +188,53 @@ export const placesList: PlaceType[] = [
 
 ];
 
-export const locationsList: LocationLinkType[] = [
+export const locationsList: CityType[] = [
   {
-    title: 'Paris',
-    link: '#',
+    name: 'Paris',
+    location: {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13
+    }
   },
   {
-    title: 'Cologne',
-    link: '#',
+    name: 'Cologne',
+    location: {
+      latitude: 50.938361,
+      longitude: 6.959974,
+      zoom: 13
+    }
   },
   {
-    title: 'Brussels',
-    link: '#',
+    name: 'Brussels',
+    location: {
+      latitude: 50.846557,
+      longitude: 4.351697,
+      zoom: 13
+    }
   },
   {
-    title: 'Amsterdam',
-    link: '#',
+    name: 'Amsterdam',
+    location: {
+      latitude: 52.37454,
+      longitude: 4.89797,
+      zoom: 13
+    }
   },
   {
-    title: 'Hamburg',
-    link: '#',
+    name: 'Hamburg',
+    location: {
+      latitude: 53.55034,
+      longitude: 10.000654,
+      zoom: 13
+    }
   },
   {
-    title: 'Dusseldorf',
-    link: '#',
-  },
+    name: 'Dusseldorf',
+    location: {
+      latitude: 51.225402,
+      longitude: 6.776314,
+      zoom: 13
+    }
+  }
 ];

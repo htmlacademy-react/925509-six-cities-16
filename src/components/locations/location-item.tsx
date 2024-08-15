@@ -1,15 +1,36 @@
-import { LocationLinkType } from '../../types/types';
+import { CityType } from '../../types/types';
+import { locationsList } from '../../mocks/mocks';
+import { Link } from 'react-router-dom';
 
-// TO DO
-// добавить проверку активной вкладки и добавлять класс tabs__item--active - это видимо на этапе роутинга
-function LocationItem(props: LocationLinkType) {
-  const { title, link } = props;
+import { useAppSelector, useAppDispatch } from '../../hooks/store-hooks';
+import { setCurrentCity } from '../../store/places-slice';
+import { INITIAL_LOCATION } from '../../const';
+
+function LocationItem(props: CityType) {
+  const { name } = props;
+  const currentCity = useAppSelector((state) => state.places.currentCity);
+  const dispatch = useAppDispatch();
+
+  const handleCityChange = (cityName: string) => {
+    const city =
+      locationsList.find((locationItem) => locationItem.name === cityName) ||
+      INITIAL_LOCATION;
+    dispatch(setCurrentCity(city));
+  };
 
   return (
     <li className="locations__item">
-      <a className="locations__item-link tabs__item" href={link}>
-        <span>{title}</span>
-      </a>
+      <Link
+        to={''}
+        className={`locations__item-link tabs__item ${
+          currentCity && currentCity.name === name ? 'tabs__item--active' : ''
+        }`}
+        onClick={() => {
+          handleCityChange(name);
+        }}
+      >
+        <span>{name}</span>
+      </Link>
     </li>
   );
 }

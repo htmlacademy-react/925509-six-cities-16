@@ -1,4 +1,8 @@
-import { useState } from 'react';
+import { useAppSelector } from '../../hooks/store-hooks';
+import { sortingPlaceList } from '../../utils';
+
+import { selectCurrentCity, selectPlacesList, selectCurrentSortingOption } from '../../store/places-slice';
+import { selectActivePlaceId } from '../../store/active-place-slice';
 
 import Header from '../../components/header/header';
 import PlaceList from '../../components/places/place-list';
@@ -6,20 +10,26 @@ import LocationList from '../../components/locations/location-list';
 import SortingForm from '../../components/sorting/sorting-form';
 import Map from '../../components/map/map';
 
-import { LocationType } from '../../types/types';
-import { locationsList, placesList } from '../../mocks/mocks';
+import { locationsList } from '../../mocks/mocks';
 
 function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
   const isAuthorized = true;
-  // временно, чтобы показывался Амстердам
-  const AMSTERDAM_CITY: LocationType = placesList[0].city.location;
 
-  const [activePlaceId, setActiveCardId] = useState<string>('');
+  const placesList = useAppSelector(selectPlacesList);
+  const currentCity = useAppSelector(selectCurrentCity);
+  const currentSortingValue = useAppSelector(selectCurrentSortingOption);
 
-  const handlePlaceItemHover = (placeItemId: string) => {
-    setActiveCardId(placeItemId);
-  };
+  const filteredPlacesList = placesList.filter(
+    (placeItem) => placeItem.city.name === currentCity.name
+  );
+
+  const sortedPlaceList = sortingPlaceList(
+    filteredPlacesList,
+    currentSortingValue
+  );
+
+  const activeId = useAppSelector(selectActivePlaceId);
 
   return (
     <div className="page page--gray page--main">
@@ -34,20 +44,16 @@ function MainPage(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {placesList.length} places to stay in Amsterdam
+                {filteredPlacesList.length} places to stay in {currentCity.name}
               </b>
               <SortingForm />
-              <PlaceList
-                places={placesList}
-                isNearPlacesList={false}
-                onListMouseEnter={handlePlaceItemHover}
-              />
+              <PlaceList places={sortedPlaceList} isNearPlacesList={false} />
             </section>
             <div className="cities__right-section">
               <Map
-                places={placesList}
-                activePlaceId={activePlaceId}
-                city={AMSTERDAM_CITY}
+                places={filteredPlacesList}
+                activePlaceId={activeId}
+                city={currentCity.location}
               />
             </div>
           </div>
