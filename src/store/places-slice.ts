@@ -35,7 +35,6 @@ const placesSlice = createSlice({
 const selectCurrentCity = (state: RootState) => state.places.currentCity;
 const selectPlacesList = (state: RootState) => state.places.items;
 const selectCurrentSortingOption = (state: RootState) => state.places.currentSortingOption;
-// тут можно селектор с фильтрацией уже взять
 
 export const { setPlaces, setCurrentCity, setCurrentSortingOption } = placesSlice.actions;
 export { selectCurrentCity, selectPlacesList, selectCurrentSortingOption };
