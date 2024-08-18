@@ -23,32 +23,49 @@ export type PlaceType = {
   isFavorite: boolean;
   rating: number;
   previewImage: string;
+};
 
+export interface PlaceExtendedType extends PlaceType {
+  description: string;
+  host: HostType;
+  goods: string[];
+  maxAdults: number;
+  bedrooms: number;
+}
+
+export type HostType = {
+  isPro: boolean;
+  name: string;
+  avatarUrl: string;
 };
 
 export type RatingType = {
   [key: string]: number;
-}
+};
 
-export type SortingTypeKey = 'Popular' | 'LowToHighPrice' | 'HighToLowPrice' | 'TopRated';
+export type SortingTypeKey =
+  | 'Popular'
+  | 'LowToHighPrice'
+  | 'HighToLowPrice'
+  | 'TopRated';
 
 export type SortingType = {
   [key in SortingTypeKey]: string;
-}
+};
 
 export type AppRouteType = {
   [key: string]: string;
-}
+};
 
 export type ApiRouteType = {
   [key: string]: string;
-}
+};
 
 export type MapIconType = {
   iconUrl: string;
   iconSize: [number, number];
   iconAnchor: [number, number];
-}
+};
 
 export type MapIconsType = {
   Default: MapIconType;

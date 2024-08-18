@@ -1,13 +1,13 @@
 // import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { PlaceType, RootState } from '../types/types';
+import { PlaceExtendedType, RootState } from '../types/types';
 
 import { RequestStatus } from '../const';
 
 import { fetchCurrentOffer } from '../thunks/current-place';
 
 type PlacesState = {
-  data: PlaceType | null;
+  data: PlaceExtendedType | null;
   requestStatus: RequestStatus;
 };
 
@@ -38,5 +38,6 @@ const currentPlaceSlice = createSlice({
 const selectRequestStatus = (state: RootState) =>
   state.currentPlace.requestStatus;
 const selectOfferData = (state: RootState) => state.currentPlace.data;
+
 export { selectRequestStatus, selectOfferData };
 export default currentPlaceSlice.reducer;

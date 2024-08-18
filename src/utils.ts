@@ -1,5 +1,13 @@
 import { SortingTypeKey, PlaceType } from './types/types';
 
+export const uppercaseFirstLetter = (string: string) => {
+  if (!string) {
+    return string;
+  }
+
+  return string[0].toUpperCase() + string.slice(1);
+};
+
 export const sortingPlaceList = (
   filteredPlacesList: PlaceType[],
   sortingValue: SortingTypeKey

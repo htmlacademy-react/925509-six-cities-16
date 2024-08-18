@@ -1,17 +1,27 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/store-hooks';
+import { uppercaseFirstLetter } from '../../utils';
 
 import Header from '../../components/header/header';
 import ReviewsForm from '../../components/reviews/reviews-form';
 import PlaceList from '../../components/places/place-list';
+import Loader from '../../components/loader/loader';
+import Error from '../../components/error/error';
+
+import OfferInsideList from '../../components/place/offer-inside-list';
+import OfferHost from '../../components/place/offer-host';
 
 import { fetchCurrentOffer } from '../../thunks/current-place';
-import { selectOfferData } from '../../store/current-place-slice';
+import {
+  selectOfferData,
+  selectRequestStatus,
+} from '../../store/current-place-slice';
+import { useAppSelector } from '../../hooks/store-hooks';
 
 import { placesList } from '../../mocks/mocks';
 import { PlaceType } from '../../types/types';
-import { NEARBY_PLACES_MAX_COUNT } from '../../const';
+import { NEARBY_PLACES_MAX_COUNT, RequestStatus } from '../../const';
 
 function OfferPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
@@ -25,11 +35,40 @@ function OfferPage(): JSX.Element {
     dispatch(fetchCurrentOffer(currentOfferId));
   }, [dispatch, currentOfferId]);
 
+  const offerData = useAppSelector(selectOfferData);
 
-  console.log(selectOfferData);
+  const requestStatus = useAppSelector(selectRequestStatus);
+  const isLoading = requestStatus === RequestStatus.Loading;
+  const hasError = requestStatus === RequestStatus.Error;
+
+  // console.log(offerData);
 
   // TO DO - в дальнейшем фильтровать по городу
-  const getNearbyPlaces = (places: PlaceType[]): PlaceType[] => places.slice(0, NEARBY_PLACES_MAX_COUNT);
+  const getNearbyPlaces = (places: PlaceType[]): PlaceType[] =>
+    places.slice(0, NEARBY_PLACES_MAX_COUNT);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (hasError || !offerData) {
+    return <Error />;
+  }
+
+  const {
+    title,
+    description,
+    type,
+    price,
+    images,
+    goods,
+    host,
+    isPremium,
+    isFavorite,
+    rating,
+    bedrooms,
+    maxAdults,
+  } = offerData;
 
   return (
     <div className="page">
@@ -84,14 +123,15 @@ function OfferPage(): JSX.Element {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              {isPremium && (
+                <div className="offer__mark">
+                  <span>Premium</span>
+                </div>
+              )}
+
               <div className="offer__name-wrapper">
-                <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location (id:
-                  {currentOfferId})
-                </h1>
+                <h1 className="offer__name">{title}</h1>
+                {/* TO DO вынести в компонент  */}
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width={31} height={33}>
                     <use xlinkHref="#icon-bookmark" />
@@ -101,69 +141,41 @@ function OfferPage(): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }} />
+                  <span style={{ width: `${rating * 20}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">4.8</span>
+                <span className="offer__rating-value rating__value">
+                  {rating}
+                </span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  Apartment
+                  {uppercaseFirstLetter(type)}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                  3 Bedrooms
+                  {bedrooms} {bedrooms <= 1 ? 'Bedroom' : 'Bedrooms'}
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                  Max 4 adults
+                  Max {maxAdults} {maxAdults <= 1 ? 'adult' : 'adults'}
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">€120</b>
+                <b className="offer__price-value">€{price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <ul className="offer__inside-list">
-                  <li className="offer__inside-item">Wi-Fi</li>
-                  <li className="offer__inside-item">Washing machine</li>
-                  <li className="offer__inside-item">Towels</li>
-                  <li className="offer__inside-item">Heating</li>
-                  <li className="offer__inside-item">Coffee machine</li>
-                  <li className="offer__inside-item">Baby seat</li>
-                  <li className="offer__inside-item">Kitchen</li>
-                  <li className="offer__inside-item">Dishwasher</li>
-                  <li className="offer__inside-item">Cabel TV</li>
-                  <li className="offer__inside-item">Fridge</li>
-                </ul>
+                <OfferInsideList goods={goods} />
               </div>
-              <div className="offer__host">
-                <h2 className="offer__host-title">Meet the host</h2>
-                <div className="offer__host-user user">
-                  <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
-                    <img
-                      className="offer__avatar user__avatar"
-                      src="img/avatar-angelina.jpg"
-                      width={74}
-                      height={74}
-                      alt="Host avatar"
-                    />
-                  </div>
-                  <span className="offer__user-name">Angelina</span>
-                  <span className="offer__user-status">Pro</span>
-                </div>
-                <div className="offer__description">
-                  <p className="offer__text">
-                    A quiet cozy and picturesque that hides behind a a river by
-                    the unique lightness of Amsterdam. The building is green and
-                    from 18th century.
-                  </p>
-                  <p className="offer__text">
-                    An independent House, strategically located between Rembrand
-                    Square and National Opera, but where the bustle of the city
-                    comes to rest in this alley flowery and colorful.
-                  </p>
-                </div>
+              <OfferHost
+                isPro={host.isPro}
+                name={host.name}
+                avatarUrl={host.avatarUrl}
+              />
+              <div className="offer__description">
+                <p className="offer__text">{description}</p>
               </div>
+
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
                   Reviews · <span className="reviews__amount">1</span>
