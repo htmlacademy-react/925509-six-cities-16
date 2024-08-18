@@ -16,10 +16,9 @@ import LocationList from '../../components/locations/location-list';
 import SortingForm from '../../components/sorting/sorting-form';
 import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
+import Error from '../../components/error/error';
 
 import { locationsList } from '../../mocks/mocks';
-
-import '../../styles/loader.css';
 
 function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
@@ -32,6 +31,7 @@ function MainPage(): JSX.Element {
 
   // const isLoading = requestStatus === RequestStatus.Loading;
   const isLoading = requestStatus === RequestStatus.Loading;
+  const hasError = requestStatus === RequestStatus.Error;
 
   const filteredPlacesList = placesList.filter(
     (placeItem) => placeItem.city.name === currentCity.name
@@ -54,7 +54,8 @@ function MainPage(): JSX.Element {
         </div>
         <div className="cities">
           {isLoading && <Loader />}
-          {!isLoading && (
+          {hasError && <Error />}
+          {!isLoading && !hasError && (
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>

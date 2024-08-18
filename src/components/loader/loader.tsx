@@ -1,3 +1,5 @@
+import '../../styles/loader.css';
+
 function Loader(): JSX.Element {
   return (
     <section className="loader">
