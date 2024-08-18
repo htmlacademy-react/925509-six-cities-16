@@ -29,7 +29,6 @@ function MainPage(): JSX.Element {
   const currentSortingValue = useAppSelector(selectCurrentSortingOption);
   const requestStatus = useAppSelector(selectRequestStatus);
 
-  // const isLoading = requestStatus === RequestStatus.Loading;
   const isLoading = requestStatus === RequestStatus.Loading;
   const hasError = requestStatus === RequestStatus.Error;
 

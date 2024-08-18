@@ -85,7 +85,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <FavoritesButton isFavorite={isFavorite} />
+          <FavoritesButton isFavorite={isFavorite} isPlacesList />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

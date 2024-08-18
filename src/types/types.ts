@@ -29,6 +29,7 @@ export interface PlaceExtendedType extends PlaceType {
   description: string;
   host: HostType;
   goods: string[];
+  images: string[];
   maxAdults: number;
   bedrooms: number;
 }

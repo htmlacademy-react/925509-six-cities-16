@@ -9,7 +9,6 @@ function getFavoritePlaces(places: PlaceType[]) {
   return places.filter((place) => place.isFavorite);
 }
 
-// спасибо чату GPT за TS, разобраться в будушем
 function groupPlacesByFavorite(places: PlaceType[]) {
   return places.reduce((accumulator: Record<string, PlaceType[]>, place: PlaceType) => {
     if (!accumulator[place.city.name]) {
