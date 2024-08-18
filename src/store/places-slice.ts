@@ -48,6 +48,7 @@ const placesSlice = createSlice({
   },
 });
 
+const selectRequestStatus = (state: RootState) => state.places.requestStatus;
 const selectCurrentCity = (state: RootState) => state.places.currentCity;
 const selectPlacesList = (state: RootState) => state.places.items;
 const selectCurrentSortingOption = (state: RootState) =>
@@ -55,5 +56,5 @@ const selectCurrentSortingOption = (state: RootState) =>
 
 export const { setPlaces, setCurrentCity, setCurrentSortingOption } =
   placesSlice.actions;
-export { selectCurrentCity, selectPlacesList, selectCurrentSortingOption };
+export { selectCurrentCity, selectPlacesList, selectCurrentSortingOption, selectRequestStatus };
 export default placesSlice.reducer;

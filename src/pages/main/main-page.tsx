@@ -1,7 +1,13 @@
 import { useAppSelector } from '../../hooks/store-hooks';
+import { RequestStatus } from '../../const';
 import { sortingPlaceList } from '../../utils';
 
-import { selectCurrentCity, selectPlacesList, selectCurrentSortingOption } from '../../store/places-slice';
+import {
+  selectCurrentCity,
+  selectPlacesList,
+  selectCurrentSortingOption,
+  selectRequestStatus,
+} from '../../store/places-slice';
 import { selectActivePlaceId } from '../../store/active-place-slice';
 
 import Header from '../../components/header/header';
@@ -9,8 +15,11 @@ import PlaceList from '../../components/places/place-list';
 import LocationList from '../../components/locations/location-list';
 import SortingForm from '../../components/sorting/sorting-form';
 import Map from '../../components/map/map';
+import Loader from '../../components/loader/loader';
 
 import { locationsList } from '../../mocks/mocks';
+
+import '../../styles/loader.css';
 
 function MainPage(): JSX.Element {
   // в данном случае харкодим, потом из state будем информацию забирать
@@ -19,6 +28,10 @@ function MainPage(): JSX.Element {
   const placesList = useAppSelector(selectPlacesList);
   const currentCity = useAppSelector(selectCurrentCity);
   const currentSortingValue = useAppSelector(selectCurrentSortingOption);
+  const requestStatus = useAppSelector(selectRequestStatus);
+
+  // const isLoading = requestStatus === RequestStatus.Loading;
+  const isLoading = requestStatus === RequestStatus.Loading;
 
   const filteredPlacesList = placesList.filter(
     (placeItem) => placeItem.city.name === currentCity.name
@@ -40,23 +53,27 @@ function MainPage(): JSX.Element {
           <LocationList locations={locationsList} />
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">
-                {filteredPlacesList.length} places to stay in {currentCity.name}
-              </b>
-              <SortingForm />
-              <PlaceList places={sortedPlaceList} isNearPlacesList={false} />
-            </section>
-            <div className="cities__right-section">
-              <Map
-                places={filteredPlacesList}
-                activePlaceId={activeId}
-                city={currentCity.location}
-              />
+          {isLoading && <Loader />}
+          {!isLoading && (
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">
+                  {filteredPlacesList.length} places to stay in{' '}
+                  {currentCity.name}
+                </b>
+                <SortingForm />
+                <PlaceList places={sortedPlaceList} isNearPlacesList={false} />
+              </section>
+              <div className="cities__right-section">
+                <Map
+                  places={filteredPlacesList}
+                  activePlaceId={activeId}
+                  city={currentCity.location}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </main>
     </div>
