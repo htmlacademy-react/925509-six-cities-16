@@ -40,6 +40,10 @@ export type AppRouteType = {
   [key: string]: string;
 }
 
+export type ApiRouteType = {
+  [key: string]: string;
+}
+
 export type MapIconType = {
   iconUrl: string;
   iconSize: [number, number];

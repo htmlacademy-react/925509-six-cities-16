@@ -1,4 +1,4 @@
-import { RatingType, AppRouteType, MapIconsType, CityType, SortingType } from './types/types';
+import { RatingType, AppRouteType, ApiRouteType, MapIconsType, CityType, SortingType } from './types/types';
 
 const INITIAL_LOCATION: CityType = {
   name: 'Paris',
@@ -33,10 +33,25 @@ const AppRoute: AppRouteType = {
   AnyOther: '*',
 } as const;
 
+const ApiRoute: ApiRouteType = {
+  Offers: '/offers',
+  Login: '/login',
+  Logout: '/logout',
+  Comments: '/comments',
+  Favorite: '/favorite',
+} as const;
+
 enum AuthorisationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+}
+
+enum RequestStatus {
+  Initial = 'initial',
+  Loading = 'loading',
+  Success = 'success',
+  Error = 'error',
 }
 
 const CommentLengthLimit = {
@@ -70,7 +85,9 @@ const TitleLayerUrl = {
 export {
   Rating,
   AppRoute,
+  ApiRoute,
   AuthorisationStatus,
+  RequestStatus,
   CommentLengthLimit,
   NEARBY_PLACES_MAX_COUNT,
   MapIcon,
