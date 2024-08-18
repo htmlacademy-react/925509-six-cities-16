@@ -1,7 +1,13 @@
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks/store-hooks';
+
 import Header from '../../components/header/header';
 import ReviewsForm from '../../components/reviews/reviews-form';
 import PlaceList from '../../components/places/place-list';
+
+import { fetchCurrentOffer } from '../../thunks/current-place';
+import { selectOfferData } from '../../store/current-place-slice';
 
 import { placesList } from '../../mocks/mocks';
 import { PlaceType } from '../../types/types';
@@ -12,7 +18,15 @@ function OfferPage(): JSX.Element {
   const isAuthorized = true;
 
   const params = useParams();
-  const currentOfferId = params.id;
+  const currentOfferId = params.id || '';
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchCurrentOffer(currentOfferId));
+  }, [dispatch, currentOfferId]);
+
+
+  console.log(selectOfferData);
 
   // TO DO - в дальнейшем фильтровать по городу
   const getNearbyPlaces = (places: PlaceType[]): PlaceType[] => places.slice(0, NEARBY_PLACES_MAX_COUNT);
