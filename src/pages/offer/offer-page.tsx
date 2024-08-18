@@ -17,9 +17,12 @@ import ReviewsList from '../../components/reviews/reviews-list';
 import FavoritesButton from '../../components/favorites/favorites-button';
 
 import { fetchCurrentOffer } from '../../thunks/current-place';
+import { fetchComments } from '../../thunks/comment';
+
 import {
   selectOfferData,
   selectRequestStatus,
+  selectOfferComments
 } from '../../store/current-place-slice';
 import { useAppSelector } from '../../hooks/store-hooks';
 
@@ -37,15 +40,18 @@ function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchCurrentOffer(currentOfferId));
+    dispatch(fetchComments(currentOfferId));
   }, [dispatch, currentOfferId]);
 
   const offerData = useAppSelector(selectOfferData);
+  const offerComments = useAppSelector(selectOfferComments);
 
   const requestStatus = useAppSelector(selectRequestStatus);
   const isLoading = requestStatus === RequestStatus.Loading;
   const hasError = requestStatus === RequestStatus.Error;
 
-  // console.log(offerData);
+  console.log(offerData);
+  console.log(offerComments);
 
   // TO DO - в дальнейшем фильтровать по городу
   const getNearbyPlaces = (places: PlaceType[]): PlaceType[] =>

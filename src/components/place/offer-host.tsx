@@ -1,6 +1,6 @@
-import { HostType } from '../../types/types';
+import { UserType } from '../../types/types';
 
-function OfferHost(props: HostType): JSX.Element {
+function OfferHost(props: UserType): JSX.Element {
   const { isPro, name, avatarUrl } = props;
 
   return (

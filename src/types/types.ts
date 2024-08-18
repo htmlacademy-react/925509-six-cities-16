@@ -27,18 +27,26 @@ export type PlaceType = {
 
 export interface PlaceExtendedType extends PlaceType {
   description: string;
-  host: HostType;
+  host: UserType;
   goods: string[];
   images: string[];
   maxAdults: number;
   bedrooms: number;
 }
 
-export type HostType = {
+export type UserType = {
   isPro: boolean;
   name: string;
   avatarUrl: string;
 };
+
+export type CommentType = {
+  id: string;
+  date: string;
+  comment: string;
+  rating: RatingType;
+  user: UserType;
+}
 
 export type RatingType = {
   [key: string]: number;
