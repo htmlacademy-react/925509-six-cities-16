@@ -1,6 +1,6 @@
 import { SortingTypeKey, PlaceType } from './types/types';
 
-export const uppercaseFirstLetter = (string: string) => {
+const uppercaseFirstLetter = (string: string) => {
   if (!string) {
     return string;
   }
@@ -8,7 +8,7 @@ export const uppercaseFirstLetter = (string: string) => {
   return string[0].toUpperCase() + string.slice(1);
 };
 
-export const sortingPlaceList = (
+const sortingPlaceList = (
   filteredPlacesList: PlaceType[],
   sortingValue: SortingTypeKey
 ) => {
@@ -36,4 +36,31 @@ export const sortingPlaceList = (
   } else {
     return filteredPlacesList;
   }
+};
+
+const formatDateToYMD = (dateString: string) => {
+  const date = new Date(dateString);
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Месяц +1, т.к. getUTCMonth() возвращает месяцы от 0 до 11
+  const day = String(date.getUTCDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
+const formatDateToMonthYear = (dateString: string) => {
+  const date = new Date(dateString);
+  const year = date.getUTCFullYear();
+  const month = date.toLocaleString('en-US', {
+    month: 'long',
+    timeZone: 'UTC',
+  });
+
+  return `${month} ${year}`;
+};
+
+export {
+  uppercaseFirstLetter,
+  sortingPlaceList,
+  formatDateToYMD,
+  formatDateToMonthYear,
 };

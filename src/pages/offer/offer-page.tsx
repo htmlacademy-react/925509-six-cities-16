@@ -50,8 +50,8 @@ function OfferPage(): JSX.Element {
   const isLoading = requestStatus === RequestStatus.Loading;
   const hasError = requestStatus === RequestStatus.Error;
 
-  console.log(offerData);
-  console.log(offerComments);
+  // console.log(offerData);
+  // console.log(offerComments);
 
   // TO DO - в дальнейшем фильтровать по городу
   const getNearbyPlaces = (places: PlaceType[]): PlaceType[] =>
@@ -139,9 +139,9 @@ function OfferPage(): JSX.Element {
 
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
-                  Reviews · <span className="reviews__amount">1</span>
+                  Reviews · <span className="reviews__amount">{offerComments?.length}</span>
                 </h2>
-                <ReviewsList />
+                <ReviewsList commentList={offerComments}/>
                 <ReviewsForm />
               </section>
             </div>

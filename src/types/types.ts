@@ -44,7 +44,7 @@ export type CommentType = {
   id: string;
   date: string;
   comment: string;
-  rating: RatingType;
+  rating: number;
   user: UserType;
 }
 
