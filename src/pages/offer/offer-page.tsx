@@ -14,6 +14,8 @@ import OfferHost from '../../components/place/offer-host';
 import OfferGalleryList from '../../components/place/offer-gallery-list';
 import ReviewsList from '../../components/reviews/reviews-list';
 
+import Map from '../../components/map/map';
+
 import FavoritesButton from '../../components/favorites/favorites-button';
 
 import { fetchCurrentOffer } from '../../thunks/current-place';
@@ -50,13 +52,14 @@ function OfferPage(): JSX.Element {
   const offerComments = useAppSelector(selectOfferComments);
   const nearbyOffersData = useAppSelector(selectNearbyOffers);
 
-
   const requestStatus = useAppSelector(selectRequestStatus);
   const isLoading = requestStatus === RequestStatus.Loading;
   const hasError = requestStatus === RequestStatus.Error;
 
   const getNearbyPlaces = (places: PlaceType[]): PlaceType[] =>
     places.slice(0, NEARBY_PLACES_MAX_COUNT);
+
+  const nearbyPlaces = getNearbyPlaces(nearbyOffersData);
 
   if (isLoading) {
     return <Loader />;
@@ -79,6 +82,7 @@ function OfferPage(): JSX.Element {
     rating,
     bedrooms,
     maxAdults,
+    city
   } = offerData;
 
   return (
@@ -147,14 +151,21 @@ function OfferPage(): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="offer__map map" />
+          <Map
+            activePlaceId={currentOfferId}
+            city={city.location}
+            places={[...nearbyPlaces, offerData]}
+            isMainPage={false}
+          />
+
+          {/* <section className="offer__map map" /> */}
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <PlaceList places={getNearbyPlaces(nearbyOffersData)} isNearPlacesList />
+            <PlaceList places={nearbyPlaces} isNearPlacesList />
           </section>
         </div>
       </main>

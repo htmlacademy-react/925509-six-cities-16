@@ -70,6 +70,7 @@ function MainPage(): JSX.Element {
                   places={filteredPlacesList}
                   activePlaceId={activeId}
                   city={currentCity.location}
+                  isMainPage
                 />
               </div>
             </div>

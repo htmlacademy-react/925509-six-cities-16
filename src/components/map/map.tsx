@@ -12,13 +12,14 @@ type MapProps = {
   activePlaceId: string;
   city: LocationType;
   places: PlaceType[];
+  isMainPage: boolean;
 }
 
 const defaultIcon = new Icon(MapIcon.Default);
 const customIcon = new Icon(MapIcon.Active);
 
 function Map(props: MapProps): JSX.Element {
-  const {activePlaceId, city, places } = props;
+  const {activePlaceId, city, places, isMainPage } = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
   const markerLayer = useRef<LayerGroup>(leaflet.layerGroup());
@@ -48,8 +49,8 @@ function Map(props: MapProps): JSX.Element {
 
   return (
     <section
-      className="cities__map map"
-      style={{ height: '100%' }}
+      className={`${isMainPage ? 'cities__map' : 'offer__map'} map`}
+      style={{ minHeight: '100%' }}
       ref={mapRef}
     />
   );
