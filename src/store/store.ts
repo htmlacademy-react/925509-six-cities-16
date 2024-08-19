@@ -4,6 +4,7 @@ import { createAPI } from '../services/api';
 import placesReducer from './places-slice';
 import activePlaceIdReducer from './active-place-slice';
 import currentPlaceReducer from './current-place-slice.ts';
+import nearbyPlacesReducer from './nearby-places-slice.tsx';
 
 const api = createAPI();
 
@@ -12,6 +13,7 @@ export const store = configureStore({
     places: placesReducer,
     activePlace: activePlaceIdReducer,
     currentPlace: currentPlaceReducer,
+    nearbyPlaces: nearbyPlacesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -6,7 +6,6 @@ type ReviewsListPropsType = {
 };
 
 function ReviewsList(props: ReviewsListPropsType): JSX.Element {
-  // const { date, comment, rating, user } = props;
   const { commentList } = props;
   return (
     <ul className="reviews__list">

@@ -36,6 +36,7 @@ const currentPlaceSlice = createSlice({
       })
       .addCase(fetchCurrentOffer.rejected, (state) => {
         state.requestStatus = RequestStatus.Error;
+        // console.log(action);
       })
       .addCase(fetchComments.pending, (state) => {
         state.requestCommentsStatus = RequestStatus.Loading;

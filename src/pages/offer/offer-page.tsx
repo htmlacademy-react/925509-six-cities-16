@@ -7,7 +7,7 @@ import Header from '../../components/header/header';
 import ReviewsForm from '../../components/reviews/reviews-form';
 import PlaceList from '../../components/places/place-list';
 import Loader from '../../components/loader/loader';
-import Error from '../../components/error/error';
+import NotFoundPage from '../not-found/not-found-page';
 
 import OfferInsideList from '../../components/place/offer-inside-list';
 import OfferHost from '../../components/place/offer-host';
@@ -18,15 +18,16 @@ import FavoritesButton from '../../components/favorites/favorites-button';
 
 import { fetchCurrentOffer } from '../../thunks/current-place';
 import { fetchComments } from '../../thunks/comment';
+import { fetchNearbyPlaces } from '../../thunks/nearby-place';
 
 import {
   selectOfferData,
   selectRequestStatus,
   selectOfferComments
 } from '../../store/current-place-slice';
+import { selectNearbyOffers } from '../../store/nearby-places-slice';
 import { useAppSelector } from '../../hooks/store-hooks';
 
-import { placesList } from '../../mocks/mocks';
 import { PlaceType } from '../../types/types';
 import { NEARBY_PLACES_MAX_COUNT, RequestStatus } from '../../const';
 
@@ -38,22 +39,22 @@ function OfferPage(): JSX.Element {
   const currentOfferId = params.id || '';
 
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(fetchCurrentOffer(currentOfferId));
     dispatch(fetchComments(currentOfferId));
+    dispatch(fetchNearbyPlaces(currentOfferId));
   }, [dispatch, currentOfferId]);
 
   const offerData = useAppSelector(selectOfferData);
   const offerComments = useAppSelector(selectOfferComments);
+  const nearbyOffersData = useAppSelector(selectNearbyOffers);
+
 
   const requestStatus = useAppSelector(selectRequestStatus);
   const isLoading = requestStatus === RequestStatus.Loading;
   const hasError = requestStatus === RequestStatus.Error;
 
-  // console.log(offerData);
-  // console.log(offerComments);
-
-  // TO DO - в дальнейшем фильтровать по городу
   const getNearbyPlaces = (places: PlaceType[]): PlaceType[] =>
     places.slice(0, NEARBY_PLACES_MAX_COUNT);
 
@@ -62,7 +63,7 @@ function OfferPage(): JSX.Element {
   }
 
   if (hasError || !offerData) {
-    return <Error />;
+    return <NotFoundPage />;
   }
 
   const {
@@ -153,7 +154,7 @@ function OfferPage(): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <PlaceList places={getNearbyPlaces(placesList)} isNearPlacesList />
+            <PlaceList places={getNearbyPlaces(nearbyOffersData)} isNearPlacesList />
           </section>
         </div>
       </main>
