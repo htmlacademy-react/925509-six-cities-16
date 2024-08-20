@@ -166,7 +166,6 @@ function OfferPage(props: OfferPageProps): JSX.Element {
             isMainPage={false}
           />
 
-          {/* <section className="offer__map map" /> */}
         </section>
         <div className="container">
           <section className="near-places places">

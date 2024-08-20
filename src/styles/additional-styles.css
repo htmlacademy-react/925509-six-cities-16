@@ -16,3 +16,14 @@
   margin: 0 auto 20px;
   display: block;
 }
+
+.user__avatar-wrapper:has(.user__avatar--image) {
+  background-image: unset;
+}
+
+.user__avatar--image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}

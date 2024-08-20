@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../thunks/auth';
 import { AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks/store-hooks';
+import { selectUserData } from '../../store/user-slice';
+import { useAppSelector } from '../../hooks/store-hooks';
+import '../../styles/additional-styles.css';
 
 type HeaderProps = {
   isAuthorized: boolean;
@@ -11,6 +14,9 @@ type HeaderProps = {
 function Header(props: HeaderProps): JSX.Element {
   const { isAuthorized, isLoginPage } = props;
   const dispatch = useAppDispatch();
+  const userData = useAppSelector(selectUserData);
+
+  // const { email, name, avatarUrl, isPro } = userData;
 
   const handleLogoutClick = () => {
     dispatch(logout());
@@ -42,16 +48,23 @@ function Header(props: HeaderProps): JSX.Element {
                     className="header__nav-link header__nav-link--profile"
                     to={AppRoute.Favorites}
                   >
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                      <img className='user__avatar--image' src={userData?.avatarUrl} alt="" />
+                    </div>
                     <span className="header__user-name user__name">
-                      Oliver.conner@gmail.com
+                      {userData?.email}
                     </span>
                     <span className="header__favorite-count">3</span>
                   </Link>
                 </li>
                 <li className="header__nav-item">
                   <Link className="header__nav-link" to={AppRoute.Login}>
-                    <span className="header__signout" onClick={handleLogoutClick}>Sign out</span>
+                    <span
+                      className="header__signout"
+                      onClick={handleLogoutClick}
+                    >
+                      Sign out
+                    </span>
                   </Link>
                 </li>
               </ul>
