@@ -20,9 +20,12 @@ import Error from '../../components/error/error';
 
 import { locationsList } from '../../mocks/mocks';
 
-function MainPage(): JSX.Element {
-  // в данном случае харкодим, потом из state будем информацию забирать
-  const isAuthorized = true;
+type PageProps = {
+  isAuthorized: boolean;
+};
+
+function MainPage(props: PageProps): JSX.Element {
+  const { isAuthorized } = props;
 
   const placesList = useAppSelector(selectPlacesList);
   const currentCity = useAppSelector(selectCurrentCity);
@@ -45,7 +48,7 @@ function MainPage(): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
-      <Header isAuthorized={isAuthorized} />
+      <Header isAuthorized={isAuthorized} isLoginPage={false} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

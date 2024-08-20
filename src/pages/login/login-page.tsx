@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/store-hooks';
 import { login } from '../../thunks/auth';
 
+import { useAppSelector } from '../../hooks/store-hooks';
+import { selectUserAuthStatus } from '../../store/user-slice';
+import { AuthorisationStatus } from '../../const';
+
 import Header from '../../components/header/header';
 
 function LoginPage(): JSX.Element {
@@ -45,12 +49,13 @@ function LoginPage(): JSX.Element {
     });
   };
 
-  // в данном случае харкодим, потом из state будем информацию забирать
-  const isAuthorized = false;
+  const userAuthStatus = useAppSelector(selectUserAuthStatus);
+  const isAuthorized = userAuthStatus === AuthorisationStatus.Auth;
+
 
   return (
     <div className="page page--gray page--login">
-      <Header isAuthorized={isAuthorized} />
+      <Header isAuthorized={isAuthorized} isLoginPage />
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">

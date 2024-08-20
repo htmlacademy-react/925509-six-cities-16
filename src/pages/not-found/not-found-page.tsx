@@ -11,7 +11,7 @@ function NotFoundPage(): JSX.Element {
 
   return (
     <div className="page">
-      <Header isAuthorized={isAuthorized} />
+      <Header isAuthorized={isAuthorized} isLoginPage={false} />
 
       <main className="page__main page__main--not-found">
         <div className="container">

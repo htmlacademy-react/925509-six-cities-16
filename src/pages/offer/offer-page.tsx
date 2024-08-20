@@ -22,8 +22,6 @@ import { fetchCurrentOffer } from '../../thunks/current-place';
 import { fetchComments } from '../../thunks/comment';
 import { fetchNearbyPlaces } from '../../thunks/nearby-place';
 
-import { checkAuthorization } from '../../thunks/auth';
-
 import {
   selectOfferData,
   selectRequestStatus,
@@ -31,17 +29,18 @@ import {
 } from '../../store/current-place-slice';
 import { selectNearbyOffers } from '../../store/nearby-places-slice';
 
-import { selectUserAuthStatus } from '../../store/user-slice';
 
 import { useAppSelector } from '../../hooks/store-hooks';
 
 import { PlaceType } from '../../types/types';
 import { NEARBY_PLACES_MAX_COUNT, RequestStatus } from '../../const';
 
-function OfferPage(): JSX.Element {
-  // в данном случае харкодим, потом из state будем информацию забирать
-  const isAuthorized = true;
+type OfferPageProps = {
+  isAuthorized: boolean;
+}
 
+function OfferPage(props: OfferPageProps): JSX.Element {
+  const {isAuthorized} = props;
   const params = useParams();
   const currentOfferId = params.id || '';
 
@@ -52,7 +51,8 @@ function OfferPage(): JSX.Element {
     dispatch(fetchComments(currentOfferId));
     dispatch(fetchNearbyPlaces(currentOfferId));
 
-    dispatch(checkAuthorization());
+    // dispatch(checkAuthorization());
+    // это нужно выводить на уровень приложения
   }, [dispatch, currentOfferId]);
 
   const offerData = useAppSelector(selectOfferData);
@@ -62,9 +62,6 @@ function OfferPage(): JSX.Element {
   const requestStatus = useAppSelector(selectRequestStatus);
   const isLoading = requestStatus === RequestStatus.Loading;
   const hasError = requestStatus === RequestStatus.Error;
-
-  const userAuthStatus = useAppSelector(selectUserAuthStatus);
-  console.log(userAuthStatus);
 
 
   const getNearbyPlaces = (places: PlaceType[]): PlaceType[] =>
@@ -98,7 +95,7 @@ function OfferPage(): JSX.Element {
 
   return (
     <div className="page">
-      <Header isAuthorized={isAuthorized} />
+      <Header isAuthorized={isAuthorized} isLoginPage={false} />
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
@@ -158,7 +155,7 @@ function OfferPage(): JSX.Element {
                   Reviews · <span className="reviews__amount">{offerComments?.length}</span>
                 </h2>
                 <ReviewsList commentList={offerComments}/>
-                <ReviewsForm />
+                {isAuthorized && <ReviewsForm />}
               </section>
             </div>
           </div>
