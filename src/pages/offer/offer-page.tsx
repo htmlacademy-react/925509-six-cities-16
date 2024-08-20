@@ -22,12 +22,17 @@ import { fetchCurrentOffer } from '../../thunks/current-place';
 import { fetchComments } from '../../thunks/comment';
 import { fetchNearbyPlaces } from '../../thunks/nearby-place';
 
+import { checkAuthorization } from '../../thunks/auth';
+
 import {
   selectOfferData,
   selectRequestStatus,
   selectOfferComments
 } from '../../store/current-place-slice';
 import { selectNearbyOffers } from '../../store/nearby-places-slice';
+
+import { selectUserAuthStatus } from '../../store/user-slice';
+
 import { useAppSelector } from '../../hooks/store-hooks';
 
 import { PlaceType } from '../../types/types';
@@ -46,6 +51,8 @@ function OfferPage(): JSX.Element {
     dispatch(fetchCurrentOffer(currentOfferId));
     dispatch(fetchComments(currentOfferId));
     dispatch(fetchNearbyPlaces(currentOfferId));
+
+    dispatch(checkAuthorization());
   }, [dispatch, currentOfferId]);
 
   const offerData = useAppSelector(selectOfferData);
@@ -55,6 +62,10 @@ function OfferPage(): JSX.Element {
   const requestStatus = useAppSelector(selectRequestStatus);
   const isLoading = requestStatus === RequestStatus.Loading;
   const hasError = requestStatus === RequestStatus.Error;
+
+  const userAuthStatus = useAppSelector(selectUserAuthStatus);
+  console.log(userAuthStatus);
+
 
   const getNearbyPlaces = (places: PlaceType[]): PlaceType[] =>
     places.slice(0, NEARBY_PLACES_MAX_COUNT);

@@ -40,6 +40,21 @@ export type UserType = {
   avatarUrl: string;
 };
 
+export interface CurrentUserType extends UserType {
+  email: string;
+  token: string;
+}
+
+export type AuthDataType = {
+  email: string;
+  password: string;
+}
+
+export type LoginPayload = {
+  email: string;
+  password: string;
+};
+
 export type CommentType = {
   id: string;
   date: string;

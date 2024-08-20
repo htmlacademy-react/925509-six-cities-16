@@ -1,10 +1,50 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, PASSWORD_REG_EXP, EMAIL_REG_EXP } from '../../const';
+
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/store-hooks';
+import { login } from '../../thunks/auth';
 
 import Header from '../../components/header/header';
 
-
 function LoginPage(): JSX.Element {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isFormValid, setFormValidity] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const isPasswordValid = (passwordValue: string) =>
+    PASSWORD_REG_EXP.test(passwordValue);
+  const isEmailValid = (emailValue: string) => EMAIL_REG_EXP.test(emailValue);
+
+  const handleEmailChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setEmail(evt.target.value);
+    setFormValidity(
+      isPasswordValid(password) && isEmailValid(evt.target.value)
+    );
+  };
+
+  const handlePasswordChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setPassword(evt.target.value);
+    setFormValidity(isPasswordValid(evt.target.value) && isEmailValid(email));
+  };
+
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (!isFormValid) {
+      return;
+    }
+
+    dispatch(login({ email, password })).then((response) => {
+      if (response.meta.requestStatus === 'fulfilled') {
+        navigate(AppRoute.Root);
+      }
+    });
+  };
+
   // в данном случае харкодим, потом из state будем информацию забирать
   const isAuthorized = false;
 
@@ -15,7 +55,12 @@ function LoginPage(): JSX.Element {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post">
+            <form
+              className="login__form form"
+              action="#"
+              method="post"
+              onSubmit={handleFormSubmit}
+            >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input
@@ -24,6 +69,7 @@ function LoginPage(): JSX.Element {
                   name="email"
                   placeholder="Email"
                   required
+                  onChange={handleEmailChange}
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -34,11 +80,13 @@ function LoginPage(): JSX.Element {
                   name="password"
                   placeholder="Password"
                   required
+                  onChange={handlePasswordChange}
                 />
               </div>
               <button
                 className="login__submit form__submit button"
                 type="submit"
+                disabled={!isFormValid}
               >
                 Sign in
               </button>

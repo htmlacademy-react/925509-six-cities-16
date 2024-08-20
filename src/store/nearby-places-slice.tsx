@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { PlaceExtendedType, RootState, PlaceType } from '../types/types';
 import { RootState, PlaceType } from '../types/types';
 import { fetchNearbyPlaces } from '../thunks/nearby-place';
 import { RequestStatus } from '../const';

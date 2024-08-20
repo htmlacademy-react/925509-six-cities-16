@@ -1,5 +1,8 @@
 import { RatingType, AppRouteType, ApiRouteType, MapIconsType, CityType, SortingType } from './types/types';
 
+const PASSWORD_REG_EXP = /^(?=.*[A-Za-z])(?=.*\d).+$/;
+const EMAIL_REG_EXP = /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+([a-z]{2,18})$/;
+
 const INITIAL_LOCATION: CityType = {
   name: 'Paris',
   location: {
@@ -93,5 +96,7 @@ export {
   MapIcon,
   TitleLayerUrl,
   INITIAL_LOCATION,
+  PASSWORD_REG_EXP,
+  EMAIL_REG_EXP,
   SortingValues
 };
