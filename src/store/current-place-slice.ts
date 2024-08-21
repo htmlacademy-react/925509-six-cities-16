@@ -5,12 +5,13 @@ import { PlaceExtendedType, RootState, CommentType } from '../types/types';
 import { RequestStatus } from '../const';
 
 import { fetchCurrentOffer } from '../thunks/current-place';
-import { fetchComments } from '../thunks/comment';
+import { fetchComments, sendComment } from '../thunks/comment';
 
 type PlacesState = {
   data: PlaceExtendedType | null;
   requestStatus: RequestStatus;
   requestCommentsStatus: RequestStatus;
+  requestCommentSendStatus: RequestStatus;
   comments: CommentType[] | null;
 };
 
@@ -18,7 +19,8 @@ const initialState: PlacesState = {
   data: null,
   requestStatus: RequestStatus.Initial,
   comments: null,
-  requestCommentsStatus:  RequestStatus.Initial
+  requestCommentsStatus:  RequestStatus.Initial,
+  requestCommentSendStatus:  RequestStatus.Initial
 };
 
 const currentPlaceSlice = createSlice({
@@ -36,7 +38,6 @@ const currentPlaceSlice = createSlice({
       })
       .addCase(fetchCurrentOffer.rejected, (state) => {
         state.requestStatus = RequestStatus.Error;
-        // console.log(action);
       })
       .addCase(fetchComments.pending, (state) => {
         state.requestCommentsStatus = RequestStatus.Loading;
@@ -47,14 +48,26 @@ const currentPlaceSlice = createSlice({
       })
       .addCase(fetchComments.rejected, (state) => {
         state.requestCommentsStatus = RequestStatus.Error;
+      })
+      .addCase(sendComment.pending, (state) => {
+        state.requestCommentSendStatus = RequestStatus.Loading;
+      })
+      .addCase(sendComment.fulfilled, (state, action) => {
+        state.requestCommentSendStatus = RequestStatus.Success;
+        state.comments?.push(action.payload);
+      })
+      .addCase(sendComment.rejected, (state) => {
+        state.requestCommentSendStatus = RequestStatus.Error;
       });
   },
 });
 
 const selectRequestStatus = (state: RootState) =>
   state.currentPlace.requestStatus;
+const selectRequestCommentSendStatus = (state: RootState) =>
+  state.currentPlace.requestCommentSendStatus;
 const selectOfferData = (state: RootState) => state.currentPlace.data;
 const selectOfferComments = (state: RootState) => state.currentPlace.comments;
 
-export { selectRequestStatus, selectOfferData, selectOfferComments };
+export { selectRequestStatus, selectOfferData, selectOfferComments, selectRequestCommentSendStatus };
 export default currentPlaceSlice.reducer;

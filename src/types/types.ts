@@ -63,6 +63,14 @@ export type CommentType = {
   user: UserType;
 }
 
+export type CommentPayloadType = {
+  id: string;
+  body: {
+    comment: string;
+    rating: number;
+  };
+}
+
 export type RatingType = {
   [key: string]: number;
 };

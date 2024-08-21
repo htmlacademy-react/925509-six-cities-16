@@ -1,6 +1,6 @@
 import { createAppAsyncThunk } from './create-async-thunk';
 import { ApiRoute } from '../const';
-import { CommentType } from '../types/types';
+import { CommentType, CommentPayloadType } from '../types/types';
 
 const fetchComments = createAppAsyncThunk(
   'currentPlace/fetchComments',
@@ -10,4 +10,12 @@ const fetchComments = createAppAsyncThunk(
   }
 );
 
-export { fetchComments };
+const sendComment = createAppAsyncThunk(
+  'currentPlace/sendComment',
+  async ({id, body}:CommentPayloadType, { extra: api }) => {
+    const response = await api.post<CommentType>(`${ApiRoute.Comments}/${id}`, body);
+    return response.data;
+  }
+);
+
+export { fetchComments, sendComment };

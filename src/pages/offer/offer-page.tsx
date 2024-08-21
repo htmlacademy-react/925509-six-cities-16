@@ -51,8 +51,6 @@ function OfferPage(props: OfferPageProps): JSX.Element {
     dispatch(fetchComments(currentOfferId));
     dispatch(fetchNearbyPlaces(currentOfferId));
 
-    // dispatch(checkAuthorization());
-    // это нужно выводить на уровень приложения
   }, [dispatch, currentOfferId]);
 
   const offerData = useAppSelector(selectOfferData);
@@ -155,7 +153,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
                   Reviews · <span className="reviews__amount">{offerComments?.length}</span>
                 </h2>
                 <ReviewsList commentList={offerComments}/>
-                {isAuthorized && <ReviewsForm />}
+                {isAuthorized && <ReviewsForm offerId={currentOfferId} />}
               </section>
             </div>
           </div>
