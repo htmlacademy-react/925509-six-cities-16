@@ -35,7 +35,7 @@ function ReviewsForm(props: ReviewsFormPropsType): JSX.Element {
     setRating(Number(evt.target.value));
   };
 
-  const handleSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(sendComment({ id: offerId, body: { comment, rating } }));
     clearFormFields();
@@ -56,7 +56,7 @@ function ReviewsForm(props: ReviewsFormPropsType): JSX.Element {
         className="reviews__form form"
         action="#"
         method="post"
-        onSubmit={handleSubmitForm}
+        onSubmit={handleFormSubmit}
       >
         <label className="reviews__label form__label" htmlFor="review">
           Your review

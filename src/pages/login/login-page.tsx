@@ -9,6 +9,9 @@ import { login } from '../../thunks/auth';
 import { useAppSelector } from '../../hooks/store-hooks';
 import { selectUserAuthStatus } from '../../store/user-slice';
 import { AuthorisationStatus } from '../../const';
+import { setCurrentCity } from '../../store/places-slice';
+
+import { INITIAL_LOCATION } from '../../const';
 
 import Header from '../../components/header/header';
 
@@ -49,9 +52,12 @@ function LoginPage(): JSX.Element {
     });
   };
 
+  const handleCityClick = (): void => {
+    dispatch(setCurrentCity(INITIAL_LOCATION));
+  };
+
   const userAuthStatus = useAppSelector(selectUserAuthStatus);
   const isAuthorized = userAuthStatus === AuthorisationStatus.Auth;
-
 
   return (
     <div className="page page--gray page--login">
@@ -99,8 +105,12 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link className="locations__item-link" to={AppRoute.Root}>
-                <span>Amsterdam</span>
+              <Link
+                className="locations__item-link"
+                to={AppRoute.Root}
+                onClick={handleCityClick}
+              >
+                <span>{INITIAL_LOCATION.name}</span>
               </Link>
             </div>
           </section>

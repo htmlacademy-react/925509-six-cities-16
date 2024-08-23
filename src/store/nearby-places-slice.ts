@@ -4,7 +4,7 @@ import { fetchNearbyPlaces } from '../thunks/nearby-place';
 import { RequestStatus } from '../const';
 
 type NearbyPlacesState = {
-  data: PlaceType[] | [];
+  data: PlaceType[];
   requestStatus: RequestStatus;
 };
 

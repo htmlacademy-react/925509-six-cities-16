@@ -1,5 +1,14 @@
+.page:has(.page__main--not-found ) {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
 .page__main--not-found {
   padding-bottom: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {

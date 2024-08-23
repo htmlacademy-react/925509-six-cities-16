@@ -72,7 +72,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
   }
 
   if (hasError || !offerData) {
-    return <NotFoundPage />;
+    return <NotFoundPage isAuthorized={isAuthorized} />;
   }
 
   const {
@@ -113,7 +113,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: `${rating * 20}%` }} />
+                  <span style={{ width: `${Math.round(rating) * 20}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">

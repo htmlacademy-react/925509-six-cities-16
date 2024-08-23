@@ -4,7 +4,7 @@ import { createAPI } from '../services/api';
 import placesReducer from './places-slice';
 import activePlaceIdReducer from './active-place-slice';
 import currentPlaceReducer from './current-place-slice.ts';
-import nearbyPlacesReducer from './nearby-places-slice.tsx';
+import nearbyPlacesReducer from './nearby-places-slice.ts';
 import userReducer from './user-slice.ts';
 
 const api = createAPI();

@@ -18,7 +18,7 @@ import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
 import Error from '../../components/error/error';
 
-import { locationsList } from '../../mocks/mocks';
+import { locationsList } from '../../const';
 
 type PageProps = {
   isAuthorized: boolean;
@@ -62,8 +62,9 @@ function MainPage(props: PageProps): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">
-                  {filteredPlacesList.length} places to stay in{' '}
-                  {currentCity.name}
+                  {filteredPlacesList.length}{' '}
+                  {filteredPlacesList.length <= 1 ? 'place' : 'places'} to
+                  stay in {currentCity.name}
                 </b>
                 <SortingForm />
                 <PlaceList places={sortedPlaceList} isNearPlacesList={false} />

@@ -2,14 +2,14 @@ import { CommentType } from '../../types/types';
 import { formatDateToYMD, formatDateToMonthYear } from '../../utils';
 
 type ReviewsListPropsType = {
-  commentList: CommentType[] | null;
+  commentList: CommentType[];
 };
 
 function ReviewsList(props: ReviewsListPropsType): JSX.Element {
   const { commentList } = props;
   return (
     <ul className="reviews__list">
-      {commentList && commentList.length && commentList.map((commentItem: CommentType) => {
+      {commentList.map((commentItem: CommentType) => {
         const { date, comment, rating, user, id } = commentItem;
         return (
           <li className="reviews__item" key={id}>

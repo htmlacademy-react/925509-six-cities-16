@@ -12,13 +12,13 @@ type PlacesState = {
   requestStatus: RequestStatus;
   requestCommentsStatus: RequestStatus;
   requestCommentSendStatus: RequestStatus;
-  comments: CommentType[] | null;
+  comments: CommentType[];
 };
 
 const initialState: PlacesState = {
   data: null,
   requestStatus: RequestStatus.Initial,
-  comments: null,
+  comments: [],
   requestCommentsStatus:  RequestStatus.Initial,
   requestCommentSendStatus:  RequestStatus.Initial
 };

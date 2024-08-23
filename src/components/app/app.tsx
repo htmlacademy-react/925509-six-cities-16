@@ -48,7 +48,7 @@ function App(): JSX.Element {
             }
           />
         </Route>
-        <Route path={AppRoute.AnyOther} element={<NotFoundPage />} />
+        <Route path={AppRoute.AnyOther} element={<NotFoundPage isAuthorized={isAuthorized}/>} />
       </Routes>
     </BrowserRouter>
   );
