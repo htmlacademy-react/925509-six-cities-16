@@ -2,6 +2,8 @@ import { RatingType, AppRouteType, ApiRouteType, MapIconsType, CityType, Sorting
 
 const PASSWORD_REG_EXP = /^(?=.*[A-Za-z])(?=.*\d).+$/;
 const EMAIL_REG_EXP = /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+([a-z]{2,18})$/;
+const NEARBY_PLACES_MAX_COUNT = 3;
+const COMMENTS_MAX_COUNT = 10;
 
 const INITIAL_LOCATION: CityType = {
   name: 'Paris',
@@ -61,8 +63,6 @@ const CommentLengthLimit = {
   Min: 50,
   Max: 300,
 } as const;
-
-const NEARBY_PLACES_MAX_COUNT = 3;
 
 // константный объект тут не подойдет из-за библиотеки карт
 const MapIcon: MapIconsType = {
@@ -136,6 +136,10 @@ const locationsList: CityType[] = [
   }
 ];
 
+enum ToastMessage {
+  ServerError = 'Error was occured. Try again later.',
+}
+
 export {
   Rating,
   AppRoute,
@@ -150,5 +154,7 @@ export {
   PASSWORD_REG_EXP,
   EMAIL_REG_EXP,
   SortingValues,
-  locationsList
+  locationsList,
+  COMMENTS_MAX_COUNT,
+  ToastMessage
 };

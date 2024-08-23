@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { useAppDispatch } from '../../hooks/store-hooks';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { AppRoute, AuthorisationStatus } from '../../const';
 // import { placesList } from '../../mocks/mocks';
@@ -19,7 +21,6 @@ import { useAppSelector } from '../../hooks/store-hooks';
 import { selectUserAuthStatus } from '../../store/user-slice';
 import { checkAuthorization } from '../../thunks/auth';
 
-
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
@@ -34,11 +35,15 @@ function App(): JSX.Element {
 
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Routes>
         <Route path="/">
-          <Route index element={<MainPage isAuthorized={isAuthorized}/>} />
+          <Route index element={<MainPage isAuthorized={isAuthorized} />} />
           <Route path={AppRoute.Login} element={<LoginPage />} />
-          <Route path={`${AppRoute.Offer}/:id`} element={<OfferPage isAuthorized={isAuthorized}/>} />
+          <Route
+            path={`${AppRoute.Offer}/:id`}
+            element={<OfferPage isAuthorized={isAuthorized} />}
+          />
           <Route
             path={AppRoute.Favorites}
             element={
@@ -48,7 +53,10 @@ function App(): JSX.Element {
             }
           />
         </Route>
-        <Route path={AppRoute.AnyOther} element={<NotFoundPage isAuthorized={isAuthorized}/>} />
+        <Route
+          path={AppRoute.AnyOther}
+          element={<NotFoundPage isAuthorized={isAuthorized} />}
+        />
       </Routes>
     </BrowserRouter>
   );

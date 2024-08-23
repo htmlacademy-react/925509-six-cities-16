@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, PASSWORD_REG_EXP, EMAIL_REG_EXP } from '../../const';
+import { AppRoute, ToastMessage, PASSWORD_REG_EXP, EMAIL_REG_EXP } from '../../const';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/store-hooks';
+import { toast } from 'react-toastify';
+import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { login } from '../../thunks/auth';
 
-import { useAppSelector } from '../../hooks/store-hooks';
-import { selectUserAuthStatus } from '../../store/user-slice';
-import { AuthorisationStatus } from '../../const';
+import { selectUserAuthStatus, selectUserRequestStatus } from '../../store/user-slice';
+import { AuthorisationStatus, RequestStatus } from '../../const';
 import { setCurrentCity } from '../../store/places-slice';
 
 import { INITIAL_LOCATION } from '../../const';
@@ -21,7 +21,10 @@ function LoginPage(): JSX.Element {
   const [isFormValid, setFormValidity] = useState(false);
 
   const dispatch = useAppDispatch();
+  const requestStatus = useAppSelector(selectUserRequestStatus);
   const navigate = useNavigate();
+
+  const isLoading = requestStatus === RequestStatus.Loading;
 
   const isPasswordValid = (passwordValue: string) =>
     PASSWORD_REG_EXP.test(passwordValue);
@@ -45,10 +48,10 @@ function LoginPage(): JSX.Element {
       return;
     }
 
-    dispatch(login({ email, password })).then((response) => {
-      if (response.meta.requestStatus === 'fulfilled') {
-        navigate(AppRoute.Root);
-      }
+    dispatch(login({ email, password })).unwrap().then(() => {
+      navigate(AppRoute.Root);
+    }).catch(() => {
+      toast.error(ToastMessage.ServerError);
     });
   };
 
@@ -81,6 +84,7 @@ function LoginPage(): JSX.Element {
                   placeholder="Email"
                   required
                   onChange={handleEmailChange}
+                  disabled={isLoading}
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -92,12 +96,13 @@ function LoginPage(): JSX.Element {
                   placeholder="Password"
                   required
                   onChange={handlePasswordChange}
+                  disabled={isLoading}
                 />
               </div>
               <button
                 className="login__submit form__submit button"
                 type="submit"
-                disabled={!isFormValid}
+                disabled={!isFormValid || isLoading}
               >
                 Sign in
               </button>

@@ -1,3 +1,4 @@
+import { COMMENTS_MAX_COUNT } from '../../const';
 import { CommentType } from '../../types/types';
 import { formatDateToYMD, formatDateToMonthYear } from '../../utils';
 
@@ -7,9 +8,20 @@ type ReviewsListPropsType = {
 
 function ReviewsList(props: ReviewsListPropsType): JSX.Element {
   const { commentList } = props;
+
+  const sortedCommentList =
+    commentList &&
+    [...commentList]
+      .sort((a, b) => {
+        const dateA = new Date(a.date).getTime();
+        const dateB = new Date(b.date).getTime();
+        return dateB - dateA;
+      })
+      .slice(0, COMMENTS_MAX_COUNT);
+
   return (
     <ul className="reviews__list">
-      {commentList.map((commentItem: CommentType) => {
+      {sortedCommentList.map((commentItem: CommentType) => {
         const { date, comment, rating, user, id } = commentItem;
         return (
           <li className="reviews__item" key={id}>
@@ -28,7 +40,7 @@ function ReviewsList(props: ReviewsListPropsType): JSX.Element {
             <div className="reviews__info">
               <div className="reviews__rating rating">
                 <div className="reviews__stars rating__stars">
-                  <span style={{ width: `${rating * 20}%` }} />
+                  <span style={{ width: `${Math.round(rating) * 20}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
               </div>
