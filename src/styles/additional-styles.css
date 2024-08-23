@@ -26,6 +26,10 @@
   display: block;
 }
 
+.header__nav-link {
+  cursor: pointer;
+}
+
 .user__avatar-wrapper:has(.user__avatar--image) {
   background-image: unset;
 }

@@ -46,7 +46,7 @@ const userSlice = createSlice({
         state.requestStatus = RequestStatus.Error;
         state.authorizationStatus = AuthorisationStatus.NoAuth;
       })
-      .addCase(logout.pending, (state) => {
+      .addCase(logout.fulfilled, (state) => {
         state.data = null;
         state.authorizationStatus = AuthorisationStatus.NoAuth;
       });

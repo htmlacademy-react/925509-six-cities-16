@@ -1,4 +1,3 @@
-// import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { PlaceExtendedType, RootState, CommentType } from '../types/types';
 

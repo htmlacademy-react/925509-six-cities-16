@@ -1,4 +1,4 @@
-import { COMMENTS_MAX_COUNT } from '../../const';
+import { COMMENTS_MAX_COUNT, RATING_UNIT_WIDTH_VALUE } from '../../const';
 import { CommentType } from '../../types/types';
 import { formatDateToYMD, formatDateToMonthYear } from '../../utils';
 
@@ -40,7 +40,7 @@ function ReviewsList(props: ReviewsListPropsType): JSX.Element {
             <div className="reviews__info">
               <div className="reviews__rating rating">
                 <div className="reviews__stars rating__stars">
-                  <span style={{ width: `${Math.round(rating) * 20}%` }} />
+                  <span style={{ width: `${Math.round(rating) * RATING_UNIT_WIDTH_VALUE}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
               </div>

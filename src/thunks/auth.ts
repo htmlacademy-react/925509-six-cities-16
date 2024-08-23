@@ -1,7 +1,7 @@
 import { createAppAsyncThunk } from './create-async-thunk';
 import { ApiRoute } from '../const';
 import { CurrentUserType } from '../types/types';
-import { dropToken, saveToken } from '../services/token';
+import { saveToken } from '../services/token';
 
 import { LoginPayload } from '../types/types';
 
@@ -26,7 +26,6 @@ const logout = createAppAsyncThunk(
   'user/logout',
   async (_arg, { extra: api }) => {
     await api.delete(`${ApiRoute.Logout}`);
-    dropToken();
   }
 );
 

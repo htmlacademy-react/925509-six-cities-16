@@ -33,7 +33,7 @@ import { selectNearbyOffers } from '../../store/nearby-places-slice';
 import { useAppSelector } from '../../hooks/store-hooks';
 
 import { PlaceType } from '../../types/types';
-import { NEARBY_PLACES_MAX_COUNT, RequestStatus } from '../../const';
+import { NEARBY_PLACES_MAX_COUNT, RequestStatus, RATING_UNIT_WIDTH_VALUE } from '../../const';
 
 type OfferPageProps = {
   isAuthorized: boolean;
@@ -113,7 +113,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: `${Math.round(rating) * 20}%` }} />
+                  <span style={{ width: `${Math.round(rating) * RATING_UNIT_WIDTH_VALUE}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">

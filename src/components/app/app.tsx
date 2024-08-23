@@ -5,7 +5,6 @@ import { useAppDispatch } from '../../hooks/store-hooks';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { AppRoute, AuthorisationStatus } from '../../const';
-// import { placesList } from '../../mocks/mocks';
 
 import LoginPage from '../../pages/login/login-page';
 import FavoritesPage from '../../pages/favorites/favorites-page';
@@ -15,7 +14,6 @@ import MainPage from '../../pages/main/main-page';
 
 import PrivateRoute from '../private-route/private-route';
 
-// import { setPlaces } from '../../store/places-slice';
 import { fetchOffers } from '../../thunks/places-list';
 import { useAppSelector } from '../../hooks/store-hooks';
 import { selectUserAuthStatus } from '../../store/user-slice';
@@ -25,7 +23,6 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // dispatch(setPlaces(placesList));
     dispatch(fetchOffers());
     dispatch(checkAuthorization());
   }, [dispatch]);

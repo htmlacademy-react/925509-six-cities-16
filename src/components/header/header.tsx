@@ -1,9 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { logout } from '../../thunks/auth';
-import { AppRoute } from '../../const';
+import { AppRoute, ToastMessage } from '../../const';
 import { useAppDispatch } from '../../hooks/store-hooks';
 import { selectUserData } from '../../store/user-slice';
 import { useAppSelector } from '../../hooks/store-hooks';
+import { dropToken } from '../../services/token';
+
 import '../../styles/additional-styles.css';
 
 type HeaderProps = {
@@ -15,11 +18,18 @@ function Header(props: HeaderProps): JSX.Element {
   const { isAuthorized, isLoginPage } = props;
   const dispatch = useAppDispatch();
   const userData = useAppSelector(selectUserData);
-
-  // const { email, name, avatarUrl, isPro } = userData;
+  const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    dispatch(logout());
+    dispatch(logout())
+      .unwrap()
+      .then(() => {
+        dropToken();
+        navigate(AppRoute.Root);
+      })
+      .catch(() => {
+        toast.error(ToastMessage.ServerError);
+      });
   };
 
   return (
@@ -49,7 +59,11 @@ function Header(props: HeaderProps): JSX.Element {
                     to={AppRoute.Favorites}
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper">
-                      <img className='user__avatar--image' src={userData?.avatarUrl} alt="" />
+                      <img
+                        className="user__avatar--image"
+                        src={userData?.avatarUrl}
+                        alt=""
+                      />
                     </div>
                     <span className="header__user-name user__name">
                       {userData?.email}
@@ -58,14 +72,14 @@ function Header(props: HeaderProps): JSX.Element {
                   </Link>
                 </li>
                 <li className="header__nav-item">
-                  <Link className="header__nav-link" to={AppRoute.Login}>
+                  <span className="header__nav-link">
                     <span
                       className="header__signout"
                       onClick={handleLogoutClick}
                     >
                       Sign out
                     </span>
-                  </Link>
+                  </span>
                 </li>
               </ul>
             </nav>
