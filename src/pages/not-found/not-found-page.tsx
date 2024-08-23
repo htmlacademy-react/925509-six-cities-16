@@ -5,13 +5,16 @@ import Header from '../../components/header/header';
 
 import '../../styles/additional-styles.css';
 
-function NotFoundPage(): JSX.Element {
-  // в данном случае харкодим, потом из state будем информацию забирать
-  const isAuthorized = true;
+type NotFoundPageProps = {
+  isAuthorized: boolean;
+}
+
+function NotFoundPage(props: NotFoundPageProps): JSX.Element {
+  const {isAuthorized} = props;
 
   return (
     <div className="page">
-      <Header isAuthorized={isAuthorized} />
+      <Header isAuthorized={isAuthorized} isLoginPage={false} />
 
       <main className="page__main page__main--not-found">
         <div className="container">

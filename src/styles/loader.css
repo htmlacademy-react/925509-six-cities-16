@@ -1,0 +1,40 @@
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  font-size: 16px;
+  line-height: 120%;
+  color: inherit;
+  font-weight: 700;
+
+  min-width: 200px;
+  width: 100%;
+  min-height: 400px;
+  height: 100%;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+
+.loader__spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #a0a0a0;
+  border-bottom-color: #4481c3;
+  border-radius: 50%;
+  display: inline-block;
+  -webkit-animation: rotation 1s linear infinite;
+  animation: rotation 1s linear infinite;
+}

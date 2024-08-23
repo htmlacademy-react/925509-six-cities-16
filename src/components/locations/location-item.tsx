@@ -1,5 +1,5 @@
 import { CityType } from '../../types/types';
-import { locationsList } from '../../mocks/mocks';
+import { locationsList } from '../../const';
 import { Link } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/store-hooks';

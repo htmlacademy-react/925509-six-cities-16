@@ -1,13 +1,36 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { logout } from '../../thunks/auth';
+import { AppRoute, ToastMessage } from '../../const';
+import { useAppDispatch } from '../../hooks/store-hooks';
+import { selectUserData } from '../../store/user-slice';
+import { useAppSelector } from '../../hooks/store-hooks';
+import { dropToken } from '../../services/token';
 
-import { AppRoute } from '../../const';
+import '../../styles/additional-styles.css';
 
 type HeaderProps = {
   isAuthorized: boolean;
+  isLoginPage: boolean;
 };
 
 function Header(props: HeaderProps): JSX.Element {
-  const { isAuthorized } = props;
+  const { isAuthorized, isLoginPage } = props;
+  const dispatch = useAppDispatch();
+  const userData = useAppSelector(selectUserData);
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    dispatch(logout())
+      .unwrap()
+      .then(() => {
+        dropToken();
+        navigate(AppRoute.Root);
+      })
+      .catch(() => {
+        toast.error(ToastMessage.ServerError);
+      });
+  };
 
   return (
     <header className="header">
@@ -35,16 +58,42 @@ function Header(props: HeaderProps): JSX.Element {
                     className="header__nav-link header__nav-link--profile"
                     to={AppRoute.Favorites}
                   >
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                      <img
+                        className="user__avatar--image"
+                        src={userData?.avatarUrl}
+                        alt=""
+                      />
+                    </div>
                     <span className="header__user-name user__name">
-                      Oliver.conner@gmail.com
+                      {userData?.email}
                     </span>
                     <span className="header__favorite-count">3</span>
                   </Link>
                 </li>
                 <li className="header__nav-item">
-                  <Link className="header__nav-link" to={AppRoute.Login}>
-                    <span className="header__signout">Sign out</span>
+                  <span className="header__nav-link">
+                    <span
+                      className="header__signout"
+                      onClick={handleLogoutClick}
+                    >
+                      Sign out
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </nav>
+          )}
+          {!isAuthorized && !isLoginPage && (
+            <nav className="header__nav">
+              <ul className="header__nav-list">
+                <li className="header__nav-item user">
+                  <Link
+                    className="header__nav-link header__nav-link--profile"
+                    to={AppRoute.Login}
+                  >
+                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                    <span className="header__login">Sign in</span>
                   </Link>
                 </li>
               </ul>

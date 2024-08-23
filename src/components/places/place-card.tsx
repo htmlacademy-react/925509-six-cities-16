@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { PlaceType } from '../../types/types';
 import FavoritesButton from '../favorites/favorites-button';
-import { AppRoute } from '../../const';
+import { AppRoute, RATING_UNIT_WIDTH_VALUE } from '../../const';
 import { useAppDispatch } from '../../hooks/store-hooks';
 import { setActivePlaceId } from '../../store/active-place-slice';
 
@@ -85,11 +85,11 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <FavoritesButton isFavorite={isFavorite} />
+          <FavoritesButton isFavorite={isFavorite} isPlacesList />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${rating * 20}%` }} />
+            <span style={{ width: `${Math.round(rating) * RATING_UNIT_WIDTH_VALUE}%` }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
