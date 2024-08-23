@@ -11,7 +11,7 @@ import { selectUserAuthStatus, selectUserRequestStatus } from '../../store/user-
 import { AuthorisationStatus, RequestStatus } from '../../const';
 import { setCurrentCity } from '../../store/places-slice';
 
-import { INITIAL_LOCATION } from '../../const';
+import { INITIAL_LOCATION_ON_LOGIN_PAGE } from '../../const';
 
 import Header from '../../components/header/header';
 
@@ -56,7 +56,7 @@ function LoginPage(): JSX.Element {
   };
 
   const handleCityClick = (): void => {
-    dispatch(setCurrentCity(INITIAL_LOCATION));
+    dispatch(setCurrentCity(INITIAL_LOCATION_ON_LOGIN_PAGE));
   };
 
   const userAuthStatus = useAppSelector(selectUserAuthStatus);
@@ -115,7 +115,7 @@ function LoginPage(): JSX.Element {
                 to={AppRoute.Root}
                 onClick={handleCityClick}
               >
-                <span>{INITIAL_LOCATION.name}</span>
+                <span>{INITIAL_LOCATION_ON_LOGIN_PAGE.name}</span>
               </Link>
             </div>
           </section>

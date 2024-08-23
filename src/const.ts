@@ -1,7 +1,15 @@
-import { RatingType, AppRouteType, ApiRouteType, MapIconsType, CityType, SortingType } from './types/types';
+import {
+  RatingType,
+  AppRouteType,
+  ApiRouteType,
+  MapIconsType,
+  CityType,
+  SortingType,
+} from './types/types';
 
 const PASSWORD_REG_EXP = /^(?=.*[A-Za-z])(?=.*\d).+$/;
-const EMAIL_REG_EXP = /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+([a-z]{2,18})$/;
+const EMAIL_REG_EXP =
+  /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+([a-z]{2,18})$/;
 const NEARBY_PLACES_MAX_COUNT = 3;
 const COMMENTS_MAX_COUNT = 10;
 const RATING_UNIT_WIDTH_VALUE = 20;
@@ -15,11 +23,20 @@ const INITIAL_LOCATION: CityType = {
   },
 };
 
+const INITIAL_LOCATION_ON_LOGIN_PAGE: CityType = {
+  name: 'Amsterdam',
+  location: {
+    latitude: 52.37454,
+    longitude: 4.89797,
+    zoom: 13,
+  },
+};
+
 const SortingValues: SortingType = {
   Popular: 'Popular',
   LowToHighPrice: 'Price: low to high',
   HighToLowPrice: 'Price: high to low',
-  TopRated: 'Top rated first'
+  TopRated: 'Top rated first',
 } as const;
 
 // без объявления типа падает ошибка в reviews-form
@@ -92,49 +109,49 @@ const locationsList: CityType[] = [
     location: {
       latitude: 48.85661,
       longitude: 2.351499,
-      zoom: 13
-    }
+      zoom: 13,
+    },
   },
   {
     name: 'Cologne',
     location: {
       latitude: 50.938361,
       longitude: 6.959974,
-      zoom: 13
-    }
+      zoom: 13,
+    },
   },
   {
     name: 'Brussels',
     location: {
       latitude: 50.846557,
       longitude: 4.351697,
-      zoom: 13
-    }
+      zoom: 13,
+    },
   },
   {
     name: 'Amsterdam',
     location: {
       latitude: 52.37454,
       longitude: 4.89797,
-      zoom: 13
-    }
+      zoom: 13,
+    },
   },
   {
     name: 'Hamburg',
     location: {
       latitude: 53.55034,
       longitude: 10.000654,
-      zoom: 13
-    }
+      zoom: 13,
+    },
   },
   {
     name: 'Dusseldorf',
     location: {
       latitude: 51.225402,
       longitude: 6.776314,
-      zoom: 13
-    }
-  }
+      zoom: 13,
+    },
+  },
 ];
 
 enum ToastMessage {
@@ -158,5 +175,6 @@ export {
   locationsList,
   COMMENTS_MAX_COUNT,
   RATING_UNIT_WIDTH_VALUE,
-  ToastMessage
+  ToastMessage,
+  INITIAL_LOCATION_ON_LOGIN_PAGE
 };
