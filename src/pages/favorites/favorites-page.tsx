@@ -5,7 +5,7 @@ import FavoritesList from '../../components/favorites/favorites-locations-list';
 import { placesList } from '../../mocks/mocks';
 
 function FavoritesPage(): JSX.Element {
-  // в данном случае харкодим, потом из state будем информацию забирать
+  // в данном случае харкодим,  потом из state будем информацию забирать
   const isAuthorized = true;
 
   return (
