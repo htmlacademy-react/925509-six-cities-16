@@ -2,20 +2,26 @@ import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import FavoritesList from '../../components/favorites/favorites-locations-list';
 
-import { placesList } from '../../mocks/mocks';
+import { useAppSelector } from '../../hooks/store-hooks';
+import { selectFavoritesData } from '../../store/favorites-slice';
 
-function FavoritesPage(): JSX.Element {
-  // в данном случае харкодим, потом из state будем информацию забирать
-  const isAuthorized = true;
+type PageProps = {
+  isAuthorized: boolean;
+};
+
+function FavoritesPage(props: PageProps): JSX.Element {
+  const { isAuthorized } = props;
+
+  const favoritePlaces = useAppSelector(selectFavoritesData);
 
   return (
     <div className="page">
-      <Header isAuthorized={isAuthorized} isLoginPage={false}/>
+      <Header isAuthorized={isAuthorized} isLoginPage={false} />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <FavoritesList places={placesList} />
+            <FavoritesList places={favoritePlaces} />
           </section>
         </div>
       </main>

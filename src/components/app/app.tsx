@@ -18,13 +18,18 @@ import { fetchOffers } from '../../thunks/places-list';
 import { useAppSelector } from '../../hooks/store-hooks';
 import { selectUserAuthStatus } from '../../store/user-slice';
 import { checkAuthorization } from '../../thunks/auth';
+import { fetchFavorites } from '../../thunks/favorites';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchOffers());
-    dispatch(checkAuthorization());
+    dispatch(checkAuthorization())
+      .unwrap()
+      .then(() => {
+        dispatch(fetchFavorites());
+      });
   }, [dispatch]);
 
   const userAuthStatus = useAppSelector(selectUserAuthStatus);
@@ -45,7 +50,7 @@ function App(): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute isAuthorized={isAuthorized}>
-                <FavoritesPage />
+                <FavoritesPage isAuthorized={isAuthorized}/>
               </PrivateRoute>
             }
           />

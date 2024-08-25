@@ -36,8 +36,6 @@ const favoritePlacesSlice = createSlice({
         state.requestChangeStatus = RequestStatus.Loading;
       })
       .addCase(changeFavoriteStatus.fulfilled, (state, action) => {
-        // console.log(action.payload);
-
         const currentOffer = action.payload.offer;
 
         if (currentOffer.isFavorite) {
