@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, ToastMessage, PASSWORD_REG_EXP, EMAIL_REG_EXP } from '../../const';
+import { Helmet } from 'react-helmet-async';
+import {
+  AppRoute,
+  ToastMessage,
+  PASSWORD_REG_EXP,
+  EMAIL_REG_EXP,
+} from '../../const';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +13,10 @@ import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { login } from '../../thunks/auth';
 
-import { selectUserAuthStatus, selectUserRequestStatus } from '../../store/user-slice';
+import {
+  selectUserAuthStatus,
+  selectUserRequestStatus,
+} from '../../store/user-slice';
 import { AuthorisationStatus, RequestStatus } from '../../const';
 import { setCurrentCity } from '../../store/places-slice';
 import { fetchFavorites } from '../../thunks/favorites';
@@ -49,12 +58,15 @@ function LoginPage(): JSX.Element {
       return;
     }
 
-    dispatch(login({ email, password })).unwrap().then(() => {
-      dispatch(fetchFavorites());
-      navigate(AppRoute.Root);
-    }).catch(() => {
-      toast.error(ToastMessage.ServerError);
-    });
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        dispatch(fetchFavorites());
+        navigate(AppRoute.Root);
+      })
+      .catch(() => {
+        toast.error(ToastMessage.ServerError);
+      });
   };
 
   const handleCityClick = (): void => {
@@ -66,6 +78,9 @@ function LoginPage(): JSX.Element {
 
   return (
     <div className="page page--gray page--login">
+      <Helmet>
+        <title>6 cities: login page</title>
+      </Helmet>
       <Header isAuthorized={isAuthorized} isLoginPage />
       <main className="page__main page__main--login">
         <div className="page__login-container container">

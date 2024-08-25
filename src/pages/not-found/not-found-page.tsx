@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { AppRoute } from '../../const';
 
 import Header from '../../components/header/header';
@@ -7,13 +8,16 @@ import '../../styles/additional-styles.css';
 
 type NotFoundPageProps = {
   isAuthorized: boolean;
-}
+};
 
 function NotFoundPage(props: NotFoundPageProps): JSX.Element {
-  const {isAuthorized} = props;
+  const { isAuthorized } = props;
 
   return (
     <div className="page">
+      <Helmet>
+        <title>6 cities: 404 page</title>
+      </Helmet>
       <Header isAuthorized={isAuthorized} isLoginPage={false} />
 
       <main className="page__main page__main--not-found">

@@ -1,4 +1,5 @@
 import { useAppSelector } from '../../hooks/store-hooks';
+import { Helmet } from 'react-helmet-async';
 import { RequestStatus } from '../../const';
 import { sortingPlaceList } from '../../utils';
 
@@ -50,6 +51,9 @@ function MainPage(props: PageProps): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
+      <Helmet>
+        <title>6 cities: main page</title>
+      </Helmet>
       <Header isAuthorized={isAuthorized} isLoginPage={false} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
@@ -89,7 +93,8 @@ function MainPage(props: PageProps): JSX.Element {
                 <div className="cities__status-wrapper tabs__content">
                   <b className="cities__status">No places to stay available</b>
                   <p className="cities__status-description">
-                    We could not find any property available at the moment in {currentCity.name}
+                    We could not find any property available at the moment in{' '}
+                    {currentCity.name}
                   </p>
                 </div>
               </section>

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { useAppDispatch } from '../../hooks/store-hooks';
 import 'react-toastify/dist/ReactToastify.css';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { AppRoute, AuthorisationStatus } from '../../const';
 
@@ -36,31 +37,33 @@ function App(): JSX.Element {
   const isAuthorized = userAuthStatus === AuthorisationStatus.Auth;
 
   return (
-    <BrowserRouter>
-      <ToastContainer />
-      <Routes>
-        <Route path="/">
-          <Route index element={<MainPage isAuthorized={isAuthorized} />} />
-          <Route path={AppRoute.Login} element={<LoginPage />} />
+    <HelmetProvider>
+      <BrowserRouter>
+        <ToastContainer />
+        <Routes>
+          <Route path="/">
+            <Route index element={<MainPage isAuthorized={isAuthorized} />} />
+            <Route path={AppRoute.Login} element={<LoginPage />} />
+            <Route
+              path={`${AppRoute.Offer}/:id`}
+              element={<OfferPage isAuthorized={isAuthorized} />}
+            />
+            <Route
+              path={AppRoute.Favorites}
+              element={
+                <PrivateRoute isAuthorized={isAuthorized}>
+                  <FavoritesPage isAuthorized={isAuthorized} />
+                </PrivateRoute>
+              }
+            />
+          </Route>
           <Route
-            path={`${AppRoute.Offer}/:id`}
-            element={<OfferPage isAuthorized={isAuthorized} />}
+            path={AppRoute.AnyOther}
+            element={<NotFoundPage isAuthorized={isAuthorized} />}
           />
-          <Route
-            path={AppRoute.Favorites}
-            element={
-              <PrivateRoute isAuthorized={isAuthorized}>
-                <FavoritesPage isAuthorized={isAuthorized}/>
-              </PrivateRoute>
-            }
-          />
-        </Route>
-        <Route
-          path={AppRoute.AnyOther}
-          element={<NotFoundPage isAuthorized={isAuthorized} />}
-        />
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
