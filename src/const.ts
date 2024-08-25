@@ -41,11 +41,11 @@ const SortingValues: SortingType = {
 
 // без объявления типа падает ошибка в reviews-form
 const Rating: RatingType = {
-  perfect: 5,
-  good: 4,
-  notBad: 3,
-  badly: 2,
-  terribly: 1,
+  'perfect': 5,
+  'good': 4,
+  'not bad': 3,
+  'badly': 2,
+  'terribly': 1,
 };
 
 const AppRoute: AppRouteType = {

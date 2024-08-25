@@ -30,6 +30,8 @@ function App(): JSX.Element {
       .unwrap()
       .then(() => {
         dispatch(fetchFavorites());
+      }).catch(() => {
+        // console.log(error);
       });
   }, [dispatch]);
 
