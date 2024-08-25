@@ -39,6 +39,8 @@ function MainPage(props: PageProps): JSX.Element {
     (placeItem) => placeItem.city.name === currentCity.name
   );
 
+  const isPageEmpty = !filteredPlacesList.length;
+
   const sortedPlaceList = sortingPlaceList(
     filteredPlacesList,
     currentSortingValue
@@ -54,17 +56,17 @@ function MainPage(props: PageProps): JSX.Element {
         <div className="tabs">
           <LocationList locations={locationsList} />
         </div>
-        <div className="cities">
-          {isLoading && <Loader />}
-          {hasError && <Error />}
-          {!isLoading && !hasError && (
+        {isLoading && <Loader />}
+        {hasError && <Error />}
+        {!isLoading && !hasError && !isPageEmpty && (
+          <div className="cities">
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">
                   {filteredPlacesList.length}{' '}
-                  {filteredPlacesList.length <= 1 ? 'place' : 'places'} to
-                  stay in {currentCity.name}
+                  {filteredPlacesList.length <= 1 ? 'place' : 'places'} to stay
+                  in {currentCity.name}
                 </b>
                 <SortingForm />
                 <PlaceList places={sortedPlaceList} isNearPlacesList={false} />
@@ -78,8 +80,23 @@ function MainPage(props: PageProps): JSX.Element {
                 />
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+        {!isLoading && !hasError && isPageEmpty && (
+          <div className="cities">
+            <div className="cities__places-container cities__places-container--empty container">
+              <section className="cities__no-places">
+                <div className="cities__status-wrapper tabs__content">
+                  <b className="cities__status">No places to stay available</b>
+                  <p className="cities__status-description">
+                    We could not find any property available at the moment in {currentCity.name}
+                  </p>
+                </div>
+              </section>
+              <div className="cities__right-section"></div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
