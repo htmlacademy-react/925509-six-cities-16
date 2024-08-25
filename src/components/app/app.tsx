@@ -43,7 +43,14 @@ function App(): JSX.Element {
         <Routes>
           <Route path="/">
             <Route index element={<MainPage isAuthorized={isAuthorized} />} />
-            <Route path={AppRoute.Login} element={<LoginPage />} />
+            <Route
+              path={AppRoute.Login}
+              element={
+                <PrivateRoute isAuthorized={isAuthorized} nonAuthOnly>
+                  <LoginPage />
+                </PrivateRoute>
+              }
+            />
             <Route
               path={`${AppRoute.Offer}/:id`}
               element={<OfferPage isAuthorized={isAuthorized} />}
@@ -51,7 +58,7 @@ function App(): JSX.Element {
             <Route
               path={AppRoute.Favorites}
               element={
-                <PrivateRoute isAuthorized={isAuthorized}>
+                <PrivateRoute isAuthorized={isAuthorized} nonAuthOnly={false}>
                   <FavoritesPage isAuthorized={isAuthorized} />
                 </PrivateRoute>
               }
