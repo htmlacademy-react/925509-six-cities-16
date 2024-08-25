@@ -109,7 +109,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
 
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{title}</h1>
-                <FavoritesButton isFavorite={isFavorite} isPlacesList={false} />
+                <FavoritesButton isFavorite={isFavorite} isPlacesList={false} id={currentOfferId} />
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">

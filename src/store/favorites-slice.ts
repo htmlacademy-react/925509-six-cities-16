@@ -2,17 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { RequestStatus } from '../const';
 import { PlaceType, RootState } from '../types/types';
-
-import { fetchFavorites } from '../thunks/favorites';
+import { fetchFavorites, changeFavoriteStatus } from '../thunks/favorites';
 
 type FavoritePlacesState = {
-  data: PlaceType[] | null;
+  data: PlaceType[];
   requestStatus: RequestStatus;
+  requestChangeStatus: RequestStatus;
 };
 
 const initialState: FavoritePlacesState = {
-  data: null,
+  data: [],
   requestStatus: RequestStatus.Initial,
+  requestChangeStatus: RequestStatus.Initial,
 };
 
 const favoritePlacesSlice = createSlice({
@@ -30,6 +31,25 @@ const favoritePlacesSlice = createSlice({
       })
       .addCase(fetchFavorites.rejected, (state) => {
         state.requestStatus = RequestStatus.Error;
+      })
+      .addCase(changeFavoriteStatus.pending, (state) => {
+        state.requestChangeStatus = RequestStatus.Loading;
+      })
+      .addCase(changeFavoriteStatus.fulfilled, (state, action) => {
+        // console.log(action.payload);
+
+        const currentOffer = action.payload.offer;
+
+        if (currentOffer.isFavorite) {
+          state.data.push(action.payload.offer);
+        } else {
+          state.data = state.data.filter((item) => item.id !== currentOffer.id);
+        }
+
+        state.requestChangeStatus = RequestStatus.Success;
+      })
+      .addCase(changeFavoriteStatus.rejected, (state) => {
+        state.requestChangeStatus = RequestStatus.Error;
       });
   },
 });

@@ -158,6 +158,11 @@ enum ToastMessage {
   ServerError = 'Error was occured. Try again later.',
 }
 
+enum FavoriteStatus {
+  Added = 1,
+  Removed = 0
+}
+
 export {
   Rating,
   AppRoute,
@@ -176,5 +181,6 @@ export {
   COMMENTS_MAX_COUNT,
   RATING_UNIT_WIDTH_VALUE,
   ToastMessage,
-  INITIAL_LOCATION_ON_LOGIN_PAGE
+  INITIAL_LOCATION_ON_LOGIN_PAGE,
+  FavoriteStatus
 };

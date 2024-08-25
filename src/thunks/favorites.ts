@@ -1,6 +1,6 @@
 import { createAppAsyncThunk } from './create-async-thunk';
 import { ApiRoute } from '../const';
-import { PlaceType } from '../types/types';
+import { PlaceType, FavoritePayloadType } from '../types/types';
 
 const fetchFavorites = createAppAsyncThunk(
   'favorites/fetchFavorites',
@@ -10,4 +10,12 @@ const fetchFavorites = createAppAsyncThunk(
   }
 );
 
-export { fetchFavorites };
+const changeFavoriteStatus = createAppAsyncThunk(
+  'favorites/changeFavoriteStatus',
+  async ({id, status}:FavoritePayloadType, { extra: api }) => {
+    const response = await api.post<PlaceType>(`${ApiRoute.Favorite}/${id}/${status}`);
+    return {offer: response.data, status};
+  }
+);
+
+export { fetchFavorites, changeFavoriteStatus };
