@@ -30,8 +30,6 @@ function App(): JSX.Element {
       .unwrap()
       .then(() => {
         dispatch(fetchFavorites());
-      }).catch(() => {
-        toast.error(ToastMessage.ServerError);
       });
   }, [dispatch]);
 
