@@ -4,6 +4,7 @@ import { PlaceExtendedType, RootState, CommentType } from '../types/types';
 import { RequestStatus } from '../const';
 
 import { fetchCurrentOffer } from '../thunks/current-place';
+import { changeFavoriteStatus } from '../thunks/favorites';
 import { fetchComments, sendComment } from '../thunks/comment';
 
 type PlacesState = {
@@ -18,8 +19,8 @@ const initialState: PlacesState = {
   data: null,
   requestStatus: RequestStatus.Initial,
   comments: [],
-  requestCommentsStatus:  RequestStatus.Initial,
-  requestCommentSendStatus:  RequestStatus.Initial
+  requestCommentsStatus: RequestStatus.Initial,
+  requestCommentSendStatus: RequestStatus.Initial,
 };
 
 const currentPlaceSlice = createSlice({
@@ -57,6 +58,11 @@ const currentPlaceSlice = createSlice({
       })
       .addCase(sendComment.rejected, (state) => {
         state.requestCommentSendStatus = RequestStatus.Error;
+      })
+      .addCase(changeFavoriteStatus.fulfilled, (state, action) => {
+        if (state.data) {
+          state.data.isFavorite = action.payload.offer.isFavorite;
+        }
       });
   },
 });
@@ -68,5 +74,10 @@ const selectRequestCommentSendStatus = (state: RootState) =>
 const selectOfferData = (state: RootState) => state.currentPlace.data;
 const selectOfferComments = (state: RootState) => state.currentPlace.comments;
 
-export { selectRequestStatus, selectOfferData, selectOfferComments, selectRequestCommentSendStatus };
+export {
+  selectRequestStatus,
+  selectOfferData,
+  selectOfferComments,
+  selectRequestCommentSendStatus,
+};
 export default currentPlaceSlice.reducer;

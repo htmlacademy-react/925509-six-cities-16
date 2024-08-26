@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/store-hooks';
 import { uppercaseFirstLetter } from '../../utils';
@@ -25,22 +26,25 @@ import { fetchNearbyPlaces } from '../../thunks/nearby-place';
 import {
   selectOfferData,
   selectRequestStatus,
-  selectOfferComments
+  selectOfferComments,
 } from '../../store/current-place-slice';
 import { selectNearbyOffers } from '../../store/nearby-places-slice';
-
 
 import { useAppSelector } from '../../hooks/store-hooks';
 
 import { PlaceType } from '../../types/types';
-import { NEARBY_PLACES_MAX_COUNT, RequestStatus, RATING_UNIT_WIDTH_VALUE } from '../../const';
+import {
+  NEARBY_PLACES_MAX_COUNT,
+  RequestStatus,
+  RATING_UNIT_WIDTH_VALUE,
+} from '../../const';
 
 type OfferPageProps = {
   isAuthorized: boolean;
-}
+};
 
 function OfferPage(props: OfferPageProps): JSX.Element {
-  const {isAuthorized} = props;
+  const { isAuthorized } = props;
   const params = useParams();
   const currentOfferId = params.id || '';
 
@@ -50,7 +54,6 @@ function OfferPage(props: OfferPageProps): JSX.Element {
     dispatch(fetchCurrentOffer(currentOfferId));
     dispatch(fetchComments(currentOfferId));
     dispatch(fetchNearbyPlaces(currentOfferId));
-
   }, [dispatch, currentOfferId]);
 
   const offerData = useAppSelector(selectOfferData);
@@ -60,7 +63,6 @@ function OfferPage(props: OfferPageProps): JSX.Element {
   const requestStatus = useAppSelector(selectRequestStatus);
   const isLoading = requestStatus === RequestStatus.Loading;
   const hasError = requestStatus === RequestStatus.Error;
-
 
   const getNearbyPlaces = (places: PlaceType[]): PlaceType[] =>
     places.slice(0, NEARBY_PLACES_MAX_COUNT);
@@ -88,11 +90,14 @@ function OfferPage(props: OfferPageProps): JSX.Element {
     rating,
     bedrooms,
     maxAdults,
-    city
+    city,
   } = offerData;
 
   return (
     <div className="page">
+      <Helmet>
+        <title>6 cities: offer page</title>
+      </Helmet>
       <Header isAuthorized={isAuthorized} isLoginPage={false} />
       <main className="page__main page__main--offer">
         <section className="offer">
@@ -109,11 +114,19 @@ function OfferPage(props: OfferPageProps): JSX.Element {
 
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{title}</h1>
-                <FavoritesButton isFavorite={isFavorite} isPlacesList={false} />
+                <FavoritesButton
+                  isFavorite={isFavorite}
+                  isPlacesList={false}
+                  id={currentOfferId}
+                />
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: `${Math.round(rating) * RATING_UNIT_WIDTH_VALUE}%` }} />
+                  <span
+                    style={{
+                      width: `${Math.round(rating) * RATING_UNIT_WIDTH_VALUE}%`,
+                    }}
+                  />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">
@@ -150,9 +163,12 @@ function OfferPage(props: OfferPageProps): JSX.Element {
 
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
-                  Reviews · <span className="reviews__amount">{offerComments?.length}</span>
+                  Reviews ·{' '}
+                  <span className="reviews__amount">
+                    {offerComments?.length}
+                  </span>
                 </h2>
-                <ReviewsList commentList={offerComments}/>
+                <ReviewsList commentList={offerComments} />
                 {isAuthorized && <ReviewsForm offerId={currentOfferId} />}
               </section>
             </div>
@@ -163,7 +179,6 @@ function OfferPage(props: OfferPageProps): JSX.Element {
             places={[...nearbyPlaces, offerData]}
             isMainPage={false}
           />
-
         </section>
         <div className="container">
           <section className="near-places places">

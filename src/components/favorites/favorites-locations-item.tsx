@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
 import { PlaceType } from '../../types/types';
+import { setCurrentCity } from '../../store/places-slice';
+import { useAppDispatch } from '../../hooks/store-hooks';
 
 import PlaceCard from '../places/place-card';
 
@@ -15,12 +17,20 @@ function FavoritesLocationsItem(
 ): JSX.Element {
   const { places, currentCity } = props;
 
+  const dispatch = useAppDispatch();
+
+  const handleCityClick = (): void => {
+    dispatch(setCurrentCity(places[0].city));
+  };
+
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          {/* TO DO - в дальнейшем тут добавить часть пути для фильтрации по городу */}
-          <Link className="locations__item-link" to={AppRoute.Root}>
+          <Link className="locations__item-link"
+            onClick={handleCityClick}
+            to={AppRoute.Root}
+          >
             <span>{currentCity}</span>
           </Link>
         </div>

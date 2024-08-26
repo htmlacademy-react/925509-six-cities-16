@@ -1,4 +1,5 @@
 import { store } from '../store/store';
+import { FavoriteStatus } from '../const';
 
 export type LocationType = {
   latitude: number;
@@ -48,7 +49,7 @@ export interface CurrentUserType extends UserType {
 export type AuthDataType = {
   email: string;
   password: string;
-}
+};
 
 export type LoginPayload = {
   email: string;
@@ -61,7 +62,7 @@ export type CommentType = {
   comment: string;
   rating: number;
   user: UserType;
-}
+};
 
 export type CommentPayloadType = {
   id: string;
@@ -69,7 +70,12 @@ export type CommentPayloadType = {
     comment: string;
     rating: number;
   };
-}
+};
+
+export type FavoritePayloadType = {
+  id: string;
+  status: FavoriteStatus;
+};
 
 export type RatingType = {
   [key: string]: number;

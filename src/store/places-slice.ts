@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PlaceType, CityType, SortingTypeKey, RootState } from '../types/types';
 
 import { INITIAL_LOCATION, RequestStatus } from '../const';
-
+import { changeFavoriteStatus, fetchFavorites } from '../thunks/favorites';
 import { fetchOffers } from '../thunks/places-list';
 
 type PlacesState = {
@@ -44,6 +44,28 @@ const placesSlice = createSlice({
       })
       .addCase(fetchOffers.rejected, (state) => {
         state.requestStatus = RequestStatus.Error;
+      })
+      .addCase(changeFavoriteStatus.fulfilled, (state, action) => {
+        const targetItemIndex = state.items.findIndex(
+          (item) => item.id === action.payload.offer.id
+        );
+        if (targetItemIndex >= 0) {
+          state.items[targetItemIndex].isFavorite =
+            action.payload.offer.isFavorite;
+        }
+      })
+      .addCase(fetchFavorites.fulfilled, (state, action) => {
+        const favoritePlaces = action.payload;
+        favoritePlaces.forEach((favoritePlace) => {
+          const currentId = favoritePlace.id;
+
+          const targetItemIndex = state.items.findIndex(
+            (item) => item.id === currentId
+          );
+          if (targetItemIndex >= 0) {
+            state.items[targetItemIndex].isFavorite = favoritePlace.isFavorite;
+          }
+        });
       });
   },
 });
@@ -56,5 +78,10 @@ const selectCurrentSortingOption = (state: RootState) =>
 
 export const { setPlaces, setCurrentCity, setCurrentSortingOption } =
   placesSlice.actions;
-export { selectCurrentCity, selectPlacesList, selectCurrentSortingOption, selectRequestStatus };
+export {
+  selectCurrentCity,
+  selectPlacesList,
+  selectCurrentSortingOption,
+  selectRequestStatus,
+};
 export default placesSlice.reducer;
