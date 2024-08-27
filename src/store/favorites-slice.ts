@@ -53,6 +53,7 @@ const favoritePlacesSlice = createSlice({
 });
 
 const selectFavoritesData = (state: RootState) => state.favorites.data;
+const selectRequestChangeStatus = (state: RootState) => state.favorites.requestChangeStatus;
 
-export { selectFavoritesData };
+export { selectFavoritesData, selectRequestChangeStatus };
 export default favoritePlacesSlice.reducer;
