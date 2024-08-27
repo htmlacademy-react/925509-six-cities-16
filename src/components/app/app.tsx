@@ -34,9 +34,8 @@ function App(): JSX.Element {
       .then(() => {
         dispatch(fetchFavorites());
       })
-      .catch(() => {
-        // если убрать catch(), то тесты pages падают
-      });
+      // если убрать catch(), то тесты pages падают
+      .catch(() => null);
   }, [dispatch]);
 
   useEffect(() => {
