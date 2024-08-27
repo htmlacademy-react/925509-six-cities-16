@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { logout } from '../../thunks/auth';
 import { AppRoute, ToastMessage } from '../../const';
@@ -21,12 +21,16 @@ function Header(props: HeaderProps): JSX.Element {
   const userData = useAppSelector(selectUserData);
   const favoritesData = useAppSelector(selectFavoritesData);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogoutClick = () => {
     dispatch(logout())
       .unwrap()
       .then(() => {
         dropToken();
+        if (location.pathname === AppRoute.Favorites) {
+          navigate(AppRoute.Login);
+        }
         navigate(AppRoute.Root);
       })
       .catch(() => {

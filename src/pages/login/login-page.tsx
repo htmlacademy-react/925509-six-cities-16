@@ -3,11 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import {
   AppRoute,
   ToastMessage,
+  locationsList,
+  INITIAL_LOCATION,
   PASSWORD_REG_EXP,
   EMAIL_REG_EXP,
 } from '../../const';
+import { getRandomArrayElement } from '../../utils';
 
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
@@ -21,18 +24,22 @@ import { AuthorisationStatus, RequestStatus } from '../../const';
 import { setCurrentCity } from '../../store/places-slice';
 import { fetchFavorites } from '../../thunks/favorites';
 
-import { INITIAL_LOCATION_ON_LOGIN_PAGE } from '../../const';
-
 import Header from '../../components/header/header';
 
 function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isFormValid, setFormValidity] = useState(false);
+  const [randomCity, setRandomCity] = useState(INITIAL_LOCATION);
 
   const dispatch = useAppDispatch();
   const requestStatus = useAppSelector(selectUserRequestStatus);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const city = getRandomArrayElement(locationsList);
+    setRandomCity(city);
+  }, []);
 
   const isLoading = requestStatus === RequestStatus.Loading;
 
@@ -70,7 +77,7 @@ function LoginPage(): JSX.Element {
   };
 
   const handleCityClick = (): void => {
-    dispatch(setCurrentCity(INITIAL_LOCATION_ON_LOGIN_PAGE));
+    dispatch(setCurrentCity(randomCity));
   };
 
   const userAuthStatus = useAppSelector(selectUserAuthStatus);
@@ -132,7 +139,7 @@ function LoginPage(): JSX.Element {
                 to={AppRoute.Root}
                 onClick={handleCityClick}
               >
-                <span>{INITIAL_LOCATION_ON_LOGIN_PAGE.name}</span>
+                <span>{randomCity && randomCity.name}</span>
               </Link>
             </div>
           </section>

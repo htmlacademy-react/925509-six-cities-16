@@ -9,9 +9,10 @@ import {
 
 const PASSWORD_REG_EXP = /^(?=.*[A-Za-z])(?=.*\d).+$/;
 const EMAIL_REG_EXP =
-  /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+([a-z]{2,18})$/;
+  /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+([a-z]{2,18})$/i;
 const NEARBY_PLACES_MAX_COUNT = 3;
 const COMMENTS_MAX_COUNT = 10;
+const OFFER_IMAGES_MAX_COUNT = 6;
 const RATING_UNIT_WIDTH_VALUE = 20;
 
 const INITIAL_LOCATION: CityType = {
@@ -19,15 +20,6 @@ const INITIAL_LOCATION: CityType = {
   location: {
     latitude: 48.85661,
     longitude: 2.351499,
-    zoom: 13,
-  },
-};
-
-const INITIAL_LOCATION_ON_LOGIN_PAGE: CityType = {
-  name: 'Amsterdam',
-  location: {
-    latitude: 52.37454,
-    longitude: 4.89797,
     zoom: 13,
   },
 };
@@ -181,6 +173,6 @@ export {
   COMMENTS_MAX_COUNT,
   RATING_UNIT_WIDTH_VALUE,
   ToastMessage,
-  INITIAL_LOCATION_ON_LOGIN_PAGE,
+  OFFER_IMAGES_MAX_COUNT,
   FavoriteStatus
 };

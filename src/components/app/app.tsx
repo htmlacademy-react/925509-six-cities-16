@@ -30,6 +30,8 @@ function App(): JSX.Element {
       .unwrap()
       .then(() => {
         dispatch(fetchFavorites());
+      }).catch(() => {
+        // если убрать catch(), то тесты pages падают
       });
   }, [dispatch]);
 
