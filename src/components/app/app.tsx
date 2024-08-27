@@ -23,6 +23,7 @@ import { selectUserAuthStatus } from '../../store/user-slice';
 import { checkAuthorization } from '../../thunks/auth';
 import { fetchFavorites } from '../../thunks/favorites';
 import Loader from '../loader/loader';
+import { getToken } from '../../services/token';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -47,7 +48,7 @@ function App(): JSX.Element {
   const placesRequestStatus = useAppSelector(selectRequestStatus);
   const isAuthorized = userAuthStatus === AuthorisationStatus.Auth;
 
-  const isLoading = userRequestStatus === RequestStatus.Loading || placesRequestStatus === RequestStatus.Loading;
+  const isLoading = userRequestStatus === (getToken() && RequestStatus.Loading) || placesRequestStatus === RequestStatus.Loading;
 
   if (isLoading) {
     return <Loader />;
