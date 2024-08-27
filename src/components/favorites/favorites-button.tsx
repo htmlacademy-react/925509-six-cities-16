@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/store-hooks';
-import { AppRoute, AuthorisationStatus, ToastMessage } from '../../const';
+import { AppRoute, AuthorisationStatus, ToastMessage, RequestStatus } from '../../const';
 import { selectUserAuthStatus } from '../../store/user-slice';
 import { changeFavoriteStatus } from '../../thunks/favorites';
+import { selectRequestChangeStatus } from '../../store/favorites-slice';
 
 type favoritesButtonProps = {
   isFavorite: boolean;
@@ -20,7 +21,9 @@ function FavoritesButton(props: favoritesButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userAuthStatus = useAppSelector(selectUserAuthStatus);
+  const requestChangeStatus = useAppSelector(selectRequestChangeStatus);
   const isAuthorized = userAuthStatus === AuthorisationStatus.Auth;
+  const isDisabled = requestChangeStatus === RequestStatus.Loading;
 
   const handleButtonClick = () => {
     if (!isAuthorized) {
@@ -46,6 +49,7 @@ function FavoritesButton(props: favoritesButtonProps): JSX.Element {
         ${(isFavorite && !isPlacesList) ? 'offer__bookmark-button--active' : ''}`}
       type="button"
       onClick={handleButtonClick}
+      disabled = {isDisabled}
     >
       <svg
         className={`${isPlacesList ? 'place-card__bookmark-icon' : 'offer__bookmark-icon'}`}

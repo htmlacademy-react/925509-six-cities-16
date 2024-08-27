@@ -44,6 +44,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   useEffect((): (() => void) => () => dispatch(setActivePlaceId('')), [dispatch]);
 
   return (
+
     <article
       className={`
         ${isMainCard ? 'cities__card' : ''}

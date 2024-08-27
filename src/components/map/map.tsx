@@ -34,6 +34,7 @@ function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
+      markerLayer.current.clearLayers();
       places.forEach((place) => {
         leaflet
           .marker({
@@ -42,7 +43,7 @@ function Map(props: MapProps): JSX.Element {
           }, {
             icon: place.id === activePlaceId ? customIcon : defaultIcon,
           })
-          .addTo(map);
+          .addTo(markerLayer.current);
       });
     }
   }, [activePlaceId, map, places]);

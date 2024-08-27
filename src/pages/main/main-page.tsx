@@ -50,7 +50,12 @@ function MainPage(props: PageProps): JSX.Element {
   const activeId = useAppSelector(selectActivePlaceId);
 
   return (
-    <div className="page page--gray page--main">
+    <div
+      className={`
+        page page--gray page--main
+        ${isPageEmpty ? 'page__main--index-empty' : ''}
+      `}
+    >
       <Helmet>
         <title>6 cities: main page</title>
       </Helmet>

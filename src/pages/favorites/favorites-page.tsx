@@ -19,11 +19,14 @@ function FavoritesPage(props: PageProps): JSX.Element {
   const isEmpty = !favoritePlaces.length;
 
   return (
-    <div className="page">
+    <div
+      className={`
+        page
+        ${isEmpty ? 'page--favorites-empty' : ''}
+      `}
+    >
       <Helmet>
-        <title>
-          6 cities: favorites page
-        </title>
+        <title>6 cities: favorites page</title>
       </Helmet>
       <Header isAuthorized={isAuthorized} isLoginPage={false} />
       {!isEmpty && (

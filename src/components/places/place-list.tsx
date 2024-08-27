@@ -31,7 +31,7 @@ function PlaceList(props: PlaceListProps): JSX.Element {
           location={placeItem.location}
           key={placeItem.id}
           isFavoriteCard={false}
-          isNearPlacesCard={false}
+          isNearPlacesCard={isNearPlacesList}
           isMainCard
         />
       ))}
