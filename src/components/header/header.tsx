@@ -30,8 +30,9 @@ function Header(props: HeaderProps): JSX.Element {
         dropToken();
         if (location.pathname === AppRoute.Favorites) {
           navigate(AppRoute.Login);
+        } else {
+          navigate(AppRoute.Root);
         }
-        navigate(AppRoute.Root);
       })
       .catch(() => {
         toast.error(ToastMessage.ServerError);
