@@ -7,11 +7,11 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { AppRoute, AuthorisationStatus, RequestStatus } from '../../const';
 
-import LoginPage from '../../pages/login/login-page';
-import FavoritesPage from '../../pages/favorites/favorites-page';
-import OfferPage from '../../pages/offer/offer-page';
-import NotFoundPage from '../../pages/not-found/not-found-page';
-import MainPage from '../../pages/main/main-page';
+import LoginPage from '../../pages/login-page/login-page';
+import FavoritesPage from '../../pages/favorites-page/favorites-page';
+import OfferPage from '../../pages/offer-page/offer-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import MainPage from '../../pages/main-page/main-page';
 
 import PrivateRoute from '../private-route/private-route';
 import { selectUserRequestStatus } from '../../store/user-slice';
@@ -47,7 +47,9 @@ function App(): JSX.Element {
   const placesRequestStatus = useAppSelector(selectRequestStatus);
   const isAuthorized = userAuthStatus === AuthorisationStatus.Auth;
 
-  const isLoading = userRequestStatus === (getToken() && RequestStatus.Loading) || placesRequestStatus === RequestStatus.Loading;
+  const isLoading =
+    userRequestStatus === (getToken() && RequestStatus.Loading) ||
+    placesRequestStatus === RequestStatus.Loading;
 
   if (isLoading) {
     return <Loader />;

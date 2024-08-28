@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks/store-hooks';
 import { Helmet } from 'react-helmet-async';
 import { RequestStatus } from '../../const';
-import { sortingPlaceList } from '../../utils';
+import { sortPlaceList } from '../../utils';
 
 import {
   selectCurrentCity,
@@ -42,7 +42,7 @@ function MainPage(props: PageProps): JSX.Element {
 
   const isPageEmpty = !filteredPlacesList.length;
 
-  const sortedPlaceList = sortingPlaceList(
+  const sortedPlaceList = sortPlaceList(
     filteredPlacesList,
     currentSortingValue
   );

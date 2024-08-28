@@ -8,7 +8,7 @@ import Header from '../../components/header/header';
 import ReviewsForm from '../../components/reviews/reviews-form';
 import PlaceList from '../../components/places/place-list';
 import Loader from '../../components/loader/loader';
-import NotFoundPage from '../not-found/not-found-page';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 import OfferInsideList from '../../components/place/offer-inside-list';
 import OfferHost from '../../components/place/offer-host';
