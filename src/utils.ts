@@ -8,9 +8,9 @@ const uppercaseFirstLetter = (string: string) => {
   return string[0].toUpperCase() + string.slice(1);
 };
 
-const getRandomInteger = (a = 0, b = 1) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
+const getRandomInteger = (minInteger = 0, maxInteger = 1) => {
+  const lower = Math.ceil(Math.min(minInteger, maxInteger));
+  const upper = Math.floor(Math.max(minInteger, maxInteger));
 
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
@@ -21,7 +21,7 @@ const getRandomArrayElement = (array: [] | CityType[]) => {
   return array[randomIndex];
 };
 
-const sortingPlaceList = (
+const sortPlaceList = (
   filteredPlacesList: PlaceType[],
   sortingValue: SortingTypeKey
 ) => {
@@ -73,7 +73,7 @@ const formatDateToMonthYear = (dateString: string) => {
 
 export {
   uppercaseFirstLetter,
-  sortingPlaceList,
+  sortPlaceList,
   formatDateToYMD,
   formatDateToMonthYear,
   getRandomArrayElement

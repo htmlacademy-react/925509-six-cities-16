@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../types/types';
+import { RootState } from '../../types/types';
 
 type ActivePlaceIdState = {
   id: string;

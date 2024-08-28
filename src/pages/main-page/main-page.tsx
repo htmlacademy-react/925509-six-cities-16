@@ -1,20 +1,20 @@
 import { useAppSelector } from '../../hooks/store-hooks';
 import { Helmet } from 'react-helmet-async';
 import { RequestStatus } from '../../const';
-import { sortingPlaceList } from '../../utils';
+import { sortPlaceList } from '../../utils';
 
 import {
   selectCurrentCity,
   selectPlacesList,
   selectCurrentSortingOption,
   selectRequestStatus,
-} from '../../store/places-slice';
-import { selectActivePlaceId } from '../../store/active-place-slice';
+} from '../../store/places-slice/places-slice';
+import { selectActivePlaceId } from '../../store/active-place-slice/active-place-slice';
 
 import Header from '../../components/header/header';
-import PlaceList from '../../components/places/place-list';
-import LocationList from '../../components/locations/location-list';
-import SortingForm from '../../components/sorting/sorting-form';
+import { PlaceList } from '../../components/places/index';
+import LocationList from '../../components/locations/index';
+import SortingForm from '../../components/sorting-form/sorting-form';
 import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
 import Error from '../../components/error/error';
@@ -42,7 +42,7 @@ function MainPage(props: PageProps): JSX.Element {
 
   const isPageEmpty = !filteredPlacesList.length;
 
-  const sortedPlaceList = sortingPlaceList(
+  const sortedPlaceList = sortPlaceList(
     filteredPlacesList,
     currentSortingValue
   );

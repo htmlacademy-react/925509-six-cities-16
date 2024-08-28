@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { RequestStatus } from '../const';
-import { PlaceType, RootState } from '../types/types';
-import { fetchFavorites, changeFavoriteStatus } from '../thunks/favorites';
+import { RequestStatus } from '../../const';
+import { PlaceType, RootState } from '../../types/types';
+import { fetchFavorites, changeFavoriteStatus } from '../../thunks/index';
 
 type FavoritePlacesState = {
   data: PlaceType[];
@@ -53,7 +53,8 @@ const favoritePlacesSlice = createSlice({
 });
 
 const selectFavoritesData = (state: RootState) => state.favorites.data;
-const selectRequestChangeStatus = (state: RootState) => state.favorites.requestChangeStatus;
+const selectRequestChangeStatus = (state: RootState) =>
+  state.favorites.requestChangeStatus;
 
 export { selectFavoritesData, selectRequestChangeStatus };
 export default favoritePlacesSlice.reducer;

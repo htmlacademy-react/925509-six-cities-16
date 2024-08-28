@@ -1,16 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState, PlaceType } from '../types/types';
-import { fetchNearbyPlaces } from '../thunks/nearby-place';
-import { RequestStatus } from '../const';
+import { RootState, PlaceType } from '../../types/types';
+import { fetchNearbyPlaces } from '../../thunks/index';
 
 type NearbyPlacesState = {
   data: PlaceType[];
-  requestStatus: RequestStatus;
 };
 
 const initialState: NearbyPlacesState = {
   data: [],
-  requestStatus: RequestStatus.Initial
 };
 
 const nearbyPlacesSlice = createSlice({
@@ -19,16 +16,13 @@ const nearbyPlacesSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchNearbyPlaces.fulfilled, (state, action) => {
-      state.requestStatus = RequestStatus.Success;
       state.data = action.payload;
     });
   },
 });
 
-const selectNearbyRequestStatus = (state: RootState) =>
-  state.nearbyPlaces.requestStatus;
 const selectNearbyOffers = (state: RootState) => state.nearbyPlaces.data;
 
-export { selectNearbyRequestStatus, selectNearbyOffers };
+export { selectNearbyOffers };
 
 export default nearbyPlacesSlice.reducer;

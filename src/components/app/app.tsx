@@ -7,21 +7,19 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { AppRoute, AuthorisationStatus, RequestStatus } from '../../const';
 
-import LoginPage from '../../pages/login/login-page';
-import FavoritesPage from '../../pages/favorites/favorites-page';
-import OfferPage from '../../pages/offer/offer-page';
-import NotFoundPage from '../../pages/not-found/not-found-page';
-import MainPage from '../../pages/main/main-page';
+import LoginPage from '../../pages/login-page/login-page';
+import FavoritesPage from '../../pages/favorites-page/favorites-page';
+import OfferPage from '../../pages/offer-page/offer-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import MainPage from '../../pages/main-page/main-page';
 
 import PrivateRoute from '../private-route/private-route';
-import { selectUserRequestStatus } from '../../store/user-slice';
-import { selectRequestStatus } from '../../store/places-slice';
+import { selectUserRequestStatus } from '../../store/user-slice/user-slice';
+import { selectRequestStatus } from '../../store/places-slice/places-slice';
 
-import { fetchOffers } from '../../thunks/places-list';
+import { fetchOffers, checkAuthorization, fetchFavorites } from '../../thunks/index';
 import { useAppSelector } from '../../hooks/store-hooks';
-import { selectUserAuthStatus } from '../../store/user-slice';
-import { checkAuthorization } from '../../thunks/auth';
-import { fetchFavorites } from '../../thunks/favorites';
+import { selectUserAuthStatus } from '../../store/user-slice/user-slice';
 import Loader from '../loader/loader';
 import { getToken } from '../../services/token';
 
@@ -47,7 +45,9 @@ function App(): JSX.Element {
   const placesRequestStatus = useAppSelector(selectRequestStatus);
   const isAuthorized = userAuthStatus === AuthorisationStatus.Auth;
 
-  const isLoading = userRequestStatus === (getToken() && RequestStatus.Loading) || placesRequestStatus === RequestStatus.Loading;
+  const isLoading =
+    userRequestStatus === (getToken() && RequestStatus.Loading) ||
+    placesRequestStatus === RequestStatus.Loading;
 
   if (isLoading) {
     return <Loader />;

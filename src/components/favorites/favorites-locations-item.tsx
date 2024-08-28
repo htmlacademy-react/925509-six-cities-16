@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
 import { PlaceType } from '../../types/types';
-import { setCurrentCity } from '../../store/places-slice';
+import { setCurrentCity } from '../../store/places-slice/places-slice';
 import { useAppDispatch } from '../../hooks/store-hooks';
 
-import PlaceCard from '../places/place-card';
+import { PlaceCard } from '../places/index';
 
 type favoriteLocationsItemProps = {
   places: PlaceType[];
@@ -27,7 +27,8 @@ function FavoritesLocationsItem(
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <Link className="locations__item-link"
+          <Link
+            className="locations__item-link"
             onClick={handleCityClick}
             to={AppRoute.Root}
           >
