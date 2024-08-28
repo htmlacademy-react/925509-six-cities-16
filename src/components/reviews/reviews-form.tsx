@@ -7,7 +7,7 @@ import {
   RequestStatus,
   ToastMessage,
 } from '../../const';
-import { sendComment } from '../../thunks/comment';
+import { sendComment } from '../../thunks/index';
 import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { selectRequestCommentSendStatus } from '../../store/current-place-slice/current-place-slice';
 

@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { logout } from '../../thunks/auth';
+import { logout } from '../../thunks/index';
 import { AppRoute, ToastMessage } from '../../const';
 import { useAppDispatch } from '../../hooks/store-hooks';
 import { selectUserData } from '../../store/user-slice/user-slice';

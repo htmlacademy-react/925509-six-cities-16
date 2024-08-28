@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState, PlaceType } from '../../types/types';
-import { fetchNearbyPlaces } from '../../thunks/nearby-place';
+import { fetchNearbyPlaces } from '../../thunks/index';
 
 type NearbyPlacesState = {
   data: PlaceType[];

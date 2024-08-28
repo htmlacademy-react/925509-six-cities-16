@@ -20,9 +20,7 @@ import Map from '../../components/map/map';
 
 import { FavoritesButton } from '../../components/favorites/index';
 
-import { fetchCurrentOffer } from '../../thunks/current-place';
-import { fetchComments } from '../../thunks/comment';
-import { fetchNearbyPlaces } from '../../thunks/nearby-place';
+import { fetchCurrentOffer, fetchComments, fetchNearbyPlaces } from '../../thunks/index';
 
 import {
   selectOfferData,

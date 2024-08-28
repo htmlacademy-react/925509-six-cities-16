@@ -7,8 +7,7 @@ import {
 } from '../../types/types';
 
 import { INITIAL_LOCATION, RequestStatus } from '../../const';
-import { changeFavoriteStatus, fetchFavorites } from '../../thunks/favorites';
-import { fetchOffers } from '../../thunks/places-list';
+import { changeFavoriteStatus, fetchFavorites, fetchOffers } from '../../thunks/index';
 
 type PlacesState = {
   currentCity: CityType;

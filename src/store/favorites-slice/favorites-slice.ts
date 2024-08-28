@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { RequestStatus } from '../../const';
 import { PlaceType, RootState } from '../../types/types';
-import { fetchFavorites, changeFavoriteStatus } from '../../thunks/favorites';
+import { fetchFavorites, changeFavoriteStatus } from '../../thunks/index';
 
 type FavoritePlacesState = {
   data: PlaceType[];

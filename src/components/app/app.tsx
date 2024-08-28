@@ -17,11 +17,9 @@ import PrivateRoute from '../private-route/private-route';
 import { selectUserRequestStatus } from '../../store/user-slice/user-slice';
 import { selectRequestStatus } from '../../store/places-slice/places-slice';
 
-import { fetchOffers } from '../../thunks/places-list';
+import { fetchOffers, checkAuthorization, fetchFavorites } from '../../thunks/index';
 import { useAppSelector } from '../../hooks/store-hooks';
 import { selectUserAuthStatus } from '../../store/user-slice/user-slice';
-import { checkAuthorization } from '../../thunks/auth';
-import { fetchFavorites } from '../../thunks/favorites';
 import Loader from '../loader/loader';
 import { getToken } from '../../services/token';
 

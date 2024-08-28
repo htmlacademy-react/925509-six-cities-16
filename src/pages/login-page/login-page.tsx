@@ -14,15 +14,15 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { login } from '../../thunks/auth';
+import { login } from '../../thunks/index';
 
 import {
   selectUserAuthStatus,
   selectUserRequestStatus,
-} from '../../store/user-slice';
+} from '../../store/user-slice/user-slice';
 import { AuthorisationStatus, RequestStatus } from '../../const';
 import { setCurrentCity } from '../../store/places-slice/places-slice';
-import { fetchFavorites } from '../../thunks/favorites';
+import { fetchFavorites } from '../../thunks/index';
 
 import Header from '../../components/header/header';
 

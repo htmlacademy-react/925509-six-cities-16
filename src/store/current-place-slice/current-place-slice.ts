@@ -3,9 +3,7 @@ import { PlaceExtendedType, RootState, CommentType } from '../../types/types';
 
 import { RequestStatus } from '../../const';
 
-import { fetchCurrentOffer } from '../../thunks/current-place';
-import { changeFavoriteStatus } from '../../thunks/favorites';
-import { fetchComments, sendComment } from '../../thunks/comment';
+import { fetchCurrentOffer, changeFavoriteStatus, fetchComments, sendComment } from '../../thunks/index';
 
 type PlacesState = {
   data: PlaceExtendedType | null;
