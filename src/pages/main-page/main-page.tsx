@@ -12,9 +12,9 @@ import {
 import { selectActivePlaceId } from '../../store/active-place-slice';
 
 import Header from '../../components/header/header';
-import PlaceList from '../../components/places/place-list';
-import LocationList from '../../components/locations/location-list';
-import SortingForm from '../../components/sorting/sorting-form';
+import { PlaceList } from '../../components/places/index';
+import LocationList from '../../components/locations/index';
+import SortingForm from '../../components/sorting-form/sorting-form';
 import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
 import Error from '../../components/error/error';

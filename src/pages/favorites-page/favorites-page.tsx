@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
-import FavoritesList from '../../components/favorites/favorites-locations-list';
+import { FavoritesList } from '../../components/favorites/index';
 
 import { useAppSelector } from '../../hooks/store-hooks';
 import { selectFavoritesData } from '../../store/favorites-slice';

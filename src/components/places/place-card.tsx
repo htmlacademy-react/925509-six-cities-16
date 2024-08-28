@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { PlaceType } from '../../types/types';
-import FavoritesButton from '../favorites/favorites-button';
+import { FavoritesButton } from '../favorites/index';
 import { AppRoute, RATING_UNIT_WIDTH_VALUE } from '../../const';
 import { useAppDispatch } from '../../hooks/store-hooks';
 import { setActivePlaceId } from '../../store/active-place-slice';
@@ -41,10 +41,12 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     }
   };
 
-  useEffect((): (() => void) => () => dispatch(setActivePlaceId('')), [dispatch]);
+  useEffect(
+    (): (() => void) => () => dispatch(setActivePlaceId('')),
+    [dispatch]
+  );
 
   return (
-
     <article
       className={`
         ${isMainCard ? 'cities__card' : ''}
@@ -86,11 +88,15 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <FavoritesButton isFavorite={isFavorite} isPlacesList id={id}/>
+          <FavoritesButton isFavorite={isFavorite} isPlacesList id={id} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${Math.round(rating) * RATING_UNIT_WIDTH_VALUE}%` }} />
+            <span
+              style={{
+                width: `${Math.round(rating) * RATING_UNIT_WIDTH_VALUE}%`,
+              }}
+            />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

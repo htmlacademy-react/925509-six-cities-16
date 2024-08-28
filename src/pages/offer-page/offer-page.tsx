@@ -5,19 +5,20 @@ import { useAppDispatch } from '../../hooks/store-hooks';
 import { uppercaseFirstLetter } from '../../utils';
 
 import Header from '../../components/header/header';
-import ReviewsForm from '../../components/reviews/reviews-form';
-import PlaceList from '../../components/places/place-list';
+import { ReviewsForm, ReviewsList } from '../../components/reviews/index';
+import { PlaceList } from '../../components/places/index';
 import Loader from '../../components/loader/loader';
 import NotFoundPage from '../not-found-page/not-found-page';
 
-import OfferInsideList from '../../components/place/offer-inside-list';
-import OfferHost from '../../components/place/offer-host';
-import OfferGalleryList from '../../components/place/offer-gallery-list';
-import ReviewsList from '../../components/reviews/reviews-list';
+import {
+  OfferGalleryList,
+  OfferHost,
+  OfferInsideList,
+} from '../../components/place/index';
 
 import Map from '../../components/map/map';
 
-import FavoritesButton from '../../components/favorites/favorites-button';
+import { FavoritesButton } from '../../components/favorites/index';
 
 import { fetchCurrentOffer } from '../../thunks/current-place';
 import { fetchComments } from '../../thunks/comment';
