@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 import { logout } from '../../thunks/auth';
 import { AppRoute, ToastMessage } from '../../const';
 import { useAppDispatch } from '../../hooks/store-hooks';
-import { selectUserData } from '../../store/user-slice';
-import { selectFavoritesData } from '../../store/favorites-slice';
+import { selectUserData } from '../../store/user-slice/user-slice';
+import { selectFavoritesData } from '../../store/favorites-slice/favorites-slice';
 import { useAppSelector } from '../../hooks/store-hooks';
 import { dropToken } from '../../services/token';
 
@@ -75,7 +75,9 @@ function Header(props: HeaderProps): JSX.Element {
                     <span className="header__user-name user__name">
                       {userData?.email}
                     </span>
-                    <span className="header__favorite-count">{favoritesData.length}</span>
+                    <span className="header__favorite-count">
+                      {favoritesData.length}
+                    </span>
                   </Link>
                 </li>
                 <li className="header__nav-item">

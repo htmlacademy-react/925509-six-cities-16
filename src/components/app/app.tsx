@@ -14,12 +14,12 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import MainPage from '../../pages/main-page/main-page';
 
 import PrivateRoute from '../private-route/private-route';
-import { selectUserRequestStatus } from '../../store/user-slice';
-import { selectRequestStatus } from '../../store/places-slice';
+import { selectUserRequestStatus } from '../../store/user-slice/user-slice';
+import { selectRequestStatus } from '../../store/places-slice/places-slice';
 
 import { fetchOffers } from '../../thunks/places-list';
 import { useAppSelector } from '../../hooks/store-hooks';
-import { selectUserAuthStatus } from '../../store/user-slice';
+import { selectUserAuthStatus } from '../../store/user-slice/user-slice';
 import { checkAuthorization } from '../../thunks/auth';
 import { fetchFavorites } from '../../thunks/favorites';
 import Loader from '../loader/loader';

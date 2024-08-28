@@ -28,8 +28,8 @@ import {
   selectOfferData,
   selectRequestStatus,
   selectOfferComments,
-} from '../../store/current-place-slice';
-import { selectNearbyOffers } from '../../store/nearby-places-slice';
+} from '../../store/current-place-slice/current-place-slice';
+import { selectNearbyOffers } from '../../store/nearby-places-slice/nearby-places-slice';
 
 import { useAppSelector } from '../../hooks/store-hooks';
 

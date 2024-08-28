@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState, CurrentUserType } from '../types/types';
-import { checkAuthorization, login, logout } from '../thunks/auth';
-import { RequestStatus, AuthorisationStatus } from '../const';
+import { RootState, CurrentUserType } from '../../types/types';
+import { checkAuthorization, login, logout } from '../../thunks/auth';
+import { RequestStatus, AuthorisationStatus } from '../../const';
 
 type UserState = {
   data: CurrentUserType | null;

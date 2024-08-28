@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState, PlaceType } from '../types/types';
-import { fetchNearbyPlaces } from '../thunks/nearby-place';
+import { RootState, PlaceType } from '../../types/types';
+import { fetchNearbyPlaces } from '../../thunks/nearby-place';
 
 type NearbyPlacesState = {
   data: PlaceType[];
@@ -20,7 +20,6 @@ const nearbyPlacesSlice = createSlice({
     });
   },
 });
-
 
 const selectNearbyOffers = (state: RootState) => state.nearbyPlaces.data;
 

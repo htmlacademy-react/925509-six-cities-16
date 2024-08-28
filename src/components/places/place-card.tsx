@@ -4,7 +4,7 @@ import { PlaceType } from '../../types/types';
 import { FavoritesButton } from '../favorites/index';
 import { AppRoute, RATING_UNIT_WIDTH_VALUE } from '../../const';
 import { useAppDispatch } from '../../hooks/store-hooks';
-import { setActivePlaceId } from '../../store/active-place-slice';
+import { setActivePlaceId } from '../../store/active-place-slice/active-place-slice';
 
 type PlaceCardProps = PlaceType & {
   isFavoriteCard: boolean;

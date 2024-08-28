@@ -1,11 +1,15 @@
 import { ChangeEvent, useState, Fragment, FormEvent } from 'react';
 import { toast } from 'react-toastify';
 
-import { Rating, CommentLengthLimit, RequestStatus, ToastMessage } from '../../const';
+import {
+  Rating,
+  CommentLengthLimit,
+  RequestStatus,
+  ToastMessage,
+} from '../../const';
 import { sendComment } from '../../thunks/comment';
 import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { selectRequestCommentSendStatus } from '../../store/current-place-slice';
-
+import { selectRequestCommentSendStatus } from '../../store/current-place-slice/current-place-slice';
 
 type ReviewsFormPropsType = {
   offerId: string;

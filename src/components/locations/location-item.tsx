@@ -3,7 +3,7 @@ import { locationsList } from '../../const';
 import { Link } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/store-hooks';
-import { setCurrentCity } from '../../store/places-slice';
+import { setCurrentCity } from '../../store/places-slice/places-slice';
 import { INITIAL_LOCATION } from '../../const';
 
 function LocationItem(props: CityType) {

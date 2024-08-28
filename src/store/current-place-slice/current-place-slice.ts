@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PlaceExtendedType, RootState, CommentType } from '../types/types';
+import { PlaceExtendedType, RootState, CommentType } from '../../types/types';
 
-import { RequestStatus } from '../const';
+import { RequestStatus } from '../../const';
 
-import { fetchCurrentOffer } from '../thunks/current-place';
-import { changeFavoriteStatus } from '../thunks/favorites';
-import { fetchComments, sendComment } from '../thunks/comment';
+import { fetchCurrentOffer } from '../../thunks/current-place';
+import { changeFavoriteStatus } from '../../thunks/favorites';
+import { fetchComments, sendComment } from '../../thunks/comment';
 
 type PlacesState = {
   data: PlaceExtendedType | null;

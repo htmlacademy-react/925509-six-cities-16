@@ -8,8 +8,8 @@ import {
   selectPlacesList,
   selectCurrentSortingOption,
   selectRequestStatus,
-} from '../../store/places-slice';
-import { selectActivePlaceId } from '../../store/active-place-slice';
+} from '../../store/places-slice/places-slice';
+import { selectActivePlaceId } from '../../store/active-place-slice/active-place-slice';
 
 import Header from '../../components/header/header';
 import { PlaceList } from '../../components/places/index';

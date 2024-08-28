@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
 import { PlaceType } from '../../types/types';
-import { setCurrentCity } from '../../store/places-slice';
+import { setCurrentCity } from '../../store/places-slice/places-slice';
 import { useAppDispatch } from '../../hooks/store-hooks';
 
 import { PlaceCard } from '../places/index';

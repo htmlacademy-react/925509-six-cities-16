@@ -5,7 +5,7 @@ import Footer from '../../components/footer/footer';
 import { FavoritesList } from '../../components/favorites/index';
 
 import { useAppSelector } from '../../hooks/store-hooks';
-import { selectFavoritesData } from '../../store/favorites-slice';
+import { selectFavoritesData } from '../../store/favorites-slice/favorites-slice';
 
 type PageProps = {
   isAuthorized: boolean;

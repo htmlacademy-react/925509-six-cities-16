@@ -1,9 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PlaceType, CityType, SortingTypeKey, RootState } from '../types/types';
+import {
+  PlaceType,
+  CityType,
+  SortingTypeKey,
+  RootState,
+} from '../../types/types';
 
-import { INITIAL_LOCATION, RequestStatus } from '../const';
-import { changeFavoriteStatus, fetchFavorites } from '../thunks/favorites';
-import { fetchOffers } from '../thunks/places-list';
+import { INITIAL_LOCATION, RequestStatus } from '../../const';
+import { changeFavoriteStatus, fetchFavorites } from '../../thunks/favorites';
+import { fetchOffers } from '../../thunks/places-list';
 
 type PlacesState = {
   currentCity: CityType;

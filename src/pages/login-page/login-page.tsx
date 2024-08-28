@@ -21,7 +21,7 @@ import {
   selectUserRequestStatus,
 } from '../../store/user-slice';
 import { AuthorisationStatus, RequestStatus } from '../../const';
-import { setCurrentCity } from '../../store/places-slice';
+import { setCurrentCity } from '../../store/places-slice/places-slice';
 import { fetchFavorites } from '../../thunks/favorites';
 
 import Header from '../../components/header/header';
